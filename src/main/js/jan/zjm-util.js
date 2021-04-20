@@ -1,0 +1,270 @@
+/*
+Copyright 2021 masaue
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ */
+import ZjmYaku from './zjm-yaku';
+import YakuUtil from './yaku-util';
+
+export default class ZjmUtil {
+    
+    static yakuList(info) {
+    }
+    
+    
+    
+    static _concealedTripletsYaku(completePattern) {
+        switch (completePattern.concealedPungCount) {
+        case 4:
+            return ZjmYaku.FOUR_CONCEALED_TRIPLETS;
+        case 3:
+            return ZjmYaku.THREE_CONCEALED_TRIPLETS;
+        case 2:
+            return ZjmYaku.TWO_CONCEALED_TRIPLETS;
+        default:
+            return undefined;
+        }
+    }
+    
+    static _dragonsYaku(completePattern) {
+        switch (completePattern.dragonCount) {
+        case 3:
+            return ZjmYaku.BIG_THREE_DRAGONS;
+        case 2:
+            if (completePattern.head.dragon) {
+                return ZjmYaku.SMALL_THREE_DRAGONS;
+            }
+        default:
+            return undefined;
+        }
+    }
+    
+    static _honorTilesYakuList(completePattern) {
+        const yakuList = [];
+        this._push(yakuList, this._dragonsYaku(completePattern));
+        this._push(yakuList, this._windsYaku(completePattern));
+        if (completePattern.jiAll) {
+            yakuList.push(ZjmYaku.ALL_HONORS);
+        }
+        return yakuList;
+    }
+    
+    static _kongYaku(completePattern) {
+        switch (completePattern.kongCount) {
+        case 4:
+            return ZjmYaku.FOUR_KONG;
+        case 3:
+            return ZjmYaku.THREE_KONG;
+        case 2:
+            return ZjmYaku.TWO_KONG;
+        case 1:
+            return ZjmYaku.ONE_KONG;
+        default:
+            return undefined;
+        }
+    }
+    
+    static _mentsuYakuList(completePattern) {
+        const yakuList = [];
+        yakuList.push(...YakuUtil._honorTilesYakuList(completePattern));
+        yakuList.push(...YakuUtil._tripletsAndKongYakuList(completePattern));
+        const chowList = completePattern.chowList;
+        const pungList = completePattern.pungList;
+        const head = completePattern.head;
+        switch (chowList.length) {
+        case 0:
+            this._push(yakuList,
+                           this._yakuWithFourPungs(pungList, head));
+            break;
+        case 1:
+            this._push(yakuList,
+                           this._yakuWithThreePungs(pungList, head));
+            break;
+        case 2:
+            this._push(yakuList,
+                           this._twoIndenticalSequences(chowList));
+            this._push(yakuList,
+                           this._smallThreeSimilarTriplets(pungList, head));
+            break;
+        case 3:
+            this._push(yakuList, this._yakuWithThreeChows(chowList));
+            break;
+        case 4:
+            this._push(yakuList, this._yakuWithFourChows(chowList));
+            yakuList.push(ZjmYaku.ALL_SEQUENCES);
+            break;
+        }
+        _push(yakuList, YakuUtil.terminalsYaku(completePattern));
+        return yakuList;
+    }
+    
+    static _prevNumberMentsuYaku(callBack, mentsuList, head) {
+        for (let i = 0; i < mentsuList.length; i++) {
+            const removed = mentsuList.splice(i, 1);
+            let yaku;
+            if (head) {
+                yaku = callBack(mentsuList, head);
+            }
+            else {
+                yaku = callBack(mentsuList);
+            }
+            if (yaku) {
+                return yaku;
+            }
+            mentsuList.splice(i, 0, removed[0]);
+        }
+        return undefined;
+    }
+    
+    static _push(yakuList, yaku) {
+        if (yaku) {
+            yakuList.push(yaku);
+        }
+    }
+    
+    static _smallThreeSimilarTriplets(twoPungs, head) {
+        if (YakuUtil.doublePung(twoPungs) &&
+            twoPungs[0].head.number === head.number) {
+            return ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS;
+        }
+        return undefined;
+    }
+    
+    static _threeChowsYaku(threeChows) {
+        if (YakuUtil.pureTripleChow(threeChows)) {
+            return ZjmYaku.THREE_INDENTICAL_SEQUENCES;
+        }
+        if (YakuUtil.pureStraight(threeChows)) {
+            return ZjmYaku.NINE_TILE_STRAIGHT;
+        }
+        if (YakuUtil.mixedTripleChow(threeChows)) {
+            return ZjmYaku.THREE_SIMILAR_SEQUENCES;
+        }
+        return undefined;
+    }
+    
+    static _threePungsYaku(threePungs) {
+        if (YakuUtil.triplePung(threePungs)) {
+            return ZjmYaku.THREE_SIMILAR_TRIPLETS;
+        }
+        if (YakuUtil.pureShiftedPungs(threePungs)) {
+            return ZjmYaku.THREE_CONCEALED_TRIPLETS;
+        }
+        return undefined;
+    }
+    
+    static _tripletsAndKongYakuList(completePattern) {
+        const yakuList = [];
+        if (completePattern.pungList.length === 4) {
+            yakuList.push(ZjmYaku.ALL_TRIPLETS);
+        }
+        this._push(yakuList, this._concealedTripletsYaku(completePattern));
+        this._push(yakuList, this._kongYaku(completePattern));
+        return yakuList;
+    }
+    
+    static _twoIndenticalSequences(twoChows) {
+        if (YakuUtil.pureDoubleChow(twoChows)) {
+            return ZjmYaku.TWO_INDENTICAL_SEQUENCES;
+        }
+        return undefined;
+    }
+    
+    static _twoMentsuYakuWithFourMentsu(callBack, fourMentsu, head) {
+        for (let i = 0; i < fourMentsu.length; i++) {
+            const firstRemoved = fourMentsu.splice(i, 1);
+            for (let j = 0; j < fourMentsu.length; j++) {
+                const secondRemoved = fourMentsu.splice(j, 1);
+                let yaku;
+                if (head) {
+                    yaku = callBack(fourMentsu, head);
+                }
+                else {
+                    yaku = callBack(fourMentsu);
+                }
+                if (yaku) {
+                    return yaku;
+                }
+                fourMentsu.splice(j, 0, secondRemoved[0]);
+            }
+            fourMentsu.splice(i, 0, firstRemoved[0]);
+        }
+        return undefined;
+    }
+    
+    static _windsYaku(completePattern) {
+        switch (completePattern.windCount) {
+        case 4:
+            return ZjmYaku.BIG_FOUR_WINDS;
+        case 3:
+            if (completePattern.head.wind) {
+                return ZjmYaku.SMALL_FOUR_WINDS;
+            }
+            return ZjmYaku.BIG_THREE_WINDS;
+        case 2:
+            if (completePattern.head.wind) {
+                return ZjmYaku.SMALL_THREE_WINDS;
+            }
+        default:
+            return undefined;
+        }
+    }
+    
+    static _yakuWithFourChows(fourChows) {
+        if (YakuUtil.quadrupleChow(fourChows)) {
+            return ZjmYaku.FOUR_INDENTICAL_SEQUENCES;
+        }
+        if (YakuUtil.twoIdenticalSequencesTwice(fourChows)) {
+            return ZjmYaku.TWO_INDENTICAL_SEQUENCES_TWICE;
+        }
+        const _threeChowsYaku = this._threeChowsYaku;
+        const yaku = this._prevNumberMentsuYaku(_threeChowsYaku, fourChows, undefined);
+        if (yaku) {
+            return yaku;
+        }
+        const callBack = this._twoIndenticalSequences;
+        return this._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined);
+    }
+    
+    static _yakuWithFourPungs(fourPungs, head) {
+        if (YakuUtil.fourPureShiftedPungs(fourPungs)) {
+            return ZjmYaku.FOUR_CONSECUTIVE_TRIPLETS;
+        }
+        const _threePungsYaku = this._threePungsYaku;
+        const yaku = this._prevNumberMentsuYaku(_threePungsYaku, fourPungs, head);
+        if (yaku) {
+            return yaku;
+        }
+        const callBack = this._smallThreeSimilarTriplets;
+        return this._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head);
+    }
+    
+    static _yakuWithThreeChows(threeChows) {
+        const yaku = this._threeChowsYaku(threeChows);
+        if (yaku) {
+            return yaku;
+        }
+        const callBack = this._twoIndenticalSequences;
+        return this._prevNumberMentsuYaku(callBack, threeChows, undefined);
+    }
+    
+    static _yakuWithThreePungs(threePungs, head) {
+        const yaku = this._threePungsYaku(threePungs);
+        if (yaku) {
+            return yaku;
+        }
+        const callBack = this._smallThreeSimilarTriplets;
+        return this._prevNumberMentsuYaku(callBack, threePungs, head);
+    }
+    
+}
