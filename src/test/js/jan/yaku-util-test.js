@@ -15,16 +15,16 @@ limitations under the License.
  */
 import assert from 'assert';
 
-import CompleteInfo from './complete-info';
-import CompletePattern from './complete-pattern';
-import CompleteType from './complete-type';
-import Hand from './hand';
-import Janpai from './janpai';
-import JanpaiID from './janpai-id';
-import McrYaku from './mcr-yaku';
-import Mentsu from './mentsu';
-import ZjmYaku from './zjm-yaku';
-import YakuUtil from './yaku-util';
+import CompleteInfo from '../../../main/js/jan/complete-info';
+import CompletePattern from '../../../main/js/jan/complete-pattern';
+import CompleteType from '../../../main/js/jan/complete-type';
+import Hand from '../../../main/js/jan/hand';
+import Janpai from '../../../main/js/jan/janpai';
+import JanpaiID from '../../../main/js/jan/janpai-id';
+import McrYaku from '../../../main/js/jan/mcr-yaku';
+import Mentsu from '../../../main/js/jan/mentsu';
+import ZjmYaku from '../../../main/js/jan/zjm-yaku';
+import YakuUtil from '../../../main/js/jan/yaku-util';
 
 describe('YakuUtilTest', () => {
     

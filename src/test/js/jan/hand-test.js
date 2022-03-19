@@ -15,12 +15,12 @@ limitations under the License.
  */
 import assert from 'assert';
 
-import CallType from './call-type';
-import Hand from './hand';
-import Janpai from './janpai';
-import JanpaiID from './janpai-id';
-import Mentsu from './mentsu';
-import MentsuType from './mentsu-type';
+import CallType from '../../../main/js/jan/call-type';
+import Hand from '../../../main/js/jan/hand';
+import Janpai from '../../../main/js/jan/janpai';
+import JanpaiID from '../../../main/js/jan/janpai-id';
+import Mentsu from '../../../main/js/jan/mentsu';
+import MentsuType from '../../../main/js/jan/mentsu-type';
 
 describe('HandTest', () => {
     

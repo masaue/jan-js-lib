@@ -15,10 +15,10 @@ limitations under the License.
  */
 import assert from 'assert';
 
-import CompletePattern from './complete-pattern';
-import Janpai from './janpai';
-import JanpaiID from './janpai-id';
-import Mentsu from './mentsu';
+import CompletePattern from '../../../main/js/jan/complete-pattern';
+import Janpai from '../../../main/js/jan/janpai';
+import JanpaiID from '../../../main/js/jan/janpai-id';
+import Mentsu from '../../../main/js/jan/mentsu';
 
 describe('CompletePatternTest', () => {
     

@@ -15,13 +15,13 @@ limitations under the License.
  */
 import assert from 'assert';
 
-import CompleteInfo from './complete-info';
-import CompletePattern from './complete-pattern';
-import Hand from './hand';
-import HandUtil from './hand-util';
-import Janpai from './janpai';
-import JanpaiID from './janpai-id';
-import Mentsu from './mentsu';
+import CompleteInfo from '../../../main/js/jan/complete-info';
+import CompletePattern from '../../../main/js/jan/complete-pattern';
+import Hand from '../../../main/js/jan/hand';
+import HandUtil from '../../../main/js/jan/hand-util';
+import Janpai from '../../../main/js/jan/janpai';
+import JanpaiID from '../../../main/js/jan/janpai-id';
+import Mentsu from '../../../main/js/jan/mentsu';
 
 describe('HandUtilTest', () => {
     

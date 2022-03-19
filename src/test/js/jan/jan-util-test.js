@@ -15,11 +15,11 @@ limitations under the License.
  */
 import assert from 'assert';
 
-import Hand from './hand';
-import Janpai from './janpai';
-import JanpaiID from './janpai-id';
-import JanUtil from './jan-util';
-import Mentsu from './mentsu';
+import Hand from '../../../main/js/jan/hand';
+import Janpai from '../../../main/js/jan/janpai';
+import JanpaiID from '../../../main/js/jan/janpai-id';
+import JanUtil from '../../../main/js/jan/jan-util';
+import Mentsu from '../../../main/js/jan/mentsu';
 
 describe('JanUtilTest', () => {
     
