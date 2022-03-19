@@ -8,7 +8,7 @@
     "clean": "gulp clean",
     "pretest": "gulp ready-to-test",
     "publish": "./bin/minPackageJson; npm run build -- --env=production; npm publish dist/",
-    "test": "mocha cache/test -R dot --require @babel/register --es_staging"
+    "test": "mocha cache/test -R dot --require @babel/register"
   },
   "repository": {
     "type": "git",
