@@ -52,7 +52,7 @@ describe('McrUtilTest', () => {
                 [ McrYaku.GREATER_HONORS_AND_KNITTED_TILES ]);
         });
         
-        it('is thirteen Orphans and robbing the kongs.', () => {
+        it('is thirteen Orphans and robbing the kong.', () => {
             const janpaiList = [
                 new Janpai(JanpaiID.MAN_01),
                 new Janpai(JanpaiID.MAN_09),
@@ -72,7 +72,7 @@ describe('McrUtilTest', () => {
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.CHUN),
                 false, undefined, undefined, CompleteType.ROBBING_A_KONG );
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
-                [ McrYaku.THIRTEEN_ORPHANS, McrYaku.ROBBING_THE_KONGS ]);
+                [ McrYaku.THIRTEEN_ORPHANS, McrYaku.ROBBING_THE_KONG ]);
         });
         
         it('is seven shifted pairs.', () => {
@@ -486,7 +486,7 @@ describe('McrUtilTest', () => {
                 [ McrYaku.REVERSIBLE_TILES ]);
         });
         
-        it('is robbing the kongs.', () => {
+        it('is robbing the kong.', () => {
             const janpaiList = [
                 new Janpai(JanpaiID.MAN_07),
                 new Janpai(JanpaiID.MAN_08),
@@ -500,7 +500,7 @@ describe('McrUtilTest', () => {
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_09),
                 true, undefined, undefined, CompleteType.ROBBING_A_KONG);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
-                [ McrYaku.ROBBING_THE_KONGS ]);
+                [ McrYaku.ROBBING_THE_KONG ]);
         });
         
         it('is melded hand.', () => {
@@ -802,10 +802,10 @@ describe('McrUtilTest', () => {
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_01),
                 true, undefined, undefined, CompleteType.ROBBING_A_KONG);
             assert.deepStrictEqual(McrUtil._beingWholeYakuList(hand, completeInfo),
-                [ McrYaku.ROBBING_THE_KONGS, McrYaku.LAST_TILE ]);
+                [ McrYaku.ROBBING_THE_KONG, McrYaku.LAST_TILE ]);
         });
         
-        it('is fully concealed.', () => {
+        it('is fully concealed hand.', () => {
             const janpaiList = [
                 new Janpai(JanpaiID.MAN_01),
                 new Janpai(JanpaiID.MAN_02),
@@ -825,7 +825,7 @@ describe('McrUtilTest', () => {
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
                 false, undefined, undefined, CompleteType.DRAW);
             assert.deepStrictEqual(McrUtil._beingWholeYakuList(hand, completeInfo),
-                [ McrYaku.FULLY_CONCEALED ]);
+                [ McrYaku.FULLY_CONCEALED_HAND ]);
         });
         
         it('is concealed hand.', () => {
@@ -2564,7 +2564,7 @@ describe('McrUtilTest', () => {
                 [ McrYaku.QUADRUPLE_CHOW ]);
         });
         
-        it('is four shifted chows.', () => {
+        it('is four pure shifted chows.', () => {
             const fourChows = [
                 Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
                 Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_02)),
@@ -2573,7 +2573,7 @@ describe('McrUtilTest', () => {
             ];
             const head = new Janpai(JanpaiID.TON);
             assert.deepStrictEqual(McrUtil._yakuListWithFourChows(fourChows, head),
-                [ McrYaku.FOUR_SHIFTED_CHOWS ]);
+                [ McrYaku.FOUR_PURE_SHIFTED_CHOWS ]);
         });
         
         it('is three suited terminal chows.', () => {

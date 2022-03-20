@@ -83,14 +83,14 @@ export default class McrUtil {
             case ZjmYaku.WIN_ON_KONG:
                 return McrYaku.OUT_WITH_REPLACEMENT_TILE;
             case ZjmYaku.ROBBING_A_KONG:
-                return McrYaku.ROBBING_THE_KONGS;
+                return McrYaku.ROBBING_THE_KONG;
             }
         });
         if (YakuUtil.meldedHand(hand, completeInfo)) {
             yakuList.push(McrYaku.MELDED_HAND);
         }
         else if (YakuUtil.fullyConcealed(hand, completeInfo)) {
-            yakuList.push(McrYaku.FULLY_CONCEALED);
+            yakuList.push(McrYaku.FULLY_CONCEALED_HAND);
         }
         else if (YakuUtil.concealedHand(hand, completeInfo)) {
             yakuList.push(McrYaku.CONCEALED_HAND);
@@ -412,7 +412,7 @@ export default class McrUtil {
             case McrYaku.REVERSIBLE_TILES:
                 this._removeYaku(execludedYakuList, McrYaku.ONE_VOIDED_SUIT);
                 break;
-            case McrYaku.ROBBING_THE_KONGS:
+            case McrYaku.ROBBING_THE_KONG:
                 this._removeYaku(execludedYakuList, McrYaku.LAST_TILE);
                 break;
             case McrYaku.PREVALENT_WIND:
@@ -652,7 +652,7 @@ export default class McrUtil {
             return [ McrYaku.QUADRUPLE_CHOW ];
         }
         if (YakuUtil.fourShiftedChows(fourChows)) {
-            return [ McrYaku.FOUR_SHIFTED_CHOWS ];
+            return [ McrYaku.FOUR_PURE_SHIFTED_CHOWS ];
         }
         if (this._threeSuitedTerminalChows(fourChows, head)) {
             return [ McrYaku.THREE_SUITED_TERMINAL_CHOWS ];

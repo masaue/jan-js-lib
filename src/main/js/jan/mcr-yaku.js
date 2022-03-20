@@ -33,7 +33,7 @@ export default {
     QUADRUPLE_CHOW                  : {point: 48, englishName: 'Quadruple Chow',                   name: '一色四同順'},
     FOUR_PURE_SHIFTED_PUNGS         : {point: 48, englishName: 'Four Pure Shifted Pungs',          name: '一色四節高'},
     
-    FOUR_SHIFTED_CHOWS              : {point: 32, englishName: 'Four Shifted Chows',               name: '一色四歩高'},
+    FOUR_PURE_SHIFTED_CHOWS         : {point: 32, englishName: 'Four Pure Shifted Chows',          name: '一色四歩高'},
     THREE_KONGS                     : {point: 32, englishName: 'Three Kongs',                      name: '三槓'},
     ALL_TERMINALS_AND_HONORS        : {point: 32, englishName: 'All Terminals and Honors',         name: '混幺九'},
     
@@ -68,7 +68,7 @@ export default {
     LAST_TILE_DRAW                  : {point: 8,  englishName: 'Last Tile Draw',                   name: '妙手回春'},
     LAST_TILE_CLAIM                 : {point: 8,  englishName: 'Last Tile Claim',                  name: '海底撈月'},
     OUT_WITH_REPLACEMENT_TILE       : {point: 8,  englishName: 'Out with Replacement Tile',        name: '槓上開花'},
-    ROBBING_THE_KONGS               : {point: 8,  englishName: 'Robbing the Kongs',                name: '搶槓和'},
+    ROBBING_THE_KONG                : {point: 8,  englishName: 'Robbing the Kong',                 name: '搶槓和'},
     TWO_CONCEALED_KONGS             : {point: 8,  englishName: 'Two Concealed Kongs',              name: '双暗槓'},
     
     ALL_PUNGS                       : {point: 6,  englishName: 'All Pungs',                        name: '碰碰和'},
@@ -79,7 +79,7 @@ export default {
     TWO_DRAGON_PUNGS                : {point: 6,  englishName: 'Two Dragon Pungs',                 name: '双箭刻'},
     
     OUTSIDE_HAND                    : {point: 4,  englishName: 'Outside Hand',                     name: '全帯幺'},
-    FULLY_CONCEALED                 : {point: 4,  englishName: 'Fully Cncealed',                   name: '不求人'},
+    FULLY_CONCEALED_HAND            : {point: 4,  englishName: 'Fully Cncealed Hand',              name: '不求人'},
     TWO_MELDED_KONGS                : {point: 4,  englishName: 'Two Melded Kongs',                 name: '双明槓'},
     LAST_TILE                       : {point: 4,  englishName: 'Last Tile',                        name: '和絶張'},
     
