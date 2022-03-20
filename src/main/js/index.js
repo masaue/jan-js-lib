@@ -20,10 +20,11 @@ import Hand from './jan/hand';
 import Janpai from './jan/janpai';
 import JanpaiID from './jan/janpai-id';
 import JanUtil from './jan/jan-util';
+import McrComplete from './jan/mcr-complete';
 import McrUtil from './jan/mcr-util';
 import McrYaku from './jan/mcr-yaku';
 import Mentsu from './jan/mentsu';
 import Wind from './jan/wind';
 
 export { CallType, CompleteInfo, CompleteType, Hand, Janpai,
-         JanpaiID, JanUtil, McrUtil, McrYaku, Mentsu, Wind };
+         JanpaiID, JanUtil, McrComplete, McrUtil, McrYaku, Mentsu, Wind };
