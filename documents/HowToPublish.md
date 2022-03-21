@@ -11,7 +11,8 @@ npm link @masaue/jan-js-lib
 ```
 npm version (major | minor | patch)
 git push origin --tags
-npm run publish
+npm publish --dry-run
+npm publish
 ```
 
 3. 後片付け
