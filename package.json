@@ -1,6 +1,6 @@
 {
   "name": "@masaue/jan-js-lib",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "mahjong score library on JavaScript.",
   "main": "dist/bundle.js",
   "scripts": {
