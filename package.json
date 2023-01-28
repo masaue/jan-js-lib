@@ -4,10 +4,11 @@
   "description": "mahjong score library on JavaScript.",
   "main": "dist/bundle.js",
   "scripts": {
-    "build": "webpack",
-    "clean": "rimraf dist/",
+    "build": "npm run tsc; webpack",
+    "clean": "rimraf dist/ src/main/js/",
     "prepublishOnly": "npm run clean; npm run build -- --env=production",
-    "test": "nyc mocha src/test/js -R dot --require @babel/register"
+    "test": "npm run tsc; nyc mocha src/test/js -R dot --require @babel/register",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
