@@ -22,9 +22,9 @@ import {JANPAI_ID} from './jan/janpai-id';
 import JanUtil from './jan/jan-util';
 import McrComplete from './jan/mcr-complete';
 import McrUtil from './jan/mcr-util';
-import McrYaku from './jan/mcr-yaku';
+import {MCR_YAKU} from './jan/mcr-yaku';
 import Mentsu from './jan/mentsu';
 import {WIND} from './jan/wind';
 
 export { CALL_TYPE, CompleteInfo, COMPLETE_TYPE, Hand, Janpai,
-         JANPAI_ID, JanUtil, McrComplete, McrUtil, McrYaku, Mentsu, WIND };
+         JANPAI_ID, JanUtil, McrComplete, McrUtil, MCR_YAKU, Mentsu, WIND };

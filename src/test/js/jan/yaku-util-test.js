@@ -21,7 +21,7 @@ import {COMPLETE_TYPE} from '../../../main/js/jan/complete-type';
 import Hand from '../../../main/js/jan/hand';
 import Janpai from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
-import McrYaku from '../../../main/js/jan/mcr-yaku';
+import {MCR_YAKU} from '../../../main/js/jan/mcr-yaku';
 import Mentsu from '../../../main/js/jan/mentsu';
 import ZjmYaku from '../../../main/js/jan/zjm-yaku';
 import YakuUtil from '../../../main/js/jan/yaku-util';
@@ -251,7 +251,7 @@ describe('YakuUtilTest', () => {
         });
         
         it('is not chicken hand.', () => {
-            assert(!YakuUtil.chickenHand([ McrYaku.NINE_GATES ]));
+            assert(!YakuUtil.chickenHand([ MCR_YAKU.NINE_GATES ]));
         });
         
     });

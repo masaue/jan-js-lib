@@ -16,7 +16,7 @@ limitations under the License.
 import HandUtil from './hand-util';
 import JanUtil from './jan-util';
 import McrComplete from './mcr-complete';
-import McrYaku from './mcr-yaku';
+import {MCR_YAKU} from './mcr-yaku';
 import MentsuUtil from './mentsu-util';
 import ZjmYaku from './zjm-yaku';
 import YakuUtil from './yaku-util';
@@ -32,7 +32,7 @@ export default class McrUtil {
             return new McrComplete(this._removeExecludeYaku(yakuList, completeInfo));
         }
         if (YakuUtil.thirteenOrphans(janpaiList)) {
-            yakuList.push(McrYaku.THIRTEEN_ORPHANS);
+            yakuList.push(MCR_YAKU.THIRTEEN_ORPHANS);
             yakuList.push(...this._beingWholeYakuList(hand, completeInfo));
             return new McrComplete(this._removeExecludeYaku(yakuList, completeInfo));
         }
@@ -40,7 +40,7 @@ export default class McrUtil {
         const allJanpaiList = HandUtil.allJanpaiListWith(hand, completeInfo.janpai);
         // 七対と複合できるよう、字一色は_honorTilesYakuList()でなくここで判定
         if (YakuUtil.allHonors(allJanpaiList)) {
-            yakuList.push(McrYaku.ALL_HONORS);
+            yakuList.push(MCR_YAKU.ALL_HONORS);
         }
         // 七対と複合できるよう、幺九類は幺九刻を除きここで判定
         this._push(yakuList, this._terminalsOrHonorsYaku(allJanpaiList));
@@ -62,10 +62,10 @@ export default class McrUtil {
         switch (YakuUtil.terminalsYaku(completePattern)) {
         case ZjmYaku.PURE_LESSER_TERMINALS:
         case ZjmYaku.MIXED_LESSER_TERMINALS:
-            return McrYaku.OUTSIDE_HAND;
+            return MCR_YAKU.OUTSIDE_HAND;
         }
         // 全大、全中、全小、大于五、小于五、断幺は_limitedNumbersYakuList()で判定
-        return YakuUtil.allFives(completePattern) ? McrYaku.ALL_FIVES : undefined;
+        return YakuUtil.allFives(completePattern) ? MCR_YAKU.ALL_FIVES : undefined;
     }
     
     static _allEvenPungs(completePattern) {
@@ -77,29 +77,29 @@ export default class McrUtil {
         const yakuList = YakuUtil.incidentalBonusesYakuList(completeInfo).map((y) => {
             switch(y) {
             case ZjmYaku.FINAL_DRAW:
-                return McrYaku.LAST_TILE_DRAW;
+                return MCR_YAKU.LAST_TILE_DRAW;
             case ZjmYaku.FINAL_DISCARD:
-                return McrYaku.LAST_TILE_CLAIM;
+                return MCR_YAKU.LAST_TILE_CLAIM;
             case ZjmYaku.WIN_ON_KONG:
-                return McrYaku.OUT_WITH_REPLACEMENT_TILE;
+                return MCR_YAKU.OUT_WITH_REPLACEMENT_TILE;
             case ZjmYaku.ROBBING_A_KONG:
-                return McrYaku.ROBBING_THE_KONG;
+                return MCR_YAKU.ROBBING_THE_KONG;
             }
         });
         if (YakuUtil.meldedHand(hand, completeInfo)) {
-            yakuList.push(McrYaku.MELDED_HAND);
+            yakuList.push(MCR_YAKU.MELDED_HAND);
         }
         else if (YakuUtil.fullyConcealed(hand, completeInfo)) {
-            yakuList.push(McrYaku.FULLY_CONCEALED_HAND);
+            yakuList.push(MCR_YAKU.FULLY_CONCEALED_HAND);
         }
         else if (YakuUtil.concealedHand(hand, completeInfo)) {
-            yakuList.push(McrYaku.CONCEALED_HAND);
+            yakuList.push(MCR_YAKU.CONCEALED_HAND);
         }
         else if (YakuUtil.selfDrawn(hand, completeInfo)) {
-            yakuList.push(McrYaku.SELF_DRAWN);
+            yakuList.push(MCR_YAKU.SELF_DRAWN);
         }
         if (YakuUtil.lastTile(completeInfo)) {
-            yakuList.push(McrYaku.LAST_TILE);
+            yakuList.push(MCR_YAKU.LAST_TILE);
         }
         // 待ち類は_mentsuYakuList()で判定
         return yakuList;
@@ -107,11 +107,11 @@ export default class McrUtil {
     
     static _brokenYakuList(janpaiList) {
         if (YakuUtil.greaterHonorsAndKnittedTiles(janpaiList)) {
-            return [ McrYaku.GREATER_HONORS_AND_KNITTED_TILES ];
+            return [ MCR_YAKU.GREATER_HONORS_AND_KNITTED_TILES ];
         }
-        const yakuList = [ McrYaku.LESSER_HONORS_AND_KNITTED_TILES ];
+        const yakuList = [ MCR_YAKU.LESSER_HONORS_AND_KNITTED_TILES ];
         if (YakuUtil.knittedStraight(janpaiList)) {
-            yakuList.push(McrYaku.KNITTED_STRAIGHT);
+            yakuList.push(MCR_YAKU.KNITTED_STRAIGHT);
         }
         return yakuList;
     }
@@ -120,8 +120,8 @@ export default class McrUtil {
         const yakuList = [];
         this._push(yakuList, this._concealedPungsYaku(completePattern));
         yakuList.push(...this._kongsYakuList(completePattern));
-        if (yakuList.includes(McrYaku.TWO_CONCEALED_KONGS)) {
-            return yakuList.filter((y) => { return y !== McrYaku.TWO_CONCEALED_PUNGS });
+        if (yakuList.includes(MCR_YAKU.TWO_CONCEALED_KONGS)) {
+            return yakuList.filter((y) => { return y !== MCR_YAKU.TWO_CONCEALED_PUNGS });
         }
         return yakuList;
     }
@@ -129,11 +129,11 @@ export default class McrUtil {
     static _concealedPungsYaku(completePattern) {
         switch (completePattern.concealedPungCount) {
         case 4:
-            return McrYaku.FOUR_CONCEALED_PUNGS;
+            return MCR_YAKU.FOUR_CONCEALED_PUNGS;
         case 3:
-            return McrYaku.THREE_CONCEALED_PUNGS;
+            return MCR_YAKU.THREE_CONCEALED_PUNGS;
         case 2:
-            return McrYaku.TWO_CONCEALED_PUNGS;
+            return MCR_YAKU.TWO_CONCEALED_PUNGS;
         }
         return undefined;
     }
@@ -141,43 +141,43 @@ export default class McrUtil {
     static _dragonsYaku(completePattern) {
         switch (completePattern.dragonCount) {
         case 3:
-            return McrYaku.BIG_THREE_DRAGONS;
+            return MCR_YAKU.BIG_THREE_DRAGONS;
         case 2:
             if (completePattern.head.dragon) {
-                return McrYaku.LITTLE_THREE_DRAGONS;
+                return MCR_YAKU.LITTLE_THREE_DRAGONS;
             }
             else {
-                return McrYaku.TWO_DRAGON_PUNGS;
+                return MCR_YAKU.TWO_DRAGON_PUNGS;
             }
         case 1:
-            return McrYaku.DRAGON_PUNG;
+            return MCR_YAKU.DRAGON_PUNG;
         }
         return undefined;
     }
     
     static _fullChowsYakuList(hand, janpai) {
         if (YakuUtil.nineGates(hand.janpaiList)) {
-            return [ McrYaku.NINE_GATES ];
+            return [ MCR_YAKU.NINE_GATES ];
         }
         const yakuList = [];
         const allJanpaiList = HandUtil.allJanpaiListWith(hand, janpai);
         if (YakuUtil.allGreen(allJanpaiList)) {
-            yakuList.push(McrYaku.ALL_GREEN);
+            yakuList.push(MCR_YAKU.ALL_GREEN);
         }
         if (YakuUtil.fullFlush(allJanpaiList)) {
-            yakuList.push(McrYaku.FULL_FLUSH);
+            yakuList.push(MCR_YAKU.FULL_FLUSH);
         }
         else if (YakuUtil.halfFlush(allJanpaiList)) {
-            yakuList.push(McrYaku.HALF_FLUSH);
+            yakuList.push(MCR_YAKU.HALF_FLUSH);
         }
         else if (YakuUtil.allTypes(allJanpaiList)) {
-            yakuList.push(McrYaku.ALL_TYPES);
+            yakuList.push(MCR_YAKU.ALL_TYPES);
         }
         else if (YakuUtil.oneVoidedSuit(allJanpaiList)) {
-            yakuList.push(McrYaku.ONE_VOIDED_SUIT);
+            yakuList.push(MCR_YAKU.ONE_VOIDED_SUIT);
         }
         if (YakuUtil.noHonors(allJanpaiList)) {
-            yakuList.push(McrYaku.NO_HONORS);
+            yakuList.push(MCR_YAKU.NO_HONORS);
         }
         return yakuList;
     }
@@ -200,26 +200,26 @@ export default class McrUtil {
         switch (completePattern.kongCount) {
         case 4:
             if (completePattern.darkKongCount === 1) {
-                return [ McrYaku.FOUR_KONGS, McrYaku.CONCEALED_KONG ];
+                return [ MCR_YAKU.FOUR_KONGS, MCR_YAKU.CONCEALED_KONG ];
             }
-            return [ McrYaku.FOUR_KONGS ];
+            return [ MCR_YAKU.FOUR_KONGS ];
         case 3:
-            return [ McrYaku.THREE_KONGS ];
+            return [ MCR_YAKU.THREE_KONGS ];
         case 2:
             switch (completePattern.darkKongCount) {
             case 2:
-                return [ McrYaku.TWO_CONCEALED_KONGS ];
+                return [ MCR_YAKU.TWO_CONCEALED_KONGS ];
             case 1:
-                return [ McrYaku.TWO_MELDED_KONGS, McrYaku.CONCEALED_KONG ];
+                return [ MCR_YAKU.TWO_MELDED_KONGS, MCR_YAKU.CONCEALED_KONG ];
             case 0:
-                return [ McrYaku.TWO_MELDED_KONGS ];
+                return [ MCR_YAKU.TWO_MELDED_KONGS ];
             }
         case 1:
             if (completePattern.darkKongCount === 1) {
-                return [ McrYaku.CONCEALED_KONG ];
+                return [ MCR_YAKU.CONCEALED_KONG ];
             }
             else {
-                return [ McrYaku.MELDED_KONG ];
+                return [ MCR_YAKU.MELDED_KONG ];
             }
         }
         return [];
@@ -228,22 +228,22 @@ export default class McrUtil {
     static _limitedNumberYakuList(janpaiList) {
         const yakuList = [];
         if (YakuUtil.upperTiles(janpaiList)) {
-            yakuList.push(McrYaku.UPPER_TILES);
+            yakuList.push(MCR_YAKU.UPPER_TILES);
         }
         else if (YakuUtil.middleTiles(janpaiList)) {
-            yakuList.push(McrYaku.MIDDLE_TILES);
+            yakuList.push(MCR_YAKU.MIDDLE_TILES);
         }
         else if (YakuUtil.lowerTiles(janpaiList)) {
-            yakuList.push(McrYaku.LOWER_TILES);
+            yakuList.push(MCR_YAKU.LOWER_TILES);
         }
         else if (YakuUtil.upperFour(janpaiList)) {
-            yakuList.push(McrYaku.UPPER_FOUR);
+            yakuList.push(MCR_YAKU.UPPER_FOUR);
         }
         else if (YakuUtil.lowerFour(janpaiList)) {
-            yakuList.push(McrYaku.LOWER_FOUR);
+            yakuList.push(MCR_YAKU.LOWER_FOUR);
         }
         if (YakuUtil.allSimples(janpaiList)) {
-            yakuList.push(McrYaku.ALL_SIMPLES);
+            yakuList.push(MCR_YAKU.ALL_SIMPLES);
         }
         return yakuList;
     }
@@ -271,10 +271,10 @@ export default class McrUtil {
     static _numberTilesYakuList(completePattern) {
         const yakuList = [];
         if (this._allChows(completePattern)) {
-            yakuList.push(McrYaku.ALL_CHOWS);
+            yakuList.push(MCR_YAKU.ALL_CHOWS);
         }
         if (completePattern.knittedChowList.length === 3) {
-            yakuList.push(McrYaku.KNITTED_STRAIGHT);
+            yakuList.push(MCR_YAKU.KNITTED_STRAIGHT);
         }
         else {
             const chowList = completePattern.chowList;
@@ -297,7 +297,7 @@ export default class McrUtil {
     static _pungsOfTerminalsOrHonors(completePattern) {
         return completePattern.pungList.filter((p) => {
             return p.hasYao;
-        }).fill(McrYaku.PUNG_OF_TERMINALS_OR_HONORS);
+        }).fill(MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
     }
     
     static _pungsYakuList(completePattern) {
@@ -312,10 +312,10 @@ export default class McrUtil {
             break;
         case 4:
             if (this._allEvenPungs(completePattern)) {
-                yakuList.push(McrYaku.ALL_EVEN_PUNGS);
+                yakuList.push(MCR_YAKU.ALL_EVEN_PUNGS);
             }
             else {
-                yakuList.push(McrYaku.ALL_PUNGS);
+                yakuList.push(MCR_YAKU.ALL_PUNGS);
             }
             yakuList.push(...this._yakuListWithFourPungs(pungList));
             break;
@@ -327,8 +327,8 @@ export default class McrUtil {
     
     static _pureTerminalChows(fourChows, head) {
         const yakuList = this._twoMentsuYakuList(fourChows, 4);
-        const expectedYakuList = [ McrYaku.PURE_DOUBLE_CHOW, McrYaku.TWO_TERMINAL_CHOWS,
-                                   McrYaku.TWO_TERMINAL_CHOWS, McrYaku.PURE_DOUBLE_CHOW ];
+        const expectedYakuList = [ MCR_YAKU.PURE_DOUBLE_CHOW, MCR_YAKU.TWO_TERMINAL_CHOWS,
+                                   MCR_YAKU.TWO_TERMINAL_CHOWS, MCR_YAKU.PURE_DOUBLE_CHOW ];
         return expectedYakuList.every((y, i) => { return y === yakuList[i] }) &&
                head.five && fourChows[0].suit === head.suit;
     }
@@ -343,89 +343,89 @@ export default class McrUtil {
         let execludedYakuList = [...yakuList];
         yakuList.forEach((yaku) => {
             switch (yaku) {
-            case McrYaku.ALL_TERMINALS:
-                this._removeYaku(execludedYakuList, McrYaku.NO_HONORS);
-            case McrYaku.BIG_FOUR_WINDS:
-            case McrYaku.ALL_HONORS:
-            case McrYaku.ALL_TERMINALS_AND_HONORS:
+            case MCR_YAKU.ALL_TERMINALS:
+                this._removeYaku(execludedYakuList, MCR_YAKU.NO_HONORS);
+            case MCR_YAKU.BIG_FOUR_WINDS:
+            case MCR_YAKU.ALL_HONORS:
+            case MCR_YAKU.ALL_TERMINALS_AND_HONORS:
                 execludedYakuList = execludedYakuList.filter((y) => {
-                    return y !== McrYaku.ALL_PUNGS &&
-                           y !== McrYaku.PUNG_OF_TERMINALS_OR_HONORS;
+                    return y !== MCR_YAKU.ALL_PUNGS &&
+                           y !== MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS;
                 });
                 break;
-            case McrYaku.BIG_THREE_DRAGONS:
-            case McrYaku.LITTLE_FOUR_WINDS:
-            case McrYaku.BIG_THREE_WINDS:
-                this._removeYaku(execludedYakuList, McrYaku.PUNG_OF_TERMINALS_OR_HONORS);
-            case McrYaku.LITTLE_THREE_DRAGONS:
-            case McrYaku.TWO_DRAGON_PUNGS:
-                this._removeYaku(execludedYakuList, McrYaku.PUNG_OF_TERMINALS_OR_HONORS);
-            case McrYaku.DRAGON_PUNG:
-                this._removeYaku(execludedYakuList, McrYaku.PUNG_OF_TERMINALS_OR_HONORS);
+            case MCR_YAKU.BIG_THREE_DRAGONS:
+            case MCR_YAKU.LITTLE_FOUR_WINDS:
+            case MCR_YAKU.BIG_THREE_WINDS:
+                this._removeYaku(execludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
+            case MCR_YAKU.LITTLE_THREE_DRAGONS:
+            case MCR_YAKU.TWO_DRAGON_PUNGS:
+                this._removeYaku(execludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
+            case MCR_YAKU.DRAGON_PUNG:
+                this._removeYaku(execludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
                 break;
-            case McrYaku.NINE_GATES:
-                this._removeYaku(execludedYakuList, McrYaku.PUNG_OF_TERMINALS_OR_HONORS);
-            case McrYaku.THIRTEEN_ORPHANS:
-            case McrYaku.SEVEN_PAIRS:
-            case McrYaku.GREATER_HONORS_AND_KNITTED_TILES:
-            case McrYaku.LESSER_HONORS_AND_KNITTED_TILES:
-                this._removeYaku(execludedYakuList, McrYaku.CONCEALED_HAND);
+            case MCR_YAKU.NINE_GATES:
+                this._removeYaku(execludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
+            case MCR_YAKU.THIRTEEN_ORPHANS:
+            case MCR_YAKU.SEVEN_PAIRS:
+            case MCR_YAKU.GREATER_HONORS_AND_KNITTED_TILES:
+            case MCR_YAKU.LESSER_HONORS_AND_KNITTED_TILES:
+                this._removeYaku(execludedYakuList, MCR_YAKU.CONCEALED_HAND);
                 break;
-            case McrYaku.FOUR_KONGS:
-                this._removeYaku(execludedYakuList, McrYaku.ALL_PUNGS);
-            case McrYaku.MELDED_HAND:
-                this._removeYaku(execludedYakuList, McrYaku.SINGLE_WAIT);
+            case MCR_YAKU.FOUR_KONGS:
+                this._removeYaku(execludedYakuList, MCR_YAKU.ALL_PUNGS);
+            case MCR_YAKU.MELDED_HAND:
+                this._removeYaku(execludedYakuList, MCR_YAKU.SINGLE_WAIT);
                 break;
-            case McrYaku.SEVEN_SHIFTED_PAIRS:
-                this._removeYaku(execludedYakuList, McrYaku.FULL_FLUSH);
-                this._removeYaku(execludedYakuList, McrYaku.CONCEALED_HAND);
+            case MCR_YAKU.SEVEN_SHIFTED_PAIRS:
+                this._removeYaku(execludedYakuList, MCR_YAKU.FULL_FLUSH);
+                this._removeYaku(execludedYakuList, MCR_YAKU.CONCEALED_HAND);
                 break;
-            case McrYaku.FOUR_CONCEALED_PUNGS:
-                this._removeYaku(execludedYakuList, McrYaku.CONCEALED_HAND);
-            case McrYaku.FOUR_PURE_SHIFTED_PUNGS:
-                this._removeYaku(execludedYakuList, McrYaku.ALL_PUNGS);
+            case MCR_YAKU.FOUR_CONCEALED_PUNGS:
+                this._removeYaku(execludedYakuList, MCR_YAKU.CONCEALED_HAND);
+            case MCR_YAKU.FOUR_PURE_SHIFTED_PUNGS:
+                this._removeYaku(execludedYakuList, MCR_YAKU.ALL_PUNGS);
                 break;
-            case McrYaku.PURE_TERMINAL_CHOWS:
-                this._removeYaku(execludedYakuList, McrYaku.FULL_FLUSH);
-            case McrYaku.THREE_SUITED_TERMINAL_CHOWS:
-                this._removeYaku(execludedYakuList, McrYaku.ALL_CHOWS);
+            case MCR_YAKU.PURE_TERMINAL_CHOWS:
+                this._removeYaku(execludedYakuList, MCR_YAKU.FULL_FLUSH);
+            case MCR_YAKU.THREE_SUITED_TERMINAL_CHOWS:
+                this._removeYaku(execludedYakuList, MCR_YAKU.ALL_CHOWS);
                 break;
-            case McrYaku.QUADRUPLE_CHOW:
+            case MCR_YAKU.QUADRUPLE_CHOW:
                 execludedYakuList = execludedYakuList.filter((y) => {
-                    return y !== McrYaku.TILE_HOG;
+                    return y !== MCR_YAKU.TILE_HOG;
                 });
                 break;
-            case McrYaku.ALL_EVEN_PUNGS:
-            case McrYaku.MIDDLE_TILES:
-            case McrYaku.ALL_FIVES:
-                this._removeYaku(execludedYakuList, McrYaku.ALL_SIMPLES);
+            case MCR_YAKU.ALL_EVEN_PUNGS:
+            case MCR_YAKU.MIDDLE_TILES:
+            case MCR_YAKU.ALL_FIVES:
+                this._removeYaku(execludedYakuList, MCR_YAKU.ALL_SIMPLES);
                 break;
-            case McrYaku.FULL_FLUSH:
-            case McrYaku.UPPER_TILES:
-            case McrYaku.LOWER_TILES:
-            case McrYaku.UPPER_FOUR:
-            case McrYaku.LOWER_FOUR:
-            case McrYaku.ALL_CHOWS:
-            case McrYaku.ALL_SIMPLES:
-                this._removeYaku(execludedYakuList, McrYaku.NO_HONORS);
+            case MCR_YAKU.FULL_FLUSH:
+            case MCR_YAKU.UPPER_TILES:
+            case MCR_YAKU.LOWER_TILES:
+            case MCR_YAKU.UPPER_FOUR:
+            case MCR_YAKU.LOWER_FOUR:
+            case MCR_YAKU.ALL_CHOWS:
+            case MCR_YAKU.ALL_SIMPLES:
+                this._removeYaku(execludedYakuList, MCR_YAKU.NO_HONORS);
                 break;
-            case McrYaku.REVERSIBLE_TILES:
-                this._removeYaku(execludedYakuList, McrYaku.ONE_VOIDED_SUIT);
+            case MCR_YAKU.REVERSIBLE_TILES:
+                this._removeYaku(execludedYakuList, MCR_YAKU.ONE_VOIDED_SUIT);
                 break;
-            case McrYaku.ROBBING_THE_KONG:
-                this._removeYaku(execludedYakuList, McrYaku.LAST_TILE);
+            case MCR_YAKU.ROBBING_THE_KONG:
+                this._removeYaku(execludedYakuList, MCR_YAKU.LAST_TILE);
                 break;
-            case McrYaku.PREVALENT_WIND:
+            case MCR_YAKU.PREVALENT_WIND:
                 if (completeInfo.prevalent &&
                     completeInfo.prevalent === completeInfo.seat) {
                     break;
                 }
-            case McrYaku.SEAT_WIND:
-                if (yakuList.includes(McrYaku.LITTLE_FOUR_WINDS) ||
-                    yakuList.includes(McrYaku.BIG_THREE_WINDS)) {
+            case MCR_YAKU.SEAT_WIND:
+                if (yakuList.includes(MCR_YAKU.LITTLE_FOUR_WINDS) ||
+                    yakuList.includes(MCR_YAKU.BIG_THREE_WINDS)) {
                     break;
                 }
-                this._removeYaku(execludedYakuList, McrYaku.PUNG_OF_TERMINALS_OR_HONORS);
+                this._removeYaku(execludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
                 break;
             }
         });
@@ -434,9 +434,9 @@ export default class McrUtil {
     
     static _removeExecludeYakuWithCombined(yakuList) {
         const execludedYakuList = [...yakuList];
-        if (yakuList.includes(McrYaku.ALL_GREEN) && yakuList.includes(McrYaku.SEVEN_PAIRS)) {
+        if (yakuList.includes(MCR_YAKU.ALL_GREEN) && yakuList.includes(MCR_YAKU.SEVEN_PAIRS)) {
             // TODO 削除対象は全てなのか、必ず重複する1つだけなのか調査
-            this._removeYaku(execludedYakuList, McrYaku.TILE_HOG);
+            this._removeYaku(execludedYakuList, MCR_YAKU.TILE_HOG);
         }
         return execludedYakuList;
     }
@@ -454,11 +454,11 @@ export default class McrUtil {
     }
     
     static _removeWaitYaku(yakuList, knittedChowList, janpai) {
-        if (yakuList.includes(McrYaku.ALL_CHOWS) && yakuList.includes(McrYaku.KNITTED_STRAIGHT) &&
+        if (yakuList.includes(MCR_YAKU.ALL_CHOWS) && yakuList.includes(MCR_YAKU.KNITTED_STRAIGHT) &&
             JanUtil.hasJanpai(MentsuUtil.janpaiList(knittedChowList), janpai)) {
-            this._removeYaku(yakuList, McrYaku.EDGE_WAIT);
-            this._removeYaku(yakuList, McrYaku.CLOSED_WAIT);
-            this._removeYaku(yakuList, McrYaku.SINGLE_WAIT);
+            this._removeYaku(yakuList, MCR_YAKU.EDGE_WAIT);
+            this._removeYaku(yakuList, MCR_YAKU.CLOSED_WAIT);
+            this._removeYaku(yakuList, MCR_YAKU.SINGLE_WAIT);
         }
     }
     
@@ -471,50 +471,50 @@ export default class McrUtil {
     
     static _sevenPairsYaku(janpaiList) {
         if (YakuUtil.sevenShiftedPairs(janpaiList)) {
-            return McrYaku.SEVEN_SHIFTED_PAIRS;
+            return MCR_YAKU.SEVEN_SHIFTED_PAIRS;
         }
-        return McrYaku.SEVEN_PAIRS;
+        return MCR_YAKU.SEVEN_PAIRS;
     }
     
     static _specialYakuList(yakuList, hand, janpai) {
         // 十三幺はyakuList()で判定
         if (YakuUtil.reversibleTiles(HandUtil.allJanpaiListWith(hand, janpai))) {
-            yakuList.push(McrYaku.REVERSIBLE_TILES);
+            yakuList.push(MCR_YAKU.REVERSIBLE_TILES);
         }
         const count = YakuUtil.tileHogCount(hand, janpai);
-        yakuList.push(...[...Array(count).keys()].fill(McrYaku.TILE_HOG));
+        yakuList.push(...[...Array(count).keys()].fill(MCR_YAKU.TILE_HOG));
         if (YakuUtil.chickenHand(yakuList)) {
-            yakuList.push(McrYaku.CHICKEN_HAND);
+            yakuList.push(MCR_YAKU.CHICKEN_HAND);
         }
         // 花牌は未実装
     }
     
     static _terminalsOrHonorsYaku(janpaiList) {
         if (YakuUtil.allTerminals(janpaiList)) {
-            return McrYaku.ALL_TERMINALS;
+            return MCR_YAKU.ALL_TERMINALS;
         }
-        return YakuUtil.allTerminalsAndHonors(janpaiList) ? McrYaku.ALL_TERMINALS_AND_HONORS :
+        return YakuUtil.allTerminalsAndHonors(janpaiList) ? MCR_YAKU.ALL_TERMINALS_AND_HONORS :
                                                             undefined;
     }
     
     static _threeChowsYaku(threeChows) {
         if (YakuUtil.pureTripleChow(threeChows)) {
-            return McrYaku.PURE_TRIPLE_CHOW;
+            return MCR_YAKU.PURE_TRIPLE_CHOW;
         }
         if (YakuUtil.pureStraight(threeChows)) {
-            return McrYaku.PURE_STRAIGHT;
+            return MCR_YAKU.PURE_STRAIGHT;
         }
         if (YakuUtil.pureShiftedChows(threeChows)) {
-            return McrYaku.PURE_SHIFTED_CHOWS;
+            return MCR_YAKU.PURE_SHIFTED_CHOWS;
         }
         if (YakuUtil.mixedStraight(threeChows)) {
-            return McrYaku.MIXED_STRAIGHT;
+            return MCR_YAKU.MIXED_STRAIGHT;
         }
         if (YakuUtil.mixedTripleChow(threeChows)) {
-            return McrYaku.MIXED_TRIPLE_CHOW;
+            return MCR_YAKU.MIXED_TRIPLE_CHOW;
         }
         if (YakuUtil.mixedShiftedChows(threeChows)) {
-            return McrYaku.MIXED_SHIFTED_CHOWS;
+            return MCR_YAKU.MIXED_SHIFTED_CHOWS;
         }
         return undefined;
     }
@@ -548,37 +548,37 @@ export default class McrUtil {
     
     static _threePungsYaku(threePungs) {
         if (YakuUtil.pureShiftedPungs(threePungs)) {
-            return McrYaku.PURE_SHIFTED_PUNGS;
+            return MCR_YAKU.PURE_SHIFTED_PUNGS;
         }
         if (YakuUtil.triplePung(threePungs)) {
-            return McrYaku.TRIPLE_PUNG;
+            return MCR_YAKU.TRIPLE_PUNG;
         }
         if (YakuUtil.mixedShiftedPungs(threePungs)) {
-            return McrYaku.MIXED_SHIFTED_PUNGS;
+            return MCR_YAKU.MIXED_SHIFTED_PUNGS;
         }
         return undefined;
     }
     
     static _threeSuitedTerminalChows(fourChows, head) {
         const yakuList = this._twoMentsuYakuList(fourChows, 4);
-        const expectedYakuList = [ McrYaku.TWO_TERMINAL_CHOWS, McrYaku.MIXED_DOUBLE_CHOW,
-                                   McrYaku.MIXED_DOUBLE_CHOW, McrYaku.TWO_TERMINAL_CHOWS ];
+        const expectedYakuList = [ MCR_YAKU.TWO_TERMINAL_CHOWS, MCR_YAKU.MIXED_DOUBLE_CHOW,
+                                   MCR_YAKU.MIXED_DOUBLE_CHOW, MCR_YAKU.TWO_TERMINAL_CHOWS ];
         return expectedYakuList.every((y, i) => { return y === yakuList[i] }) &&
         head.five && fourChows[0].suit !== head.suit && fourChows[2].suit !== head.suit;
     }
     
     static _twoChowsYaku(twoChows) {
         if (YakuUtil.pureDoubleChow(twoChows)) {
-            return McrYaku.PURE_DOUBLE_CHOW;
+            return MCR_YAKU.PURE_DOUBLE_CHOW;
         }
         if (YakuUtil.mixedDoubleChow(twoChows)) {
-            return McrYaku.MIXED_DOUBLE_CHOW;
+            return MCR_YAKU.MIXED_DOUBLE_CHOW;
         }
         if (YakuUtil.shortStraight(twoChows)) {
-            return McrYaku.SHORT_STRAIGHT;
+            return MCR_YAKU.SHORT_STRAIGHT;
         }
         if (YakuUtil.twoTerminalChows(twoChows)) {
-            return McrYaku.TWO_TERMINAL_CHOWS;
+            return MCR_YAKU.TWO_TERMINAL_CHOWS;
         }
         return undefined;
     }
@@ -588,7 +588,7 @@ export default class McrUtil {
         const callBack = chow ? this._twoChowsYaku : this._twoPungsYaku;
         const execludedList = [...mentsuList];
         if (chow && this._removePureDoubleChow(execludedList)) {
-            yakuList.push(McrYaku.PURE_DOUBLE_CHOW);
+            yakuList.push(MCR_YAKU.PURE_DOUBLE_CHOW);
         }
         execludedList.slice(0, -1).some((m, i) => {
             return execludedList.slice(i + 1).some((e) => {
@@ -604,7 +604,7 @@ export default class McrUtil {
     
     static _twoPungsYaku(twoPungs) {
         if (YakuUtil.doublePung(twoPungs)) {
-            return McrYaku.DOUBLE_PUNG;
+            return MCR_YAKU.DOUBLE_PUNG;
         }
         return undefined;
     }
@@ -614,12 +614,12 @@ export default class McrUtil {
             return undefined;
         }
         if (YakuUtil.edgeWait(completePattern, janpai)) {
-            return McrYaku.EDGE_WAIT;
+            return MCR_YAKU.EDGE_WAIT;
         }
         if (YakuUtil.closedWait(completePattern, janpai)) {
-            return McrYaku.CLOSED_WAIT;
+            return MCR_YAKU.CLOSED_WAIT;
         }
-        return YakuUtil.singleWait(completePattern, janpai) ? McrYaku.SINGLE_WAIT :
+        return YakuUtil.singleWait(completePattern, janpai) ? MCR_YAKU.SINGLE_WAIT :
                                                               undefined;
     }
     
@@ -627,18 +627,18 @@ export default class McrUtil {
         const yakuList = [];
         switch (completePattern.windCount) {
         case 4:
-            return [ McrYaku.BIG_FOUR_WINDS ];
+            return [ MCR_YAKU.BIG_FOUR_WINDS ];
         case 3:
-            yakuList.push(completePattern.head.wind ? McrYaku.LITTLE_FOUR_WINDS :
-                                                      McrYaku.BIG_THREE_WINDS);
+            yakuList.push(completePattern.head.wind ? MCR_YAKU.LITTLE_FOUR_WINDS :
+                                                      MCR_YAKU.BIG_THREE_WINDS);
             break;
         }
         completePattern.pungList.forEach((p) => {
             if (p.head.id === completeInfo.prevalent) {
-                yakuList.push(McrYaku.PREVALENT_WIND);
+                yakuList.push(MCR_YAKU.PREVALENT_WIND);
             }
             if (p.head.id === completeInfo.seat) {
-                yakuList.push(McrYaku.SEAT_WIND);
+                yakuList.push(MCR_YAKU.SEAT_WIND);
             }
         });
         return yakuList;
@@ -646,16 +646,16 @@ export default class McrUtil {
     
     static _yakuListWithFourChows(fourChows, head) {
         if (this._pureTerminalChows(fourChows, head)) {
-            return [ McrYaku.PURE_TERMINAL_CHOWS ];
+            return [ MCR_YAKU.PURE_TERMINAL_CHOWS ];
         }
         if (YakuUtil.quadrupleChow(fourChows)) {
-            return [ McrYaku.QUADRUPLE_CHOW ];
+            return [ MCR_YAKU.QUADRUPLE_CHOW ];
         }
         if (YakuUtil.fourShiftedChows(fourChows)) {
-            return [ McrYaku.FOUR_PURE_SHIFTED_CHOWS ];
+            return [ MCR_YAKU.FOUR_PURE_SHIFTED_CHOWS ];
         }
         if (this._threeSuitedTerminalChows(fourChows, head)) {
-            return [ McrYaku.THREE_SUITED_TERMINAL_CHOWS ];
+            return [ MCR_YAKU.THREE_SUITED_TERMINAL_CHOWS ];
         }
         const yakuList = this._threeMentsuYakuListWithFourMentsu(fourChows);
         if (yakuList.length > 0) {
@@ -666,7 +666,7 @@ export default class McrUtil {
     
     static _yakuListWithFourPungs(fourPungs) {
         if (YakuUtil.fourPureShiftedPungs(fourPungs)) {
-            return [ McrYaku.FOUR_PURE_SHIFTED_PUNGS ];
+            return [ MCR_YAKU.FOUR_PURE_SHIFTED_PUNGS ];
         }
         const yakuList = this._threeMentsuYakuListWithFourMentsu(fourPungs, false);
         if (yakuList.length > 0) {
