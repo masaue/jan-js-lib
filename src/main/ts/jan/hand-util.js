@@ -16,7 +16,7 @@ limitations under the License.
 import CompleteInfo from './complete-info';
 import CompletePattern from './complete-pattern';
 import Janpai from './janpai';
-import JanpaiID from './janpai-id';
+import {JANPAI_ID} from './janpai-id';
 import JanUtil from './jan-util';
 import KnittedStraight from './knitted-straight';
 import Mentsu from './mentsu';
@@ -40,8 +40,8 @@ export default class HandUtil {
                 return true;
             }
             const pungList = this._pungList([...v]);
-            // JanpaiIDは何でも問題ない
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_01));
+            // JANPAI_IDは何でも問題ない
+            const completeInfo = new CompleteInfo(new Janpai(JANPAI_ID.MAN_01));
             return [...Array(2 ** pungList.length).keys()].some((number) => {
                 return  this._completePattern(v, k, pungList, number, completeInfo, hand);
             });

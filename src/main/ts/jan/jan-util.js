@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 import Janpai from './janpai';
-import JanpaiID from './janpai-id';
+import {JANPAI_ID} from './janpai-id';
 import Mentsu from './mentsu';
 import {WIND} from './wind';
 
@@ -75,7 +75,7 @@ export default class JanUtil {
     }
     
     static getAllJanpai() {
-        return Object.values(JanpaiID).map((id) => { return new Janpai(id) });
+        return Object.values(JANPAI_ID).map((id) => { return new Janpai(id) });
     }
     
     static hasJanpai(target, janpai) {
@@ -146,7 +146,7 @@ export default class JanUtil {
         target.sort((s, t) => {
             let sIndex = undefined;
             let tIndex = undefined;
-            Object.values(JanpaiID).some((id, index) => {
+            Object.values(JANPAI_ID).some((id, index) => {
                 if (id === s.id) {
                     sIndex = index;
                 }

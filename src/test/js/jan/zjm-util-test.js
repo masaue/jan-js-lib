@@ -17,7 +17,7 @@ import assert from 'assert';
 
 import CompletePattern from '../../../main/js/jan/complete-pattern';
 import Janpai from '../../../main/js/jan/janpai';
-import JanpaiID from '../../../main/js/jan/janpai-id';
+import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
 import Mentsu from '../../../main/js/jan/mentsu';
 import ZjmUtil from '../../../main/js/jan/zjm-util';
 import ZjmYaku from '../../../main/js/jan/zjm-yaku';
@@ -28,44 +28,44 @@ describe('ZjmUtilTest', () => {
         
         it('has four concealed triplets.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01), true),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_03), true),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_05), true),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_07), true),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01), true),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_03), true),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_05), true),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07), true),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._concealedTripletsYaku(completePattern),
                          ZjmYaku.FOUR_CONCEALED_TRIPLETS);
         });
         
         it('has three concealed triplets.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01), true),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_03), true),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_05), true),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_07)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01), true),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_03), true),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_05), true),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._concealedTripletsYaku(completePattern),
                          ZjmYaku.THREE_CONCEALED_TRIPLETS);
         });
         
         it('has two concealed triplets.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01), true),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_03), true),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_05)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_07)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01), true),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_03), true),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_05)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._concealedTripletsYaku(completePattern),
                          ZjmYaku.TWO_CONCEALED_TRIPLETS);
         });
         
         it('has one concealed triplets.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01), true),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_03)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_05)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_07)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01), true),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_03)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_05)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._concealedTripletsYaku(completePattern),
                          undefined);
         });
@@ -76,33 +76,33 @@ describe('ZjmUtilTest', () => {
         
         it('has big three dragons.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.BAI)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.FA)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.CHUN)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.BAI)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.FA)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.CHUN)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._dragonsYaku(completePattern),
                          ZjmYaku.BIG_THREE_DRAGONS);
         });
         
         it('has small three dragons.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.BAI)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.FA)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_07)),
-            ], new Janpai(JanpaiID.CHUN));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.BAI)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.FA)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
+            ], new Janpai(JANPAI_ID.CHUN));
             assert.equal(ZjmUtil._dragonsYaku(completePattern),
                          ZjmYaku.SMALL_THREE_DRAGONS);
         });
         
         it('has two dragons.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.BAI)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.FA)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_07)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.BAI)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.FA)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._dragonsYaku(completePattern), undefined);
         });
         
@@ -112,22 +112,22 @@ describe('ZjmUtilTest', () => {
         
         it('is all honors.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.TON)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.NAN)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SHA)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.PEI)),
-            ], new Janpai(JanpaiID.BAI));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.TON)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.NAN)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SHA)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PEI)),
+            ], new Janpai(JANPAI_ID.BAI));
             const yakuList = [ ZjmYaku.BIG_FOUR_WINDS, ZjmYaku.ALL_HONORS ];
             assert.deepEqual(ZjmUtil._honorTilesYakuList(completePattern), yakuList);
         });
         
         it('is not all honors.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.BAI)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.FA)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.CHUN)),
-            ], new Janpai(JanpaiID.TON));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.BAI)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.FA)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.CHUN)),
+            ], new Janpai(JANPAI_ID.TON));
             const yakuList = [ ZjmYaku.BIG_THREE_DRAGONS ];
             assert.deepEqual(ZjmUtil._honorTilesYakuList(completePattern), yakuList);
         });
@@ -138,55 +138,55 @@ describe('ZjmUtilTest', () => {
         
         it('has four kong.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.PIN_03)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_05)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_07)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PIN_03)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_05)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._kongYaku(completePattern),
                          ZjmYaku.FOUR_KONG);
         });
         
         it('has three kong.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.PIN_03)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_05)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_07)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PIN_03)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_05)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_07)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._kongYaku(completePattern),
                          ZjmYaku.THREE_KONG);
         });
         
         it('has two kong.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.PIN_03)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_05)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_07)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PIN_03)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_05)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_07)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._kongYaku(completePattern),
                          ZjmYaku.TWO_KONG);
         });
         
         it('has one kong.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_03)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_05)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_07)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_03)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_05)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_07)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._kongYaku(completePattern),
                          ZjmYaku.ONE_KONG);
         });
         
         it('does not have kong.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_03)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_05)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_07)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_03)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_05)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_07)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._kongYaku(completePattern), undefined);
         });
         
@@ -197,10 +197,10 @@ describe('ZjmUtilTest', () => {
         it('has nine tile straight.', () => {
             const callBack = ZjmUtil._threeChowsYaku;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_04)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_07)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_04)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_07)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
             ];
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourChows, undefined),
                          ZjmYaku.NINE_TILE_STRAIGHT);
@@ -209,10 +209,10 @@ describe('ZjmUtilTest', () => {
         it('has three similar sequenes.', () => {
             const callBack = ZjmUtil._threeChowsYaku;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourChows, undefined),
                          ZjmYaku.THREE_SIMILAR_SEQUENCES);
@@ -221,10 +221,10 @@ describe('ZjmUtilTest', () => {
         it('has three similar sequenes.', () => {
             const callBack = ZjmUtil._threeChowsYaku;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourChows, undefined),
                          ZjmYaku.THREE_SIMILAR_SEQUENCES);
@@ -233,10 +233,10 @@ describe('ZjmUtilTest', () => {
         it('has three similar sequenes.', () => {
             const callBack = ZjmUtil._threeChowsYaku;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourChows, undefined),
                          ZjmYaku.THREE_SIMILAR_SEQUENCES);
@@ -245,12 +245,12 @@ describe('ZjmUtilTest', () => {
         it('has three concealed triplets.', () => {
             const callBack = ZjmUtil._threePungsYaku;
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_03)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_03)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
             ];
-            const head = new Janpai(JanpaiID.SOU_01);
+            const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourPungs, head),
                          ZjmYaku.THREE_CONCEALED_TRIPLETS);
         });
@@ -258,12 +258,12 @@ describe('ZjmUtilTest', () => {
         it('has three similar triplets.', () => {
             const callBack = ZjmUtil._threePungsYaku;
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
-            const head = new Janpai(JanpaiID.PIN_01);
+            const head = new Janpai(JANPAI_ID.PIN_01);
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourPungs, head),
                          ZjmYaku.THREE_SIMILAR_TRIPLETS);
         });
@@ -271,12 +271,12 @@ describe('ZjmUtilTest', () => {
         it('has three similar triplets.', () => {
             const callBack = ZjmUtil._threePungsYaku;
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
-            const head = new Janpai(JanpaiID.MAN_01);
+            const head = new Janpai(JANPAI_ID.MAN_01);
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourPungs, head),
                          ZjmYaku.THREE_SIMILAR_TRIPLETS);
         });
@@ -284,12 +284,12 @@ describe('ZjmUtilTest', () => {
         it('has three similar triplets.', () => {
             const callBack = ZjmUtil._threePungsYaku;
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
-            const head = new Janpai(JanpaiID.SOU_01);
+            const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourPungs, head),
                          ZjmYaku.THREE_SIMILAR_TRIPLETS);
         });
@@ -297,9 +297,9 @@ describe('ZjmUtilTest', () => {
         it('has two indentical sequences.', () => {
             const callBack = ZjmUtil._twoIndenticalSequences;
             const threeChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
             ];
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, threeChows, undefined),
                          ZjmYaku.TWO_INDENTICAL_SEQUENCES);
@@ -308,11 +308,11 @@ describe('ZjmUtilTest', () => {
         it('has small three similar triplets.', () => {
             const callBack = ZjmUtil._smallThreeSimilarTriplets;
             const threePungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
-            const head = new Janpai(JanpaiID.SOU_01);
+            const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, threePungs, head),
                          ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
         });
@@ -320,10 +320,10 @@ describe('ZjmUtilTest', () => {
         it('does not have mentsu yaku.', () => {
             const callBack = ZjmUtil._threeChowsYaku;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_03)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourChows, undefined),
                          undefined);
@@ -335,9 +335,9 @@ describe('ZjmUtilTest', () => {
         
         it('is three indentical sequenes.', () => {
             const threeChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._threeChowsYaku(threeChows),
                          ZjmYaku.THREE_INDENTICAL_SEQUENCES);
@@ -345,9 +345,9 @@ describe('ZjmUtilTest', () => {
         
         it('is nine tile straight.', () => {
             const threeChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_04)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_07)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_04)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_07)),
             ];
             assert.equal(ZjmUtil._threeChowsYaku(threeChows),
                          ZjmYaku.NINE_TILE_STRAIGHT);
@@ -355,9 +355,9 @@ describe('ZjmUtilTest', () => {
         
         it('is three similar sequenes.', () => {
             const threeChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_01)),
             ];
             assert.equal(ZjmUtil._threeChowsYaku(threeChows),
                          ZjmYaku.THREE_SIMILAR_SEQUENCES);
@@ -365,9 +365,9 @@ describe('ZjmUtilTest', () => {
         
         it('does not have chow yaku.', () => {
             const threeChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
             assert.equal(ZjmUtil._threeChowsYaku(threeChows), undefined);
         });
@@ -378,9 +378,9 @@ describe('ZjmUtilTest', () => {
         
         it('is three similar triplets.', () => {
             const threePungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_01)),
             ];
             assert.equal(ZjmUtil._threePungsYaku(threePungs),
                          ZjmYaku.THREE_SIMILAR_TRIPLETS);
@@ -388,9 +388,9 @@ describe('ZjmUtilTest', () => {
         
         it('is three concealed triplets.', () => {
             const threePungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_03)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_03)),
             ];
             assert.equal(ZjmUtil._threePungsYaku(threePungs),
                          ZjmYaku.THREE_CONCEALED_TRIPLETS);
@@ -398,9 +398,9 @@ describe('ZjmUtilTest', () => {
         
         it('does not have pung yaku.', () => {
             const threePungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
             assert.equal(ZjmUtil._threePungsYaku(threePungs), undefined);
         });
@@ -411,22 +411,22 @@ describe('ZjmUtilTest', () => {
         
         it('has all triplets.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.PIN_03)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_05)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SOU_07)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PIN_03)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_05)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             const yakuList = [ ZjmYaku.ALL_TRIPLETS, ZjmYaku.FOUR_KONG ];
             assert.deepEqual(ZjmUtil._tripletsAndKongYakuList(completePattern), yakuList);
         });
         
         it('does not have all triplets.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_03), true),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_05), true),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_07), true),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_03), true),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_05), true),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_07), true),
+            ], new Janpai(JANPAI_ID.SOU_09));
             const yakuList = [ ZjmYaku.THREE_CONCEALED_TRIPLETS ];
             assert.deepEqual(ZjmUtil._tripletsAndKongYakuList(completePattern), yakuList);
         });
@@ -438,10 +438,10 @@ describe('ZjmUtilTest', () => {
         it('has two indentical sequenes.', () => {
             const callBack = ZjmUtil._twoIndenticalSequences;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_03)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
                          ZjmYaku.TWO_INDENTICAL_SEQUENCES);
@@ -450,10 +450,10 @@ describe('ZjmUtilTest', () => {
         it('has two indentical sequenes.', () => {
             const callBack = ZjmUtil._twoIndenticalSequences;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_03)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
                          ZjmYaku.TWO_INDENTICAL_SEQUENCES);
@@ -462,10 +462,10 @@ describe('ZjmUtilTest', () => {
         it('has two indentical sequenes.', () => {
             const callBack = ZjmUtil._twoIndenticalSequences;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_03)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
                          ZjmYaku.TWO_INDENTICAL_SEQUENCES);
@@ -474,10 +474,10 @@ describe('ZjmUtilTest', () => {
         it('has two indentical sequenes.', () => {
             const callBack = ZjmUtil._twoIndenticalSequences;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_03)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
                          ZjmYaku.TWO_INDENTICAL_SEQUENCES);
@@ -486,10 +486,10 @@ describe('ZjmUtilTest', () => {
         it('has two indentical sequenes.', () => {
             const callBack = ZjmUtil._twoIndenticalSequences;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_03)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
                          ZjmYaku.TWO_INDENTICAL_SEQUENCES);
@@ -498,10 +498,10 @@ describe('ZjmUtilTest', () => {
         it('has two indentical sequenes.', () => {
             const callBack = ZjmUtil._twoIndenticalSequences;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_03)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
                          ZjmYaku.TWO_INDENTICAL_SEQUENCES);
@@ -510,12 +510,12 @@ describe('ZjmUtilTest', () => {
         it('has small three similar triplets.', () => {
             const callBack = ZjmUtil._smallThreeSimilarTriplets;
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_03)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
-            const head = new Janpai(JanpaiID.SOU_01);
+            const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
                          ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
         });
@@ -523,12 +523,12 @@ describe('ZjmUtilTest', () => {
         it('has small three similar triplets.', () => {
             const callBack = ZjmUtil._smallThreeSimilarTriplets;
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
-            const head = new Janpai(JanpaiID.PIN_01);
+            const head = new Janpai(JANPAI_ID.PIN_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
                          ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
         });
@@ -536,12 +536,12 @@ describe('ZjmUtilTest', () => {
         it('has small three similar triplets.', () => {
             const callBack = ZjmUtil._smallThreeSimilarTriplets;
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_03)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_03)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_01)),
             ];
-            const head = new Janpai(JanpaiID.PIN_01);
+            const head = new Janpai(JANPAI_ID.PIN_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
                          ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
         });
@@ -549,12 +549,12 @@ describe('ZjmUtilTest', () => {
         it('has small three similar triplets.', () => {
             const callBack = ZjmUtil._smallThreeSimilarTriplets;
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
-            const head = new Janpai(JanpaiID.MAN_01);
+            const head = new Janpai(JANPAI_ID.MAN_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
                          ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
         });
@@ -562,12 +562,12 @@ describe('ZjmUtilTest', () => {
         it('has small three similar triplets.', () => {
             const callBack = ZjmUtil._smallThreeSimilarTriplets;
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_01)),
             ];
-            const head = new Janpai(JanpaiID.MAN_01);
+            const head = new Janpai(JANPAI_ID.MAN_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
                          ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
         });
@@ -575,12 +575,12 @@ describe('ZjmUtilTest', () => {
         it('has small three similar triplets.', () => {
             const callBack = ZjmUtil._smallThreeSimilarTriplets;
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_03)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_03)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_01)),
             ];
-            const head = new Janpai(JanpaiID.MAN_01);
+            const head = new Janpai(JANPAI_ID.MAN_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
                          ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
         });
@@ -588,10 +588,10 @@ describe('ZjmUtilTest', () => {
         it('does not have mentsu yaku.', () => {
             const callBack = ZjmUtil._twoIndenticalSequences;
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_03)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
                          undefined);
@@ -603,55 +603,55 @@ describe('ZjmUtilTest', () => {
         
         it('has big four winds.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.TON)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.NAN)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SHA)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.PEI)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.TON)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.NAN)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SHA)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PEI)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._windsYaku(completePattern),
                          ZjmYaku.BIG_FOUR_WINDS);
         });
         
         it('has small four winds.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.NAN)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SHA)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.PEI)),
-            ], new Janpai(JanpaiID.TON));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.NAN)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SHA)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PEI)),
+            ], new Janpai(JANPAI_ID.TON));
             assert.equal(ZjmUtil._windsYaku(completePattern),
                          ZjmYaku.SMALL_FOUR_WINDS);
         });
         
         it('has big three winds.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.NAN)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SHA)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.PEI)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.NAN)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SHA)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PEI)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._windsYaku(completePattern),
                          ZjmYaku.BIG_THREE_WINDS);
         });
         
         it('has small three winds.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_03)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SHA)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.PEI)),
-            ], new Janpai(JanpaiID.TON));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_03)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SHA)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PEI)),
+            ], new Janpai(JANPAI_ID.TON));
             assert.equal(ZjmUtil._windsYaku(completePattern),
                          ZjmYaku.SMALL_THREE_WINDS);
         });
         
         it('has two winds.', () => {
             const completePattern = new CompletePattern([
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_03)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.SHA)),
-                Mentsu.createKongMentsu(new Janpai(JanpaiID.PEI)),
-            ], new Janpai(JanpaiID.SOU_09));
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_03)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SHA)),
+                Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PEI)),
+            ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._windsYaku(completePattern), undefined);
         });
         
@@ -661,10 +661,10 @@ describe('ZjmUtilTest', () => {
         
         it('is four indentical sequenes.', () => {
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._yakuWithFourChows(fourChows),
                          ZjmYaku.FOUR_INDENTICAL_SEQUENCES);
@@ -672,10 +672,10 @@ describe('ZjmUtilTest', () => {
         
         it('is two indentical sequenes twice.', () => {
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
             ];
             assert.equal(ZjmUtil._yakuWithFourChows(fourChows),
                          ZjmYaku.TWO_INDENTICAL_SEQUENCES_TWICE);
@@ -683,10 +683,10 @@ describe('ZjmUtilTest', () => {
         
         it('has three indentical sequenes.', () => {
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
             ];
             assert.equal(ZjmUtil._yakuWithFourChows(fourChows),
                          ZjmYaku.THREE_INDENTICAL_SEQUENCES);
@@ -694,10 +694,10 @@ describe('ZjmUtilTest', () => {
         
         it('has two indentical sequenes.', () => {
             const fourChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_03)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_02)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
             assert.equal(ZjmUtil._yakuWithFourChows(fourChows),
                          ZjmYaku.TWO_INDENTICAL_SEQUENCES);
@@ -709,36 +709,36 @@ describe('ZjmUtilTest', () => {
         
         it('is four consecutive triplets.', () => {
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_03)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_04)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_03)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_04)),
             ];
-            const head = new Janpai(JanpaiID.SOU_01);
+            const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._yakuWithFourPungs(fourPungs, head),
                          ZjmYaku.FOUR_CONSECUTIVE_TRIPLETS);
         });
         
         it('has three similar triplets.', () => {
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
-            const head = new Janpai(JanpaiID.MAN_02);
+            const head = new Janpai(JANPAI_ID.MAN_02);
             assert.equal(ZjmUtil._yakuWithFourPungs(fourPungs, head),
                          ZjmYaku.THREE_SIMILAR_TRIPLETS);
         });
         
         it('has small three similar triplets.', () => {
             const fourPungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_02)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_03)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
-            const head = new Janpai(JanpaiID.SOU_01);
+            const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._yakuWithFourPungs(fourPungs, head),
                          ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
         });
@@ -749,9 +749,9 @@ describe('ZjmUtilTest', () => {
         
         it('is three indentical sequenes.', () => {
             const threeChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._yakuWithThreeChows(threeChows),
                          ZjmYaku.THREE_INDENTICAL_SEQUENCES);
@@ -759,9 +759,9 @@ describe('ZjmUtilTest', () => {
         
         it('has two indentical sequenes.', () => {
             const threeChows = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
             ];
             assert.equal(ZjmUtil._yakuWithThreeChows(threeChows),
                          ZjmYaku.TWO_INDENTICAL_SEQUENCES);
@@ -773,22 +773,22 @@ describe('ZjmUtilTest', () => {
         
         it('is three similar triplets.', () => {
             const threePungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_01)),
             ];
-            const head = new Janpai(JanpaiID.SOU_02);
+            const head = new Janpai(JANPAI_ID.SOU_02);
             assert.equal(ZjmUtil._yakuWithThreePungs(threePungs, head),
                          ZjmYaku.THREE_SIMILAR_TRIPLETS);
         });
         
         it('is small three similar triplets.', () => {
             const threePungs = [
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_01)),
-                Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_02)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_01)),
+                Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
-            const head = new Janpai(JanpaiID.SOU_01);
+            const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._yakuWithThreePungs(threePungs, head),
                          ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
         });

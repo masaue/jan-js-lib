@@ -16,7 +16,7 @@ limitations under the License.
 import {COMPLETE_TYPE} from './complete-type';
 import HandUtil from './hand-util';
 import Janpai from './janpai';
-import JanpaiID from './janpai-id';
+import {JANPAI_ID} from './janpai-id';
 import JanUtil from './jan-util';
 import KnittedStraight from './knitted-straight';
 import MentsuUtil from './mentsu-util';
@@ -32,9 +32,9 @@ export default class YakuUtil {
     
     static allGreen(janpaiList) {
         const greenList = [
-            new Janpai(JanpaiID.SOU_02), new Janpai(JanpaiID.SOU_03),
-            new Janpai(JanpaiID.SOU_04), new Janpai(JanpaiID.SOU_06),
-            new Janpai(JanpaiID.SOU_08), new Janpai(JanpaiID.FA),
+            new Janpai(JANPAI_ID.SOU_02), new Janpai(JANPAI_ID.SOU_03),
+            new Janpai(JANPAI_ID.SOU_04), new Janpai(JANPAI_ID.SOU_06),
+            new Janpai(JANPAI_ID.SOU_08), new Janpai(JANPAI_ID.FA),
         ];
         return JanUtil.uniqueList(janpaiList).every((j) => {
             return JanUtil.hasJanpai(greenList, j);
@@ -248,13 +248,13 @@ export default class YakuUtil {
     
     static reversibleTiles(janpaiList) {
         const reversibleList = [
-            new Janpai(JanpaiID.PIN_01), new Janpai(JanpaiID.PIN_02),
-            new Janpai(JanpaiID.PIN_03), new Janpai(JanpaiID.PIN_04),
-            new Janpai(JanpaiID.PIN_05), new Janpai(JanpaiID.PIN_08),
-            new Janpai(JanpaiID.PIN_09), new Janpai(JanpaiID.SOU_02),
-            new Janpai(JanpaiID.SOU_04), new Janpai(JanpaiID.SOU_05),
-            new Janpai(JanpaiID.SOU_06), new Janpai(JanpaiID.SOU_08),
-            new Janpai(JanpaiID.SOU_09), new Janpai(JanpaiID.BAI),
+            new Janpai(JANPAI_ID.PIN_01), new Janpai(JANPAI_ID.PIN_02),
+            new Janpai(JANPAI_ID.PIN_03), new Janpai(JANPAI_ID.PIN_04),
+            new Janpai(JANPAI_ID.PIN_05), new Janpai(JANPAI_ID.PIN_08),
+            new Janpai(JANPAI_ID.PIN_09), new Janpai(JANPAI_ID.SOU_02),
+            new Janpai(JANPAI_ID.SOU_04), new Janpai(JANPAI_ID.SOU_05),
+            new Janpai(JANPAI_ID.SOU_06), new Janpai(JANPAI_ID.SOU_08),
+            new Janpai(JANPAI_ID.SOU_09), new Janpai(JANPAI_ID.BAI),
         ];
         return JanUtil.uniqueList(janpaiList).every((j) => {
             return JanUtil.hasJanpai(reversibleList, j);

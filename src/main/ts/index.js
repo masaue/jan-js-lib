@@ -18,7 +18,7 @@ import CompleteInfo from './jan/complete-info';
 import {COMPLETE_TYPE} from './jan/complete-type';
 import Hand from './jan/hand';
 import Janpai from './jan/janpai';
-import JanpaiID from './jan/janpai-id';
+import {JANPAI_ID} from './jan/janpai-id';
 import JanUtil from './jan/jan-util';
 import McrComplete from './jan/mcr-complete';
 import McrUtil from './jan/mcr-util';
@@ -27,4 +27,4 @@ import Mentsu from './jan/mentsu';
 import {WIND} from './jan/wind';
 
 export { CALL_TYPE, CompleteInfo, COMPLETE_TYPE, Hand, Janpai,
-         JanpaiID, JanUtil, McrComplete, McrUtil, McrYaku, Mentsu, WIND };
+         JANPAI_ID, JanUtil, McrComplete, McrUtil, McrYaku, Mentsu, WIND };

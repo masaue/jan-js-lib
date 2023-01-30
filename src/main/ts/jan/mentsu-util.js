@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-import JanpaiID from './janpai-id';
+import {JANPAI_ID} from './janpai-id';
 
 export default class MentsuUtil {
     
@@ -54,7 +54,7 @@ export default class MentsuUtil {
         target.sort((s, t) => {
             let sIndex = undefined;
             let tIndex = undefined;
-            Object.values(JanpaiID).some((id, index) => {
+            Object.values(JANPAI_ID).some((id, index) => {
                 if (id === s.head.id) {
                     sIndex = index;
                 }

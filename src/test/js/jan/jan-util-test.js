@@ -17,7 +17,7 @@ import assert from 'assert';
 
 import Hand from '../../../main/js/jan/hand';
 import Janpai from '../../../main/js/jan/janpai';
-import JanpaiID from '../../../main/js/jan/janpai-id';
+import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
 import JanUtil from '../../../main/js/jan/jan-util';
 import Mentsu from '../../../main/js/jan/mentsu';
 
@@ -27,69 +27,69 @@ describe('JanUtilTest', () => {
         
         it('has chow of 1m.', () => {
             const janpaiList = [
-                new Janpai(JanpaiID.MAN_02),
-                new Janpai(JanpaiID.MAN_03),
-                new Janpai(JanpaiID.MAN_08),
-                new Janpai(JanpaiID.MAN_09),
+                new Janpai(JANPAI_ID.MAN_02),
+                new Janpai(JANPAI_ID.MAN_03),
+                new Janpai(JANPAI_ID.MAN_08),
+                new Janpai(JANPAI_ID.MAN_09),
             ];
             const hand = new Hand(janpaiList);
-            const chowableList = JanUtil.chowableList(hand, new Janpai(JanpaiID.MAN_01));
+            const chowableList = JanUtil.chowableList(hand, new Janpai(JANPAI_ID.MAN_01));
             const expectedMentsuList = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.deepEqual(chowableList, expectedMentsuList);
         });
         
         it('has chow of 7p.', () => {
             const janpaiList = [
-                new Janpai(JanpaiID.PIN_01),
-                new Janpai(JanpaiID.PIN_02),
-                new Janpai(JanpaiID.PIN_07),
-                new Janpai(JanpaiID.PIN_08),
+                new Janpai(JANPAI_ID.PIN_01),
+                new Janpai(JANPAI_ID.PIN_02),
+                new Janpai(JANPAI_ID.PIN_07),
+                new Janpai(JANPAI_ID.PIN_08),
             ];
             const hand = new Hand(janpaiList);
-            const chowableList = JanUtil.chowableList(hand, new Janpai(JanpaiID.PIN_09));
+            const chowableList = JanUtil.chowableList(hand, new Janpai(JANPAI_ID.PIN_09));
             const expectedMentsuList = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_07)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_07)),
             ];
             assert.deepEqual(chowableList, expectedMentsuList);
         });
         
         it('has chow of 4s.', () => {
             const janpaiList = [
-                new Janpai(JanpaiID.SOU_04),
-                new Janpai(JanpaiID.SOU_06),
+                new Janpai(JANPAI_ID.SOU_04),
+                new Janpai(JANPAI_ID.SOU_06),
             ];
             const hand = new Hand(janpaiList);
-            const chowableList = JanUtil.chowableList(hand, new Janpai(JanpaiID.SOU_05));
+            const chowableList = JanUtil.chowableList(hand, new Janpai(JANPAI_ID.SOU_05));
             const expectedMentsuList = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_04)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_04)),
             ];
             assert.deepEqual(chowableList, expectedMentsuList);
         });
         
         it('has chow of 1m.', () => {
             const janpaiList = [
-                new Janpai(JanpaiID.MAN_01),
-                new Janpai(JanpaiID.MAN_02),
+                new Janpai(JANPAI_ID.MAN_01),
+                new Janpai(JANPAI_ID.MAN_02),
             ];
             const hand = new Hand(janpaiList);
-            const chowableList = JanUtil.chowableList(hand, new Janpai(JanpaiID.MAN_03));
+            const chowableList = JanUtil.chowableList(hand, new Janpai(JANPAI_ID.MAN_03));
             const expectedMentsuList = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.deepEqual(chowableList, expectedMentsuList);
         });
         
         it('has chow of 7p.', () => {
             const janpaiList = [
-                new Janpai(JanpaiID.PIN_08),
-                new Janpai(JanpaiID.PIN_09),
+                new Janpai(JANPAI_ID.PIN_08),
+                new Janpai(JANPAI_ID.PIN_09),
             ];
             const hand = new Hand(janpaiList);
-            const chowableList = JanUtil.chowableList(hand, new Janpai(JanpaiID.PIN_07));
+            const chowableList = JanUtil.chowableList(hand, new Janpai(JANPAI_ID.PIN_07));
             const expectedMentsuList = [
-                Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_07)),
+                Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_07)),
             ];
             assert.deepEqual(chowableList, expectedMentsuList);
         });
@@ -100,13 +100,13 @@ describe('JanUtilTest', () => {
         
         it('has janpaiList.', () => {
             const janpaiList = [
-                new Janpai(JanpaiID.MAN_01),
-                new Janpai(JanpaiID.MAN_02),
+                new Janpai(JANPAI_ID.MAN_01),
+                new Janpai(JANPAI_ID.MAN_02),
             ];
             const objectedList = JanUtil.objectedList(janpaiList);
             const expectedList = [
-                {id: JanpaiID.MAN_01, red: false},
-                {id: JanpaiID.MAN_02, red: false},
+                {id: JANPAI_ID.MAN_01, red: false},
+                {id: JANPAI_ID.MAN_02, red: false},
             ];
             assert.deepStrictEqual(objectedList, expectedList);
         });
