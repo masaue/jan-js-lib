@@ -16,7 +16,7 @@ limitations under the License.
 import Janpai from './janpai';
 import JanpaiID from './janpai-id';
 import Mentsu from './mentsu';
-import Wind from './wind';
+import {WIND} from './wind';
 
 export default class JanUtil {
     
@@ -99,14 +99,14 @@ export default class JanUtil {
     
     static nextWind(wind) {
         switch (wind) {
-        case Wind.TON:
-            return Wind.NAN;
-        case Wind.NAN:
-            return Wind.SHA;
-        case Wind.SHA:
-            return Wind.PEI;
-        case Wind.PEI:
-            return Wind.TON;
+        case WIND.TON:
+            return WIND.NAN;
+        case WIND.NAN:
+            return WIND.SHA;
+        case WIND.SHA:
+            return WIND.PEI;
+        case WIND.PEI:
+            return WIND.TON;
         default:
             throw new Error(`Unknown wind: ${wind}`);
         }

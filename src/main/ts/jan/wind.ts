@@ -13,14 +13,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-export default {
-    
-    TON: '東',
-    
-    NAN: '南',
-    
-    SHA: '西',
-    
-    PEI: '北',
-    
-}
+export const WIND = {
+  TON: '東',
+  NAN: '南',
+  SHA: '西',
+  PEI: '北',
+} as const;
+
+export type Wind = typeof WIND[keyof typeof WIND];

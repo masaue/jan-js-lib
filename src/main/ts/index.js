@@ -24,7 +24,7 @@ import McrComplete from './jan/mcr-complete';
 import McrUtil from './jan/mcr-util';
 import McrYaku from './jan/mcr-yaku';
 import Mentsu from './jan/mentsu';
-import Wind from './jan/wind';
+import {WIND} from './jan/wind';
 
 export { CallType, CompleteInfo, CompleteType, Hand, Janpai,
-         JanpaiID, JanUtil, McrComplete, McrUtil, McrYaku, Mentsu, Wind };
+         JanpaiID, JanUtil, McrComplete, McrUtil, McrYaku, Mentsu, WIND };

@@ -24,7 +24,7 @@ import JanpaiID from '../../../main/js/jan/janpai-id';
 import McrUtil from '../../../main/js/jan/mcr-util';
 import McrYaku from '../../../main/js/jan/mcr-yaku';
 import Mentsu from '../../../main/js/jan/mentsu';
-import Wind from '../../../main/js/jan/wind';
+import {WIND} from '../../../main/js/jan/wind';
 
 describe('McrUtilTest', () => {
     
@@ -263,7 +263,7 @@ describe('McrUtilTest', () => {
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.NAN)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.SHA)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.PEI)));
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_02), false, Wind.NAN, Wind.SHA);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_02), false, WIND.NAN, WIND.SHA);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.LITTLE_FOUR_WINDS, McrYaku.PREVALENT_WIND,
                   McrYaku.SEAT_WIND, McrYaku.HALF_FLUSH ]);
@@ -464,7 +464,7 @@ describe('McrUtilTest', () => {
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.TON)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.NAN)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.SHA)));
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_01), false, Wind.TON, Wind.NAN);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_01), false, WIND.TON, WIND.NAN);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.BIG_THREE_WINDS, McrYaku.PREVALENT_WIND, McrYaku.SEAT_WIND,
                   McrYaku.ALL_PUNGS, McrYaku.PUNG_OF_TERMINALS_OR_HONORS, McrYaku.ONE_VOIDED_SUIT ]);
@@ -528,7 +528,7 @@ describe('McrUtilTest', () => {
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.TON)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.BAI)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.FA)));
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.NAN), false, Wind.TON, Wind.NAN);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.NAN), false, WIND.TON, WIND.NAN);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.SEAT_WIND, McrYaku.PREVALENT_WIND,
                   McrYaku.TWO_DRAGON_PUNGS, McrYaku.ALL_PUNGS, McrYaku.HALF_FLUSH ]);
@@ -545,7 +545,7 @@ describe('McrUtilTest', () => {
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.TON)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.MAN_01)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.PIN_02)));
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_04), false, Wind.TON, Wind.TON);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_04), false, WIND.TON, WIND.TON);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.PREVALENT_WIND, McrYaku.SEAT_WIND,
                   McrYaku.PUNG_OF_TERMINALS_OR_HONORS ]);
@@ -566,7 +566,7 @@ describe('McrUtilTest', () => {
             ];
             const hand = new Hand(janpaiList);
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_03)));
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_08), false, Wind.TON, Wind.TON);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_08), false, WIND.TON, WIND.TON);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.ALL_CHOWS, McrYaku.KNITTED_STRAIGHT, McrYaku.SINGLE_WAIT ]);
         });
@@ -588,7 +588,7 @@ describe('McrUtilTest', () => {
                 new Janpai(JanpaiID.SOU_09),
             ];
             const hand = new Hand(janpaiList);
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.SOU_05), false, Wind.TON, Wind.TON);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.SOU_05), false, WIND.TON, WIND.TON);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.ALL_CHOWS, McrYaku.KNITTED_STRAIGHT, McrYaku.CONCEALED_HAND ]);
         });
@@ -610,7 +610,7 @@ describe('McrUtilTest', () => {
                 new Janpai(JanpaiID.SOU_09),
             ];
             const hand = new Hand(janpaiList);
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_03), false, Wind.TON, Wind.TON);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_03), false, WIND.TON, WIND.TON);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.ALL_CHOWS, McrYaku.KNITTED_STRAIGHT, McrYaku.CONCEALED_HAND ]);
         });
@@ -632,7 +632,7 @@ describe('McrUtilTest', () => {
                 new Janpai(JanpaiID.SOU_08),
             ];
             const hand = new Hand(janpaiList);
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_09), false, Wind.TON, Wind.TON);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_09), false, WIND.TON, WIND.TON);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.ALL_CHOWS, McrYaku.KNITTED_STRAIGHT, McrYaku.CONCEALED_HAND ]);
         });
@@ -654,7 +654,7 @@ describe('McrUtilTest', () => {
                 new Janpai(JanpaiID.FA),
             ];
             const hand = new Hand(janpaiList);
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.FA), false, Wind.TON, Wind.TON);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.FA), false, WIND.TON, WIND.TON);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.SEVEN_PAIRS, McrYaku.ALL_GREEN, McrYaku.HALF_FLUSH, McrYaku.TILE_HOG ]);
         });
@@ -676,7 +676,7 @@ describe('McrUtilTest', () => {
                 new Janpai(JanpaiID.FA),
             ];
             const hand = new Hand(janpaiList);
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.FA), false, Wind.TON, Wind.TON);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.FA), false, WIND.TON, WIND.TON);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.SEVEN_PAIRS, McrYaku.ALL_GREEN, McrYaku.HALF_FLUSH ]);
         });
@@ -2508,7 +2508,7 @@ describe('McrUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JanpaiID.NAN)),
                 Mentsu.createPungMentsu(new Janpai(JanpaiID.SHA)),
             ], new Janpai(JanpaiID.PEI));
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.SHA), false, Wind.SHA, Wind.PEI);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.SHA), false, WIND.SHA, WIND.PEI);
             assert.deepStrictEqual(McrUtil._windsYakuList(completePattern, completeInfo),
                 [ McrYaku.LITTLE_FOUR_WINDS, McrYaku.PREVALENT_WIND ]);
         });
@@ -2520,7 +2520,7 @@ describe('McrUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JanpaiID.SHA)),
                 Mentsu.createPungMentsu(new Janpai(JanpaiID.PEI)),
             ], new Janpai(JanpaiID.MAN_01));
-            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.SHA), false, Wind.NAN, Wind.NAN);
+            const completeInfo = new CompleteInfo(new Janpai(JanpaiID.SHA), false, WIND.NAN, WIND.NAN);
             assert.deepStrictEqual(McrUtil._windsYakuList(completePattern, completeInfo),
                 [ McrYaku.BIG_THREE_WINDS, McrYaku.PREVALENT_WIND, McrYaku.SEAT_WIND ]);
         });
