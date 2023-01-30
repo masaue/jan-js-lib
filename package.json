@@ -46,5 +46,6 @@
     "mahjong competition rules",
     "mcr",
     "score"
-  ]
+  ],
+  "types": "./dist/types/index.d.ts"
 }
