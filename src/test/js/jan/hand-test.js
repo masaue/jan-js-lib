@@ -15,7 +15,7 @@ limitations under the License.
  */
 import assert from 'assert';
 
-import CallType from '../../../main/js/jan/call-type';
+import {CALL_TYPE} from '../../../main/js/jan/call-type';
 import Hand from '../../../main/js/jan/hand';
 import Janpai from '../../../main/js/jan/janpai';
 import JanpaiID from '../../../main/js/jan/janpai-id';
@@ -118,18 +118,18 @@ describe('HandTest', () => {
                     {id: JanpaiID.BAI, red: false},
                 ],
                 waitTable: {
-                    [CallType.CHI]: [
+                    [CALL_TYPE.CHI]: [
                         {id: JanpaiID.MAN_01, red: false},
                         {id: JanpaiID.MAN_04, red: false},
                     ],
-                    [CallType.KAN_LIGHT]: [
+                    [CALL_TYPE.KAN_LIGHT]: [
                         {id: JanpaiID.BAI, red: false},
                     ],
-                    [CallType.PON]: [
+                    [CALL_TYPE.PON]: [
                         {id: JanpaiID.TON, red: false},
                         {id: JanpaiID.BAI, red: false},
                     ],
-                    [CallType.RON]: [
+                    [CALL_TYPE.RON]: [
                         {id: JanpaiID.MAN_01, red: false},
                         {id: JanpaiID.MAN_04, red: false},
                     ],
@@ -173,7 +173,7 @@ describe('HandTest', () => {
                 new Janpai(JanpaiID.SOU_04),
                 new Janpai(JanpaiID.SOU_05),
             ];
-            assert.deepEqual(hand.waitTable[CallType.CHI], chowableList);
+            assert.deepEqual(hand.waitTable[CALL_TYPE.CHI], chowableList);
         });
         
         it('has latter half janpaiList.', () => {
@@ -207,7 +207,7 @@ describe('HandTest', () => {
                 new Janpai(JanpaiID.SOU_08),
                 new Janpai(JanpaiID.SOU_09),
             ];
-            assert.deepEqual(hand.waitTable[CallType.CHI], chowableList);
+            assert.deepEqual(hand.waitTable[CALL_TYPE.CHI], chowableList);
         });
         
     });

@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-import CallType from './call-type';
+import {CALL_TYPE} from './call-type';
 import HandUtil from './hand-util';
 import JanUtil from './jan-util';
 import MentsuUtil from './mentsu-util';
@@ -80,10 +80,10 @@ export default class Hand {
     }
     
     updateWaitTable() {
-        this._waitTable[CallType.RON] = this.completableList;
-        this._waitTable[CallType.CHI] = this._chowableList();
-        this._waitTable[CallType.PON] = this._pungableList();
-        this._waitTable[CallType.KAN_LIGHT] = this._lightKongableList();
+        this._waitTable[CALL_TYPE.RON] = this.completableList;
+        this._waitTable[CALL_TYPE.CHI] = this._chowableList();
+        this._waitTable[CALL_TYPE.PON] = this._pungableList();
+        this._waitTable[CALL_TYPE.KAN_LIGHT] = this._lightKongableList();
     }
     
     get allJanpaiList() {

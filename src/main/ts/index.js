@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-import CallType from './jan/call-type';
+import {CALL_TYPE} from './jan/call-type';
 import CompleteInfo from './jan/complete-info';
 import CompleteType from './jan/complete-type';
 import Hand from './jan/hand';
@@ -26,5 +26,5 @@ import McrYaku from './jan/mcr-yaku';
 import Mentsu from './jan/mentsu';
 import {WIND} from './jan/wind';
 
-export { CallType, CompleteInfo, CompleteType, Hand, Janpai,
+export { CALL_TYPE, CompleteInfo, CompleteType, Hand, Janpai,
          JanpaiID, JanUtil, McrComplete, McrUtil, McrYaku, Mentsu, WIND };
