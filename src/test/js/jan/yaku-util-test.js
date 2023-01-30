@@ -23,7 +23,7 @@ import Janpai from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
 import {MCR_YAKU} from '../../../main/js/jan/mcr-yaku';
 import Mentsu from '../../../main/js/jan/mentsu';
-import ZjmYaku from '../../../main/js/jan/zjm-yaku';
+import {ZJM_YAKU} from '../../../main/js/jan/zjm-yaku';
 import YakuUtil from '../../../main/js/jan/yaku-util';
 
 describe('YakuUtilTest', () => {
@@ -822,35 +822,35 @@ describe('YakuUtilTest', () => {
             const completeInfo = new CompleteInfo(new Janpai(JANPAI_ID.TON),
                 false, undefined, undefined, COMPLETE_TYPE.FINAL_DRAW_AND_WIN_ON_KONG);
             assert.deepStrictEqual(YakuUtil.incidentalBonusesYakuList(completeInfo),
-                [ ZjmYaku.FINAL_DRAW, ZjmYaku.WIN_ON_KONG ]);
+                [ ZJM_YAKU.FINAL_DRAW, ZJM_YAKU.WIN_ON_KONG ]);
         });
         
         it('is final draw.', () => {
             const completeInfo = new CompleteInfo(new Janpai(JANPAI_ID.TON),
                 false, undefined, undefined, COMPLETE_TYPE.FINAL_DRAW);
             assert.deepStrictEqual(YakuUtil.incidentalBonusesYakuList(completeInfo),
-                [ ZjmYaku.FINAL_DRAW ]);
+                [ ZJM_YAKU.FINAL_DRAW ]);
         });
         
         it('is final discard.', () => {
             const completeInfo = new CompleteInfo(new Janpai(JANPAI_ID.TON),
                 false, undefined, undefined, COMPLETE_TYPE.FINAL_DISCARD);
             assert.deepStrictEqual(YakuUtil.incidentalBonusesYakuList(completeInfo),
-                [ ZjmYaku.FINAL_DISCARD ]);
+                [ ZJM_YAKU.FINAL_DISCARD ]);
         });
         
         it('is win on kong.', () => {
             const completeInfo = new CompleteInfo(new Janpai(JANPAI_ID.TON),
                 false, undefined, undefined, COMPLETE_TYPE.WIN_ON_KONG);
             assert.deepStrictEqual(YakuUtil.incidentalBonusesYakuList(completeInfo),
-                [ ZjmYaku.WIN_ON_KONG ]);
+                [ ZJM_YAKU.WIN_ON_KONG ]);
         });
         
         it('is win on kong.', () => {
             const completeInfo = new CompleteInfo(new Janpai(JANPAI_ID.TON),
                 false, undefined, undefined, COMPLETE_TYPE.ROBBING_A_KONG);
             assert.deepStrictEqual(YakuUtil.incidentalBonusesYakuList(completeInfo),
-                [ ZjmYaku.ROBBING_A_KONG ]);
+                [ ZJM_YAKU.ROBBING_A_KONG ]);
         });
         
         it('is empty yaku list.', () => {
@@ -1833,7 +1833,7 @@ describe('YakuUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JANPAI_ID.TON)),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(YakuUtil.terminalsYaku(completePattern),
-                         ZjmYaku.MIXED_GREATER_TERMINALS);
+                         ZJM_YAKU.MIXED_GREATER_TERMINALS);
         });
         
         it('is mixed lesser terminals.', () => {
@@ -1844,7 +1844,7 @@ describe('YakuUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JANPAI_ID.TON)),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(YakuUtil.terminalsYaku(completePattern),
-                         ZjmYaku.MIXED_LESSER_TERMINALS);
+                         ZJM_YAKU.MIXED_LESSER_TERMINALS);
         });
         
         it('is pure greater terminals.', () => {
@@ -1855,7 +1855,7 @@ describe('YakuUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_09)),
             ], new Janpai(JANPAI_ID.SOU_01));
             assert.equal(YakuUtil.terminalsYaku(completePattern),
-                         ZjmYaku.PURE_GREATER_TERMINALS);
+                         ZJM_YAKU.PURE_GREATER_TERMINALS);
         });
         
         it('is pure lesser terminals.', () => {
@@ -1866,7 +1866,7 @@ describe('YakuUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_09)),
             ], new Janpai(JANPAI_ID.SOU_01));
             assert.equal(YakuUtil.terminalsYaku(completePattern),
-                         ZjmYaku.PURE_LESSER_TERMINALS);
+                         ZJM_YAKU.PURE_LESSER_TERMINALS);
         });
         
         it('does not have yao mentsu.', () => {

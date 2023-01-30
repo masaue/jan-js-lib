@@ -18,7 +18,7 @@ import JanUtil from './jan-util';
 import McrComplete from './mcr-complete';
 import {MCR_YAKU} from './mcr-yaku';
 import MentsuUtil from './mentsu-util';
-import ZjmYaku from './zjm-yaku';
+import {ZJM_YAKU} from './zjm-yaku';
 import YakuUtil from './yaku-util';
 
 export default class McrUtil {
@@ -60,8 +60,8 @@ export default class McrUtil {
     
     static _allInvolvedYaku(completePattern) {
         switch (YakuUtil.terminalsYaku(completePattern)) {
-        case ZjmYaku.PURE_LESSER_TERMINALS:
-        case ZjmYaku.MIXED_LESSER_TERMINALS:
+        case ZJM_YAKU.PURE_LESSER_TERMINALS:
+        case ZJM_YAKU.MIXED_LESSER_TERMINALS:
             return MCR_YAKU.OUTSIDE_HAND;
         }
         // 全大、全中、全小、大于五、小于五、断幺は_limitedNumbersYakuList()で判定
@@ -76,13 +76,13 @@ export default class McrUtil {
     static _beingWholeYakuList(hand, completeInfo) {
         const yakuList = YakuUtil.incidentalBonusesYakuList(completeInfo).map((y) => {
             switch(y) {
-            case ZjmYaku.FINAL_DRAW:
+            case ZJM_YAKU.FINAL_DRAW:
                 return MCR_YAKU.LAST_TILE_DRAW;
-            case ZjmYaku.FINAL_DISCARD:
+            case ZJM_YAKU.FINAL_DISCARD:
                 return MCR_YAKU.LAST_TILE_CLAIM;
-            case ZjmYaku.WIN_ON_KONG:
+            case ZJM_YAKU.WIN_ON_KONG:
                 return MCR_YAKU.OUT_WITH_REPLACEMENT_TILE;
-            case ZjmYaku.ROBBING_A_KONG:
+            case ZJM_YAKU.ROBBING_A_KONG:
                 return MCR_YAKU.ROBBING_THE_KONG;
             }
         });

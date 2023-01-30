@@ -21,7 +21,7 @@ import JanUtil from './jan-util';
 import KnittedStraight from './knitted-straight';
 import MentsuUtil from './mentsu-util';
 import {SUIT} from './suit';
-import ZjmYaku from './zjm-yaku';
+import {ZJM_YAKU} from './zjm-yaku';
 
 export default class YakuUtil {
     
@@ -140,15 +140,15 @@ export default class YakuUtil {
     static incidentalBonusesYakuList(completeInfo) {
         switch (completeInfo.type) {
         case COMPLETE_TYPE.FINAL_DRAW_AND_WIN_ON_KONG:
-            return [ ZjmYaku.FINAL_DRAW, ZjmYaku.WIN_ON_KONG ];
+            return [ ZJM_YAKU.FINAL_DRAW, ZJM_YAKU.WIN_ON_KONG ];
         case COMPLETE_TYPE.FINAL_DRAW:
-            return [ ZjmYaku.FINAL_DRAW ];
+            return [ ZJM_YAKU.FINAL_DRAW ];
         case COMPLETE_TYPE.FINAL_DISCARD:
-            return [ ZjmYaku.FINAL_DISCARD ];
+            return [ ZJM_YAKU.FINAL_DISCARD ];
         case COMPLETE_TYPE.WIN_ON_KONG:
-            return [ ZjmYaku.WIN_ON_KONG ];
+            return [ ZJM_YAKU.WIN_ON_KONG ];
         case COMPLETE_TYPE.ROBBING_A_KONG:
-            return [ ZjmYaku.ROBBING_A_KONG ];
+            return [ ZJM_YAKU.ROBBING_A_KONG ];
         }
         return [];
     }
@@ -301,15 +301,15 @@ export default class YakuUtil {
         if (completePattern.yaoAll) {
             if (completePattern.hasJi) {
                 if (completePattern.pungList.length === 4) {
-                    return ZjmYaku.MIXED_GREATER_TERMINALS;
+                    return ZJM_YAKU.MIXED_GREATER_TERMINALS;
                 }
-                return ZjmYaku.MIXED_LESSER_TERMINALS;
+                return ZJM_YAKU.MIXED_LESSER_TERMINALS;
             }
             else {
                 if (completePattern.pungList.length === 4) {
-                    return ZjmYaku.PURE_GREATER_TERMINALS;
+                    return ZJM_YAKU.PURE_GREATER_TERMINALS;
                 }
-                return ZjmYaku.PURE_LESSER_TERMINALS;
+                return ZJM_YAKU.PURE_LESSER_TERMINALS;
             }
         }
         return undefined;

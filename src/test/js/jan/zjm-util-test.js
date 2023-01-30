@@ -20,7 +20,7 @@ import Janpai from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
 import Mentsu from '../../../main/js/jan/mentsu';
 import ZjmUtil from '../../../main/js/jan/zjm-util';
-import ZjmYaku from '../../../main/js/jan/zjm-yaku';
+import {ZJM_YAKU} from '../../../main/js/jan/zjm-yaku';
 
 describe('ZjmUtilTest', () => {
     
@@ -34,7 +34,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07), true),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._concealedTripletsYaku(completePattern),
-                         ZjmYaku.FOUR_CONCEALED_TRIPLETS);
+                         ZJM_YAKU.FOUR_CONCEALED_TRIPLETS);
         });
         
         it('has three concealed triplets.', () => {
@@ -45,7 +45,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._concealedTripletsYaku(completePattern),
-                         ZjmYaku.THREE_CONCEALED_TRIPLETS);
+                         ZJM_YAKU.THREE_CONCEALED_TRIPLETS);
         });
         
         it('has two concealed triplets.', () => {
@@ -56,7 +56,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._concealedTripletsYaku(completePattern),
-                         ZjmYaku.TWO_CONCEALED_TRIPLETS);
+                         ZJM_YAKU.TWO_CONCEALED_TRIPLETS);
         });
         
         it('has one concealed triplets.', () => {
@@ -82,7 +82,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.CHUN)),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._dragonsYaku(completePattern),
-                         ZjmYaku.BIG_THREE_DRAGONS);
+                         ZJM_YAKU.BIG_THREE_DRAGONS);
         });
         
         it('has small three dragons.', () => {
@@ -93,7 +93,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
             ], new Janpai(JANPAI_ID.CHUN));
             assert.equal(ZjmUtil._dragonsYaku(completePattern),
-                         ZjmYaku.SMALL_THREE_DRAGONS);
+                         ZJM_YAKU.SMALL_THREE_DRAGONS);
         });
         
         it('has two dragons.', () => {
@@ -117,7 +117,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SHA)),
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PEI)),
             ], new Janpai(JANPAI_ID.BAI));
-            const yakuList = [ ZjmYaku.BIG_FOUR_WINDS, ZjmYaku.ALL_HONORS ];
+            const yakuList = [ ZJM_YAKU.BIG_FOUR_WINDS, ZJM_YAKU.ALL_HONORS ];
             assert.deepEqual(ZjmUtil._honorTilesYakuList(completePattern), yakuList);
         });
         
@@ -128,7 +128,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.FA)),
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.CHUN)),
             ], new Janpai(JANPAI_ID.TON));
-            const yakuList = [ ZjmYaku.BIG_THREE_DRAGONS ];
+            const yakuList = [ ZJM_YAKU.BIG_THREE_DRAGONS ];
             assert.deepEqual(ZjmUtil._honorTilesYakuList(completePattern), yakuList);
         });
         
@@ -144,7 +144,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._kongYaku(completePattern),
-                         ZjmYaku.FOUR_KONG);
+                         ZJM_YAKU.FOUR_KONG);
         });
         
         it('has three kong.', () => {
@@ -155,7 +155,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_07)),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._kongYaku(completePattern),
-                         ZjmYaku.THREE_KONG);
+                         ZJM_YAKU.THREE_KONG);
         });
         
         it('has two kong.', () => {
@@ -166,7 +166,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_07)),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._kongYaku(completePattern),
-                         ZjmYaku.TWO_KONG);
+                         ZJM_YAKU.TWO_KONG);
         });
         
         it('has one kong.', () => {
@@ -177,7 +177,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_07)),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._kongYaku(completePattern),
-                         ZjmYaku.ONE_KONG);
+                         ZJM_YAKU.ONE_KONG);
         });
         
         it('does not have kong.', () => {
@@ -203,7 +203,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
             ];
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourChows, undefined),
-                         ZjmYaku.NINE_TILE_STRAIGHT);
+                         ZJM_YAKU.NINE_TILE_STRAIGHT);
         });
         
         it('has three similar sequenes.', () => {
@@ -215,7 +215,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourChows, undefined),
-                         ZjmYaku.THREE_SIMILAR_SEQUENCES);
+                         ZJM_YAKU.THREE_SIMILAR_SEQUENCES);
         });
         
         it('has three similar sequenes.', () => {
@@ -227,7 +227,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourChows, undefined),
-                         ZjmYaku.THREE_SIMILAR_SEQUENCES);
+                         ZJM_YAKU.THREE_SIMILAR_SEQUENCES);
         });
         
         it('has three similar sequenes.', () => {
@@ -239,7 +239,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_02)),
             ];
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourChows, undefined),
-                         ZjmYaku.THREE_SIMILAR_SEQUENCES);
+                         ZJM_YAKU.THREE_SIMILAR_SEQUENCES);
         });
         
         it('has three concealed triplets.', () => {
@@ -252,7 +252,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourPungs, head),
-                         ZjmYaku.THREE_CONCEALED_TRIPLETS);
+                         ZJM_YAKU.THREE_CONCEALED_TRIPLETS);
         });
         
         it('has three similar triplets.', () => {
@@ -265,7 +265,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.PIN_01);
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourPungs, head),
-                         ZjmYaku.THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.THREE_SIMILAR_TRIPLETS);
         });
         
         it('has three similar triplets.', () => {
@@ -278,7 +278,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.MAN_01);
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourPungs, head),
-                         ZjmYaku.THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.THREE_SIMILAR_TRIPLETS);
         });
         
         it('has three similar triplets.', () => {
@@ -291,7 +291,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, fourPungs, head),
-                         ZjmYaku.THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.THREE_SIMILAR_TRIPLETS);
         });
         
         it('has two indentical sequences.', () => {
@@ -302,7 +302,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
             ];
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, threeChows, undefined),
-                         ZjmYaku.TWO_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.TWO_INDENTICAL_SEQUENCES);
         });
         
         it('has small three similar triplets.', () => {
@@ -314,7 +314,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._prevNumberMentsuYaku(callBack, threePungs, head),
-                         ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.SMALL_THREE_SIMILAR_TRIPLETS);
         });
         
         it('does not have mentsu yaku.', () => {
@@ -340,7 +340,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._threeChowsYaku(threeChows),
-                         ZjmYaku.THREE_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.THREE_INDENTICAL_SEQUENCES);
         });
         
         it('is nine tile straight.', () => {
@@ -350,7 +350,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_07)),
             ];
             assert.equal(ZjmUtil._threeChowsYaku(threeChows),
-                         ZjmYaku.NINE_TILE_STRAIGHT);
+                         ZJM_YAKU.NINE_TILE_STRAIGHT);
         });
         
         it('is three similar sequenes.', () => {
@@ -360,7 +360,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_01)),
             ];
             assert.equal(ZjmUtil._threeChowsYaku(threeChows),
-                         ZjmYaku.THREE_SIMILAR_SEQUENCES);
+                         ZJM_YAKU.THREE_SIMILAR_SEQUENCES);
         });
         
         it('does not have chow yaku.', () => {
@@ -383,7 +383,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_01)),
             ];
             assert.equal(ZjmUtil._threePungsYaku(threePungs),
-                         ZjmYaku.THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.THREE_SIMILAR_TRIPLETS);
         });
         
         it('is three concealed triplets.', () => {
@@ -393,7 +393,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_03)),
             ];
             assert.equal(ZjmUtil._threePungsYaku(threePungs),
-                         ZjmYaku.THREE_CONCEALED_TRIPLETS);
+                         ZJM_YAKU.THREE_CONCEALED_TRIPLETS);
         });
         
         it('does not have pung yaku.', () => {
@@ -416,7 +416,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_05)),
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_07)),
             ], new Janpai(JANPAI_ID.SOU_09));
-            const yakuList = [ ZjmYaku.ALL_TRIPLETS, ZjmYaku.FOUR_KONG ];
+            const yakuList = [ ZJM_YAKU.ALL_TRIPLETS, ZJM_YAKU.FOUR_KONG ];
             assert.deepEqual(ZjmUtil._tripletsAndKongYakuList(completePattern), yakuList);
         });
         
@@ -427,7 +427,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_05), true),
                 Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_07), true),
             ], new Janpai(JANPAI_ID.SOU_09));
-            const yakuList = [ ZjmYaku.THREE_CONCEALED_TRIPLETS ];
+            const yakuList = [ ZJM_YAKU.THREE_CONCEALED_TRIPLETS ];
             assert.deepEqual(ZjmUtil._tripletsAndKongYakuList(completePattern), yakuList);
         });
         
@@ -444,7 +444,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
-                         ZjmYaku.TWO_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.TWO_INDENTICAL_SEQUENCES);
         });
         
         it('has two indentical sequenes.', () => {
@@ -456,7 +456,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
-                         ZjmYaku.TWO_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.TWO_INDENTICAL_SEQUENCES);
         });
         
         it('has two indentical sequenes.', () => {
@@ -468,7 +468,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
-                         ZjmYaku.TWO_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.TWO_INDENTICAL_SEQUENCES);
         });
         
         it('has two indentical sequenes.', () => {
@@ -480,7 +480,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
-                         ZjmYaku.TWO_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.TWO_INDENTICAL_SEQUENCES);
         });
         
         it('has two indentical sequenes.', () => {
@@ -492,7 +492,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
-                         ZjmYaku.TWO_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.TWO_INDENTICAL_SEQUENCES);
         });
         
         it('has two indentical sequenes.', () => {
@@ -504,7 +504,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined),
-                         ZjmYaku.TWO_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.TWO_INDENTICAL_SEQUENCES);
         });
         
         it('has small three similar triplets.', () => {
@@ -517,7 +517,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
-                         ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.SMALL_THREE_SIMILAR_TRIPLETS);
         });
         
         it('has small three similar triplets.', () => {
@@ -530,7 +530,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.PIN_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
-                         ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.SMALL_THREE_SIMILAR_TRIPLETS);
         });
         
         it('has small three similar triplets.', () => {
@@ -543,7 +543,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.PIN_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
-                         ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.SMALL_THREE_SIMILAR_TRIPLETS);
         });
         
         it('has small three similar triplets.', () => {
@@ -556,7 +556,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.MAN_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
-                         ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.SMALL_THREE_SIMILAR_TRIPLETS);
         });
         
         it('has small three similar triplets.', () => {
@@ -569,7 +569,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.MAN_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
-                         ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.SMALL_THREE_SIMILAR_TRIPLETS);
         });
         
         it('has small three similar triplets.', () => {
@@ -582,7 +582,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.MAN_01);
             assert.equal(ZjmUtil._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head),
-                         ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.SMALL_THREE_SIMILAR_TRIPLETS);
         });
         
         it('does not have mentsu yaku.', () => {
@@ -609,7 +609,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PEI)),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._windsYaku(completePattern),
-                         ZjmYaku.BIG_FOUR_WINDS);
+                         ZJM_YAKU.BIG_FOUR_WINDS);
         });
         
         it('has small four winds.', () => {
@@ -620,7 +620,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PEI)),
             ], new Janpai(JANPAI_ID.TON));
             assert.equal(ZjmUtil._windsYaku(completePattern),
-                         ZjmYaku.SMALL_FOUR_WINDS);
+                         ZJM_YAKU.SMALL_FOUR_WINDS);
         });
         
         it('has big three winds.', () => {
@@ -631,7 +631,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PEI)),
             ], new Janpai(JANPAI_ID.SOU_09));
             assert.equal(ZjmUtil._windsYaku(completePattern),
-                         ZjmYaku.BIG_THREE_WINDS);
+                         ZJM_YAKU.BIG_THREE_WINDS);
         });
         
         it('has small three winds.', () => {
@@ -642,7 +642,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createKongMentsu(new Janpai(JANPAI_ID.PEI)),
             ], new Janpai(JANPAI_ID.TON));
             assert.equal(ZjmUtil._windsYaku(completePattern),
-                         ZjmYaku.SMALL_THREE_WINDS);
+                         ZJM_YAKU.SMALL_THREE_WINDS);
         });
         
         it('has two winds.', () => {
@@ -667,7 +667,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._yakuWithFourChows(fourChows),
-                         ZjmYaku.FOUR_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.FOUR_INDENTICAL_SEQUENCES);
         });
         
         it('is two indentical sequenes twice.', () => {
@@ -678,7 +678,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
             ];
             assert.equal(ZjmUtil._yakuWithFourChows(fourChows),
-                         ZjmYaku.TWO_INDENTICAL_SEQUENCES_TWICE);
+                         ZJM_YAKU.TWO_INDENTICAL_SEQUENCES_TWICE);
         });
         
         it('has three indentical sequenes.', () => {
@@ -689,7 +689,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
             ];
             assert.equal(ZjmUtil._yakuWithFourChows(fourChows),
-                         ZjmYaku.THREE_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.THREE_INDENTICAL_SEQUENCES);
         });
         
         it('has two indentical sequenes.', () => {
@@ -700,7 +700,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.SOU_03)),
             ];
             assert.equal(ZjmUtil._yakuWithFourChows(fourChows),
-                         ZjmYaku.TWO_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.TWO_INDENTICAL_SEQUENCES);
         });
         
     });
@@ -716,7 +716,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._yakuWithFourPungs(fourPungs, head),
-                         ZjmYaku.FOUR_CONSECUTIVE_TRIPLETS);
+                         ZJM_YAKU.FOUR_CONSECUTIVE_TRIPLETS);
         });
         
         it('has three similar triplets.', () => {
@@ -728,7 +728,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.MAN_02);
             assert.equal(ZjmUtil._yakuWithFourPungs(fourPungs, head),
-                         ZjmYaku.THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.THREE_SIMILAR_TRIPLETS);
         });
         
         it('has small three similar triplets.', () => {
@@ -740,7 +740,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._yakuWithFourPungs(fourPungs, head),
-                         ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.SMALL_THREE_SIMILAR_TRIPLETS);
         });
         
     });
@@ -754,7 +754,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01)),
             ];
             assert.equal(ZjmUtil._yakuWithThreeChows(threeChows),
-                         ZjmYaku.THREE_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.THREE_INDENTICAL_SEQUENCES);
         });
         
         it('has two indentical sequenes.', () => {
@@ -764,7 +764,7 @@ describe('ZjmUtilTest', () => {
                 Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)),
             ];
             assert.equal(ZjmUtil._yakuWithThreeChows(threeChows),
-                         ZjmYaku.TWO_INDENTICAL_SEQUENCES);
+                         ZJM_YAKU.TWO_INDENTICAL_SEQUENCES);
         });
         
     });
@@ -779,7 +779,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.SOU_02);
             assert.equal(ZjmUtil._yakuWithThreePungs(threePungs, head),
-                         ZjmYaku.THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.THREE_SIMILAR_TRIPLETS);
         });
         
         it('is small three similar triplets.', () => {
@@ -790,7 +790,7 @@ describe('ZjmUtilTest', () => {
             ];
             const head = new Janpai(JANPAI_ID.SOU_01);
             assert.equal(ZjmUtil._yakuWithThreePungs(threePungs, head),
-                         ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS);
+                         ZJM_YAKU.SMALL_THREE_SIMILAR_TRIPLETS);
         });
         
     });
