@@ -20,7 +20,7 @@ import JanpaiID from './janpai-id';
 import JanUtil from './jan-util';
 import KnittedStraight from './knitted-straight';
 import MentsuUtil from './mentsu-util';
-import Suit from './suit';
+import {SUIT} from './suit';
 import ZjmYaku from './zjm-yaku';
 
 export default class YakuUtil {
@@ -115,7 +115,7 @@ export default class YakuUtil {
     
     static halfFlush(janpaiList) {
         return JanUtil.suitCount(janpaiList) === 2 &&
-               JanUtil.hasSuit(janpaiList, Suit.JI);
+               JanUtil.hasSuit(janpaiList, SUIT.JI);
     }
     
     static honorsAndKnittedTiles(janpaiList) {

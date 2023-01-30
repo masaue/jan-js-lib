@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 import JanpaiID from './janpai-id';
-import Suit from './suit';
+import {SUIT} from './suit';
 
 export default class Janpai {
     
@@ -135,13 +135,13 @@ export default class Janpai {
     get suit() {
         switch (this._id[this._id.length - 1]) {
         case 'm':
-            return Suit.MAN;
+            return SUIT.MAN;
         case 'p':
-            return Suit.PIN;
+            return SUIT.PIN;
         case 's':
-            return Suit.SOU;
+            return SUIT.SOU;
         default:
-            return Suit.JI;
+            return SUIT.JI;
         }
     }
     
