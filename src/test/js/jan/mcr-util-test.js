@@ -17,7 +17,7 @@ import assert from 'assert';
 
 import CompleteInfo from '../../../main/js/jan/complete-info';
 import CompletePattern from '../../../main/js/jan/complete-pattern';
-import CompleteType from '../../../main/js/jan/complete-type';
+import {COMPLETE_TYPE} from '../../../main/js/jan/complete-type';
 import Hand from '../../../main/js/jan/hand';
 import Janpai from '../../../main/js/jan/janpai';
 import JanpaiID from '../../../main/js/jan/janpai-id';
@@ -70,7 +70,7 @@ describe('McrUtilTest', () => {
             ];
             const hand = new Hand(janpaiList);
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.CHUN),
-                false, undefined, undefined, CompleteType.ROBBING_A_KONG );
+                false, undefined, undefined, COMPLETE_TYPE.ROBBING_A_KONG );
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.THIRTEEN_ORPHANS, McrYaku.ROBBING_THE_KONG ]);
         });
@@ -498,7 +498,7 @@ describe('McrUtilTest', () => {
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_03)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_05)));
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_09),
-                true, undefined, undefined, CompleteType.ROBBING_A_KONG);
+                true, undefined, undefined, COMPLETE_TYPE.ROBBING_A_KONG);
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ McrYaku.ROBBING_THE_KONG ]);
         });
@@ -768,7 +768,7 @@ describe('McrUtilTest', () => {
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)));
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_04)));
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.FINAL_DRAW_AND_WIN_ON_KONG);
+                false, undefined, undefined, COMPLETE_TYPE.FINAL_DRAW_AND_WIN_ON_KONG);
             assert.deepStrictEqual(McrUtil._beingWholeYakuList(hand, completeInfo),
                 [ McrYaku.LAST_TILE_DRAW, McrYaku.OUT_WITH_REPLACEMENT_TILE ]);
         });
@@ -783,7 +783,7 @@ describe('McrUtilTest', () => {
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)));
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_04)));
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.FINAL_DISCARD);
+                false, undefined, undefined, COMPLETE_TYPE.FINAL_DISCARD);
             assert.deepStrictEqual(McrUtil._beingWholeYakuList(hand, completeInfo),
                 [ McrYaku.LAST_TILE_CLAIM, McrYaku.MELDED_HAND ]);
         });
@@ -800,7 +800,7 @@ describe('McrUtilTest', () => {
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)));
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_04)));
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_01),
-                true, undefined, undefined, CompleteType.ROBBING_A_KONG);
+                true, undefined, undefined, COMPLETE_TYPE.ROBBING_A_KONG);
             assert.deepStrictEqual(McrUtil._beingWholeYakuList(hand, completeInfo),
                 [ McrYaku.ROBBING_THE_KONG, McrYaku.LAST_TILE ]);
         });
@@ -823,7 +823,7 @@ describe('McrUtilTest', () => {
             ];
             const hand = new Hand(janpaiList);
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.DRAW);
+                false, undefined, undefined, COMPLETE_TYPE.DRAW);
             assert.deepStrictEqual(McrUtil._beingWholeYakuList(hand, completeInfo),
                 [ McrYaku.FULLY_CONCEALED_HAND ]);
         });
@@ -860,7 +860,7 @@ describe('McrUtilTest', () => {
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)));
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_04)));
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.DRAW);
+                false, undefined, undefined, COMPLETE_TYPE.DRAW);
             assert.deepStrictEqual(McrUtil._beingWholeYakuList(hand, completeInfo),
                 [ McrYaku.SELF_DRAWN ]);
         });

@@ -17,7 +17,7 @@ import assert from 'assert';
 
 import CompleteInfo from '../../../main/js/jan/complete-info';
 import CompletePattern from '../../../main/js/jan/complete-pattern';
-import CompleteType from '../../../main/js/jan/complete-type';
+import {COMPLETE_TYPE} from '../../../main/js/jan/complete-type';
 import Hand from '../../../main/js/jan/hand';
 import Janpai from '../../../main/js/jan/janpai';
 import JanpaiID from '../../../main/js/jan/janpai-id';
@@ -353,7 +353,7 @@ describe('YakuUtilTest', () => {
             ];
             const hand = new Hand(janpaiList);
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.DRAW);
+                false, undefined, undefined, COMPLETE_TYPE.DRAW);
             assert(!YakuUtil.concealedHand(hand, completeInfo));
         });
         
@@ -558,7 +558,7 @@ describe('YakuUtilTest', () => {
             ];
             const hand = new Hand(janpaiList);
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.DRAW);
+                false, undefined, undefined, COMPLETE_TYPE.DRAW);
             assert(YakuUtil.fullyConcealed(hand, completeInfo));
         });
         
@@ -572,7 +572,7 @@ describe('YakuUtilTest', () => {
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)));
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_04)));
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.DRAW);
+                false, undefined, undefined, COMPLETE_TYPE.DRAW);
             assert(!YakuUtil.fullyConcealed(hand, completeInfo));
         });
         
@@ -820,35 +820,35 @@ describe('YakuUtilTest', () => {
         
         it('is final draw and win on kong.', () => {
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.FINAL_DRAW_AND_WIN_ON_KONG);
+                false, undefined, undefined, COMPLETE_TYPE.FINAL_DRAW_AND_WIN_ON_KONG);
             assert.deepStrictEqual(YakuUtil.incidentalBonusesYakuList(completeInfo),
                 [ ZjmYaku.FINAL_DRAW, ZjmYaku.WIN_ON_KONG ]);
         });
         
         it('is final draw.', () => {
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.FINAL_DRAW);
+                false, undefined, undefined, COMPLETE_TYPE.FINAL_DRAW);
             assert.deepStrictEqual(YakuUtil.incidentalBonusesYakuList(completeInfo),
                 [ ZjmYaku.FINAL_DRAW ]);
         });
         
         it('is final discard.', () => {
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.FINAL_DISCARD);
+                false, undefined, undefined, COMPLETE_TYPE.FINAL_DISCARD);
             assert.deepStrictEqual(YakuUtil.incidentalBonusesYakuList(completeInfo),
                 [ ZjmYaku.FINAL_DISCARD ]);
         });
         
         it('is win on kong.', () => {
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.WIN_ON_KONG);
+                false, undefined, undefined, COMPLETE_TYPE.WIN_ON_KONG);
             assert.deepStrictEqual(YakuUtil.incidentalBonusesYakuList(completeInfo),
                 [ ZjmYaku.WIN_ON_KONG ]);
         });
         
         it('is win on kong.', () => {
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.ROBBING_A_KONG);
+                false, undefined, undefined, COMPLETE_TYPE.ROBBING_A_KONG);
             assert.deepStrictEqual(YakuUtil.incidentalBonusesYakuList(completeInfo),
                 [ ZjmYaku.ROBBING_A_KONG ]);
         });
@@ -1075,7 +1075,7 @@ describe('YakuUtilTest', () => {
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_02)));
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.SOU_04)));
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.DRAW);
+                false, undefined, undefined, COMPLETE_TYPE.DRAW);
             assert(!YakuUtil.meldedHand(hand, completeInfo));
         });
         
@@ -1586,7 +1586,7 @@ describe('YakuUtilTest', () => {
             const hand = new Hand(janpaiList);
             hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.MAN_01)));
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.DRAW);
+                false, undefined, undefined, COMPLETE_TYPE.DRAW);
             assert(YakuUtil.selfDrawn(hand, completeInfo));
         });
         
@@ -1608,7 +1608,7 @@ describe('YakuUtilTest', () => {
             ];
             const hand = new Hand(janpaiList);
             const completeInfo = new CompleteInfo(new Janpai(JanpaiID.TON),
-                false, undefined, undefined, CompleteType.DRAW);
+                false, undefined, undefined, COMPLETE_TYPE.DRAW);
             assert(!YakuUtil.selfDrawn(hand, completeInfo));
         });
         

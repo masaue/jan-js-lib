@@ -15,7 +15,7 @@ limitations under the License.
  */
 import {CALL_TYPE} from './jan/call-type';
 import CompleteInfo from './jan/complete-info';
-import CompleteType from './jan/complete-type';
+import {COMPLETE_TYPE} from './jan/complete-type';
 import Hand from './jan/hand';
 import Janpai from './jan/janpai';
 import JanpaiID from './jan/janpai-id';
@@ -26,5 +26,5 @@ import McrYaku from './jan/mcr-yaku';
 import Mentsu from './jan/mentsu';
 import {WIND} from './jan/wind';
 
-export { CALL_TYPE, CompleteInfo, CompleteType, Hand, Janpai,
+export { CALL_TYPE, CompleteInfo, COMPLETE_TYPE, Hand, Janpai,
          JanpaiID, JanUtil, McrComplete, McrUtil, McrYaku, Mentsu, WIND };

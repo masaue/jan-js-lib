@@ -13,12 +13,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-import CompleteType from './complete-type';
+import {COMPLETE_TYPE} from './complete-type';
 
 export default class CompleteInfo {
     
     constructor(janpai, last = false, prevalent = undefined,
-                seat = undefined, type = CompleteType.DISCARD) {
+                seat = undefined, type = COMPLETE_TYPE.DISCARD) {
         this._janpai = janpai;
         this._last = last;
         this._prevalent = prevalent;

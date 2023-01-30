@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-import CompleteType from './complete-type';
+import {COMPLETE_TYPE} from './complete-type';
 import HandUtil from './hand-util';
 import Janpai from './janpai';
 import JanpaiID from './janpai-id';
@@ -139,15 +139,15 @@ export default class YakuUtil {
     
     static incidentalBonusesYakuList(completeInfo) {
         switch (completeInfo.type) {
-        case CompleteType.FINAL_DRAW_AND_WIN_ON_KONG:
+        case COMPLETE_TYPE.FINAL_DRAW_AND_WIN_ON_KONG:
             return [ ZjmYaku.FINAL_DRAW, ZjmYaku.WIN_ON_KONG ];
-        case CompleteType.FINAL_DRAW:
+        case COMPLETE_TYPE.FINAL_DRAW:
             return [ ZjmYaku.FINAL_DRAW ];
-        case CompleteType.FINAL_DISCARD:
+        case COMPLETE_TYPE.FINAL_DISCARD:
             return [ ZjmYaku.FINAL_DISCARD ];
-        case CompleteType.WIN_ON_KONG:
+        case COMPLETE_TYPE.WIN_ON_KONG:
             return [ ZjmYaku.WIN_ON_KONG ];
-        case CompleteType.ROBBING_A_KONG:
+        case COMPLETE_TYPE.ROBBING_A_KONG:
             return [ ZjmYaku.ROBBING_A_KONG ];
         }
         return [];
@@ -262,7 +262,7 @@ export default class YakuUtil {
     }
     
     static selfDrawn(hand, completeInfo) {
-        return hand.callCount !== 0 && completeInfo.type === CompleteType.DRAW;
+        return hand.callCount !== 0 && completeInfo.type === COMPLETE_TYPE.DRAW;
     }
     
     static sevenPairs(janpaiList) {
