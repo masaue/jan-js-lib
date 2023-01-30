@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 import JanUtil from './jan-util';
-import MentsuType from './mentsu-type';
+import {MENTSU_TYPE} from './mentsu-type';
 
 export default class Mentsu {
     
@@ -27,30 +27,30 @@ export default class Mentsu {
     static createChowMentsu(head, dark = false) {
         const middle = head.next;
         const tail = middle.next;
-        return new Mentsu(MentsuType.CHOW, [ head.clone(), middle, tail ], dark);
+        return new Mentsu(MENTSU_TYPE.CHOW, [ head.clone(), middle, tail ], dark);
     }
     
     static createKnittedChowMentsu(head) {
         const middle = head.next.next.next;
         const tail = middle.next.next.next;
-        return new Mentsu(MentsuType.KNITTED_CHOW, [ head.clone(), middle, tail ], true);
+        return new Mentsu(MENTSU_TYPE.KNITTED_CHOW, [ head.clone(), middle, tail ], true);
     }
     
     static createKongMentsu(janpai, dark = false) {
-        return new Mentsu(MentsuType.KONG, [ janpai.clone(), janpai.clone(), janpai.clone(), janpai.clone() ], dark);
+        return new Mentsu(MENTSU_TYPE.KONG, [ janpai.clone(), janpai.clone(), janpai.clone(), janpai.clone() ], dark);
     }
     
     static createPungMentsu(janpai, dark = false) {
-        return new Mentsu(MentsuType.PUNG, [ janpai.clone(), janpai.clone(), janpai.clone() ], dark);
+        return new Mentsu(MENTSU_TYPE.PUNG, [ janpai.clone(), janpai.clone(), janpai.clone() ], dark);
     }
     
     isKongableTo(janpai) {
-        return (this._type === MentsuType.PUNG) && (this._janpaiList[0].id === janpai.id);
+        return (this._type === MENTSU_TYPE.PUNG) && (this._janpaiList[0].id === janpai.id);
     }
     
     pungToKong(janpai) {
         if (this.isKongableTo(janpai)) {
-            this._type = MentsuType.KONG;
+            this._type = MENTSU_TYPE.KONG;
             this._janpaiList.push(janpai);
         }
     }
@@ -64,7 +64,7 @@ export default class Mentsu {
     }
     
     get chow() {
-        return this._type === MentsuType.CHOW;
+        return this._type === MENTSU_TYPE.CHOW;
     }
     
     get concealedChow() {
@@ -96,11 +96,11 @@ export default class Mentsu {
     }
     
     get knittedChow() {
-        return this._type === MentsuType.KNITTED_CHOW;
+        return this._type === MENTSU_TYPE.KNITTED_CHOW;
     }
     
     get kong() {
-        return this._type === MentsuType.KONG;
+        return this._type === MENTSU_TYPE.KONG;
     }
     
     get middle() {
@@ -108,7 +108,7 @@ export default class Mentsu {
     }
     
     get pung() {
-        return this._type === MentsuType.PUNG;
+        return this._type === MENTSU_TYPE.PUNG;
     }
     
     get suit() {

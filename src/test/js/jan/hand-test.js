@@ -20,7 +20,7 @@ import Hand from '../../../main/js/jan/hand';
 import Janpai from '../../../main/js/jan/janpai';
 import JanpaiID from '../../../main/js/jan/janpai-id';
 import Mentsu from '../../../main/js/jan/mentsu';
-import MentsuType from '../../../main/js/jan/mentsu-type';
+import {MENTSU_TYPE} from '../../../main/js/jan/mentsu-type';
 
 describe('HandTest', () => {
     
@@ -100,13 +100,13 @@ describe('HandTest', () => {
                         {id: JanpaiID.PIN_07, red: false},
                         {id: JanpaiID.PIN_08, red: false},
                         {id: JanpaiID.PIN_09, red: false},
-                    ], type: MentsuType.CHOW},
+                    ], type: MENTSU_TYPE.CHOW},
                     { dark: true, janpaiList: [
                         {id: JanpaiID.SOU_09, red: false},
                         {id: JanpaiID.SOU_09, red: false},
                         {id: JanpaiID.SOU_09, red: false},
                         {id: JanpaiID.SOU_09, red: false},
-                    ], type: MentsuType.KONG},
+                    ], type: MENTSU_TYPE.KONG},
                 ],
                 janpaiList: [
                     {id: JanpaiID.MAN_02, red: false},
