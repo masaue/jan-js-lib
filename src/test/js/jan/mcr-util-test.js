@@ -23,7 +23,7 @@ import {Janpai} from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
 import McrUtil from '../../../main/js/jan/mcr-util';
 import {MCR_YAKU} from '../../../main/js/jan/mcr-yaku';
-import Mentsu from '../../../main/js/jan/mentsu';
+import {Mentsu} from '../../../main/js/jan/mentsu';
 import {WIND} from '../../../main/js/jan/wind';
 
 describe('McrUtilTest', () => {

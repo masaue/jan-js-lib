@@ -19,7 +19,7 @@ import {CALL_TYPE} from '../../../main/js/jan/call-type';
 import Hand from '../../../main/js/jan/hand';
 import {Janpai} from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
-import Mentsu from '../../../main/js/jan/mentsu';
+import {Mentsu} from '../../../main/js/jan/mentsu';
 import {MENTSU_TYPE} from '../../../main/js/jan/mentsu-type';
 
 describe('HandTest', () => {
@@ -96,12 +96,12 @@ describe('HandTest', () => {
             hand.updateWaitTable();
             const expected = {
                 fixedList: [
-                    { dark: false, janpaiList: [
+                    { dark: false, janpaiObjectList: [
                         {id: JANPAI_ID.PIN_07, red: false},
                         {id: JANPAI_ID.PIN_08, red: false},
                         {id: JANPAI_ID.PIN_09, red: false},
                     ], type: MENTSU_TYPE.CHOW},
-                    { dark: true, janpaiList: [
+                    { dark: true, janpaiObjectList: [
                         {id: JANPAI_ID.SOU_09, red: false},
                         {id: JANPAI_ID.SOU_09, red: false},
                         {id: JANPAI_ID.SOU_09, red: false},

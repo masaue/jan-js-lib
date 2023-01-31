@@ -18,7 +18,7 @@ import assert from 'assert';
 import CompletePattern from '../../../main/js/jan/complete-pattern';
 import {Janpai} from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
-import Mentsu from '../../../main/js/jan/mentsu';
+import {Mentsu} from '../../../main/js/jan/mentsu';
 import ZjmUtil from '../../../main/js/jan/zjm-util';
 import {ZJM_YAKU} from '../../../main/js/jan/zjm-yaku';
 

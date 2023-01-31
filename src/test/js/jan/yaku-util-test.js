@@ -22,7 +22,7 @@ import Hand from '../../../main/js/jan/hand';
 import {Janpai} from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
 import {MCR_YAKU} from '../../../main/js/jan/mcr-yaku';
-import Mentsu from '../../../main/js/jan/mentsu';
+import {Mentsu} from '../../../main/js/jan/mentsu';
 import {ZJM_YAKU} from '../../../main/js/jan/zjm-yaku';
 import YakuUtil from '../../../main/js/jan/yaku-util';
 

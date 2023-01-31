@@ -19,7 +19,7 @@ import {Janpai} from './janpai';
 import {JANPAI_ID} from './janpai-id';
 import JanUtil from './jan-util';
 import {KNITTED_STRAIGHT} from './knitted-straight';
-import Mentsu from './mentsu';
+import {Mentsu} from './mentsu';
 import YakuUtil from './yaku-util';
 
 export default class HandUtil {

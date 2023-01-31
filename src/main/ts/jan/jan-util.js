@@ -15,7 +15,7 @@ limitations under the License.
  */
 import {Janpai} from './janpai';
 import {JANPAI_ID} from './janpai-id';
-import Mentsu from './mentsu';
+import {Mentsu} from './mentsu';
 import {WIND} from './wind';
 
 export default class JanUtil {

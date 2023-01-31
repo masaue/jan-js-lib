@@ -23,7 +23,7 @@ import JanUtil from './jan/jan-util';
 import {McrComplete} from './jan/mcr-complete';
 import McrUtil from './jan/mcr-util';
 import {MCR_YAKU} from './jan/mcr-yaku';
-import Mentsu from './jan/mentsu';
+import {Mentsu} from './jan/mentsu';
 import {WIND} from './jan/wind';
 
 export { CALL_TYPE, CompleteInfo, COMPLETE_TYPE, Hand, Janpai,
