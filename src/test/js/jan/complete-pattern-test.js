@@ -16,7 +16,7 @@ limitations under the License.
 import assert from 'assert';
 
 import CompletePattern from '../../../main/js/jan/complete-pattern';
-import Janpai from '../../../main/js/jan/janpai';
+import {Janpai} from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
 import Mentsu from '../../../main/js/jan/mentsu';
 

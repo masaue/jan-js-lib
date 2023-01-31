@@ -17,7 +17,7 @@ import assert from 'assert';
 
 import {CALL_TYPE} from '../../../main/js/jan/call-type';
 import Hand from '../../../main/js/jan/hand';
-import Janpai from '../../../main/js/jan/janpai';
+import {Janpai} from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
 import Mentsu from '../../../main/js/jan/mentsu';
 import {MENTSU_TYPE} from '../../../main/js/jan/mentsu-type';

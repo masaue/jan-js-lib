@@ -16,7 +16,7 @@ limitations under the License.
 import assert from 'assert';
 
 import Hand from '../../../main/js/jan/hand';
-import Janpai from '../../../main/js/jan/janpai';
+import {Janpai} from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
 import JanUtil from '../../../main/js/jan/jan-util';
 import Mentsu from '../../../main/js/jan/mentsu';

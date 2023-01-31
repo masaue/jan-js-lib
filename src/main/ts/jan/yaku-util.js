@@ -15,7 +15,7 @@ limitations under the License.
  */
 import {COMPLETE_TYPE} from './complete-type';
 import HandUtil from './hand-util';
-import Janpai from './janpai';
+import {Janpai} from './janpai';
 import {JANPAI_ID} from './janpai-id';
 import JanUtil from './jan-util';
 import KnittedStraight from './knitted-straight';
