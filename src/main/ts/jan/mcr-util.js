@@ -15,7 +15,7 @@ limitations under the License.
  */
 import HandUtil from './hand-util';
 import JanUtil from './jan-util';
-import McrComplete from './mcr-complete';
+import {McrComplete} from './mcr-complete';
 import {MCR_YAKU} from './mcr-yaku';
 import MentsuUtil from './mentsu-util';
 import {ZJM_YAKU} from './zjm-yaku';
