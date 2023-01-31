@@ -18,7 +18,7 @@ import HandUtil from './hand-util';
 import {Janpai} from './janpai';
 import {JANPAI_ID} from './janpai-id';
 import JanUtil from './jan-util';
-import KnittedStraight from './knitted-straight';
+import {KNITTED_STRAIGHT} from './knitted-straight';
 import MentsuUtil from './mentsu-util';
 import {SUIT} from './suit';
 import {ZJM_YAKU} from './zjm-yaku';
@@ -154,8 +154,8 @@ export default class YakuUtil {
     }
     
     static knittedStraight(janpaiList) {
-        return Object.keys(KnittedStraight).find((k) => {
-            return KnittedStraight[k].every((j) => {
+        return Object.keys(KNITTED_STRAIGHT).find((k) => {
+            return KNITTED_STRAIGHT[k].every((j) => {
                 return JanUtil.hasJanpai(janpaiList, j);
             });
         });

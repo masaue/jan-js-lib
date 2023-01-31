@@ -18,7 +18,7 @@ import CompletePattern from './complete-pattern';
 import {Janpai} from './janpai';
 import {JANPAI_ID} from './janpai-id';
 import JanUtil from './jan-util';
-import KnittedStraight from './knitted-straight';
+import {KNITTED_STRAIGHT} from './knitted-straight';
 import Mentsu from './mentsu';
 import YakuUtil from './yaku-util';
 
@@ -167,7 +167,7 @@ export default class HandUtil {
     }
     
     static _removeKnittedStraight(janpaiList, knittedType) {
-        KnittedStraight[knittedType].forEach((j) => {
+        KNITTED_STRAIGHT[knittedType].forEach((j) => {
             JanUtil.remove(janpaiList, j);
         });
     }
