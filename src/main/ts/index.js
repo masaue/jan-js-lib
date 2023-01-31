@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 import {CALL_TYPE} from './jan/call-type';
-import CompleteInfo from './jan/complete-info';
+import {CompleteInfo} from './jan/complete-info';
 import {COMPLETE_TYPE} from './jan/complete-type';
 import Hand from './jan/hand';
 import {Janpai} from './jan/janpai';

@@ -15,7 +15,7 @@ limitations under the License.
  */
 import assert from 'assert';
 
-import CompleteInfo from '../../../main/js/jan/complete-info';
+import {CompleteInfo} from '../../../main/js/jan/complete-info';
 import CompletePattern from '../../../main/js/jan/complete-pattern';
 import {COMPLETE_TYPE} from '../../../main/js/jan/complete-type';
 import Hand from '../../../main/js/jan/hand';
@@ -108,7 +108,7 @@ describe('McrUtilTest', () => {
             hand.fix(Mentsu.createPungMentsu(new Janpai(JANPAI_ID.BAI)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JANPAI_ID.FA)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JANPAI_ID.CHUN)));
-            const completeInfo = new CompleteInfo(new Janpai(JANPAI_ID.TON));
+            const completeInfo = new CompleteInfo(new Janpai(JANPAI_ID.NAN));
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ MCR_YAKU.BIG_THREE_DRAGONS, MCR_YAKU.ALL_HONORS ]);
         });
@@ -377,7 +377,7 @@ describe('McrUtilTest', () => {
             const hand = new Hand(janpaiList);
             hand.fix(Mentsu.createPungMentsu(new Janpai(JANPAI_ID.MAN_01)));
             hand.fix(Mentsu.createPungMentsu(new Janpai(JANPAI_ID.PIN_09)));
-            hand.fix(Mentsu.createPungMentsu(new Janpai(JANPAI_ID.TON)));
+            hand.fix(Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SHA)));
             const completeInfo = new CompleteInfo(new Janpai(JANPAI_ID.NAN));
             assert.deepStrictEqual(McrUtil.complete(hand, completeInfo).yakuList,
                 [ MCR_YAKU.ALL_TERMINALS_AND_HONORS, MCR_YAKU.ONE_VOIDED_SUIT ]);

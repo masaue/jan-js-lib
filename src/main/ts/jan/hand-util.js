@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-import CompleteInfo from './complete-info';
+import {CompleteInfo} from './complete-info';
 import CompletePattern from './complete-pattern';
 import {Janpai} from './janpai';
 import {JANPAI_ID} from './janpai-id';

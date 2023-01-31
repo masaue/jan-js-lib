@@ -15,7 +15,7 @@ limitations under the License.
  */
 import assert from 'assert';
 
-import CompleteInfo from '../../../main/js/jan/complete-info';
+import {CompleteInfo} from '../../../main/js/jan/complete-info';
 import CompletePattern from '../../../main/js/jan/complete-pattern';
 import Hand from '../../../main/js/jan/hand';
 import HandUtil from '../../../main/js/jan/hand-util';
