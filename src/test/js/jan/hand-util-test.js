@@ -17,7 +17,7 @@ import assert from 'assert';
 
 import {CompleteInfo} from '../../../main/js/jan/complete-info';
 import {CompletePattern} from '../../../main/js/jan/complete-pattern';
-import Hand from '../../../main/js/jan/hand';
+import {Hand} from '../../../main/js/jan/hand';
 import HandUtil from '../../../main/js/jan/hand-util';
 import {Janpai} from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';

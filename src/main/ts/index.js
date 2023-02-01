@@ -16,7 +16,7 @@ limitations under the License.
 import {CALL_TYPE} from './jan/call-type';
 import {CompleteInfo} from './jan/complete-info';
 import {COMPLETE_TYPE} from './jan/complete-type';
-import Hand from './jan/hand';
+import {Hand} from './jan/hand';
 import {Janpai} from './jan/janpai';
 import {JANPAI_ID} from './jan/janpai-id';
 import JanUtil from './jan/jan-util';
