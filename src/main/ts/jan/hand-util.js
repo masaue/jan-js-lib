@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 import {CompleteInfo} from './complete-info';
-import CompletePattern from './complete-pattern';
+import {CompletePattern} from './complete-pattern';
 import {Janpai} from './janpai';
 import {JANPAI_ID} from './janpai-id';
 import JanUtil from './jan-util';
