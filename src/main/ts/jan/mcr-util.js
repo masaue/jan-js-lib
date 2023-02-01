@@ -17,7 +17,7 @@ import HandUtil from './hand-util';
 import JanUtil from './jan-util';
 import {McrComplete} from './mcr-complete';
 import {MCR_YAKU} from './mcr-yaku';
-import MentsuUtil from './mentsu-util';
+import {sortMentsuList, toJanpaiList} from './mentsu-util';
 import {ZJM_YAKU} from './zjm-yaku';
 import YakuUtil from './yaku-util';
 
@@ -70,7 +70,7 @@ export default class McrUtil {
     
     static _allEvenPungs(completePattern) {
         return completePattern.head.even &&
-               MentsuUtil.janpaiList(completePattern.mentsuList).every((j) => { return j.even });
+               toJanpaiList(completePattern.mentsuList).every((j) => { return j.even });
     }
     
     static _beingWholeYakuList(hand, completeInfo) {
@@ -455,7 +455,7 @@ export default class McrUtil {
     
     static _removeWaitYaku(yakuList, knittedChowList, janpai) {
         if (yakuList.includes(MCR_YAKU.ALL_CHOWS) && yakuList.includes(MCR_YAKU.KNITTED_STRAIGHT) &&
-            JanUtil.hasJanpai(MentsuUtil.janpaiList(knittedChowList), janpai)) {
+            JanUtil.hasJanpai(toJanpaiList(knittedChowList), janpai)) {
             this._removeYaku(yakuList, MCR_YAKU.EDGE_WAIT);
             this._removeYaku(yakuList, MCR_YAKU.CLOSED_WAIT);
             this._removeYaku(yakuList, MCR_YAKU.SINGLE_WAIT);
@@ -530,7 +530,7 @@ export default class McrUtil {
                 yakuList.push(threeMentsuYaku);
                 execludedList.some((e) => {
                     const twoMentsu = [m, e];
-                    MentsuUtil.sortMentsuList(twoMentsu);
+                    sortMentsuList(twoMentsu);
                     const twoMentsuCallBack = chow ? this._twoChowsYaku : this._twoPungsYaku;
                     const yaku = twoMentsuCallBack(twoMentsu);
                     if (yaku) {

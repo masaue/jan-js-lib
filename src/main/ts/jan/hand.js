@@ -16,7 +16,7 @@ limitations under the License.
 import {CALL_TYPE} from './call-type';
 import HandUtil from './hand-util';
 import JanUtil from './jan-util';
-import MentsuUtil from './mentsu-util';
+import {toJanpaiList} from './mentsu-util';
 
 export default class Hand {
     
@@ -88,7 +88,7 @@ export default class Hand {
     
     get allJanpaiList() {
         const janpaiList = [...this._janpaiList];
-        janpaiList.push(...MentsuUtil.janpaiList(this._fixedList));
+        janpaiList.push(...toJanpaiList(this._fixedList));
         JanUtil.sortJanpaiList(janpaiList);
         return janpaiList;
     }
@@ -99,7 +99,7 @@ export default class Hand {
     
     get calledJanpaiList() {
         const janpaiList = [];
-        janpaiList.push(...MentsuUtil.janpaiList(this.calledList));
+        janpaiList.push(...toJanpaiList(this.calledList));
         JanUtil.sortJanpaiList(janpaiList);
         return janpaiList;
     }

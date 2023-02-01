@@ -19,7 +19,7 @@ import {Janpai} from './janpai';
 import {JANPAI_ID} from './janpai-id';
 import JanUtil from './jan-util';
 import {KNITTED_STRAIGHT} from './knitted-straight';
-import MentsuUtil from './mentsu-util';
+import * as MentsuUtil from './mentsu-util';
 import {SUIT} from './suit';
 import {ZJM_YAKU} from './zjm-yaku';
 
@@ -91,12 +91,12 @@ export default class YakuUtil {
     }
     
     static fourPureShiftedPungs(fourPungs) {
-        return this.fullFlush(MentsuUtil.janpaiList(fourPungs)) &&
+        return this.fullFlush(MentsuUtil.toJanpaiList(fourPungs)) &&
                MentsuUtil.shifted(fourPungs, 4, 1);
     }
     
     static fourShiftedChows(fourChows) {
-        return this.fullFlush(MentsuUtil.janpaiList(fourChows)) &&
+        return this.fullFlush(MentsuUtil.toJanpaiList(fourChows)) &&
                MentsuUtil.shifted(fourChows, 4, 2);
     }
     
@@ -221,17 +221,17 @@ export default class YakuUtil {
     }
     
     static pureShiftedChows(threeChows) {
-        return this.fullFlush(MentsuUtil.janpaiList(threeChows)) &&
+        return this.fullFlush(MentsuUtil.toJanpaiList(threeChows)) &&
                MentsuUtil.shifted(threeChows, 3, 2);
     }
     
     static pureShiftedPungs(threePungs) {
-        return this.fullFlush(MentsuUtil.janpaiList(threePungs)) &&
+        return this.fullFlush(MentsuUtil.toJanpaiList(threePungs)) &&
                MentsuUtil.shifted(threePungs, 3, 1);
     }
     
     static pureStraight(threeChows) {
-        return this.fullFlush(MentsuUtil.janpaiList(threeChows)) &&
+        return this.fullFlush(MentsuUtil.toJanpaiList(threeChows)) &&
                MentsuUtil.straight(threeChows);
     }
     
@@ -289,7 +289,7 @@ export default class YakuUtil {
     }
     
     static shortStraight(twoChows) {
-        return this.fullFlush(MentsuUtil.janpaiList(twoChows)) &&
+        return this.fullFlush(MentsuUtil.toJanpaiList(twoChows)) &&
                MentsuUtil.shortStraight(twoChows, 2, 3);
     }
     
@@ -342,7 +342,7 @@ export default class YakuUtil {
     }
     
     static twoTerminalChows(twoChows) {
-        return this.fullFlush(MentsuUtil.janpaiList(twoChows)) &&
+        return this.fullFlush(MentsuUtil.toJanpaiList(twoChows)) &&
                MentsuUtil.terminalChows(twoChows);
     }
     
