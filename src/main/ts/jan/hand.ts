@@ -15,7 +15,7 @@ limitations under the License.
  */
 import {CALL_TYPE} from './call-type';
 import HandUtil from './hand-util';
-import JanUtil from './jan-util';
+import * as JanUtil from './jan-util';
 import {Janpai, JanpaiObject} from './janpai';
 import {Mentsu, MentsuObject} from './mentsu';
 import {toJanpaiList} from './mentsu-util';
@@ -61,7 +61,7 @@ export class Hand {
   }
 
   discard(janpai: Janpai) {
-    return JanUtil._discard(this._janpaiList, janpai);
+    return JanUtil.discard(this._janpaiList, janpai);
   }
 
   fix(fixed: Mentsu) {

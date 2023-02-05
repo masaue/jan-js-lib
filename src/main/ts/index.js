@@ -19,7 +19,7 @@ import {COMPLETE_TYPE} from './jan/complete-type';
 import {Hand} from './jan/hand';
 import {Janpai} from './jan/janpai';
 import {JANPAI_ID} from './jan/janpai-id';
-import JanUtil from './jan/jan-util';
+import * as JanUtil from './jan/jan-util';
 import {McrComplete} from './jan/mcr-complete';
 import McrUtil from './jan/mcr-util';
 import {MCR_YAKU} from './jan/mcr-yaku';

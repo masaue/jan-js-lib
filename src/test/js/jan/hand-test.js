@@ -95,7 +95,7 @@ describe('HandTest', () => {
             hand.fix(Mentsu.createKongMentsu(new Janpai(JANPAI_ID.SOU_09), true));
             hand.updateWaitTable();
             const expected = {
-                fixedList: [
+                fixedObjectList: [
                     { dark: false, janpaiObjectList: [
                         {id: JANPAI_ID.PIN_07, red: false},
                         {id: JANPAI_ID.PIN_08, red: false},
@@ -108,7 +108,7 @@ describe('HandTest', () => {
                         {id: JANPAI_ID.SOU_09, red: false},
                     ], type: MENTSU_TYPE.KONG},
                 ],
-                janpaiList: [
+                janpaiObjectList: [
                     {id: JANPAI_ID.MAN_02, red: false},
                     {id: JANPAI_ID.MAN_03, red: false},
                     {id: JANPAI_ID.TON, red: false},
@@ -117,7 +117,7 @@ describe('HandTest', () => {
                     {id: JANPAI_ID.BAI, red: false},
                     {id: JANPAI_ID.BAI, red: false},
                 ],
-                waitTable: {
+                waitObjectTable: {
                     [CALL_TYPE.CHI]: [
                         {id: JANPAI_ID.MAN_01, red: false},
                         {id: JANPAI_ID.MAN_04, red: false},

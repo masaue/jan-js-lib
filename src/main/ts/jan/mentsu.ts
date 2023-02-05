@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-import JanUtil from './jan-util';
+import {objectedList} from './jan-util';
 import {Janpai, JanpaiObject} from './janpai';
 import {MENTSU_TYPE, MentsuType} from './mentsu-type';
 
@@ -64,7 +64,7 @@ export class Mentsu {
   toObject(): MentsuObject {
     return {
       dark: this._dark,
-      janpaiObjectList: JanUtil.objectedList(this._janpaiList),
+      janpaiObjectList: objectedList(this._janpaiList),
       type: this._type,
     };
   }

@@ -17,7 +17,7 @@ import {COMPLETE_TYPE} from './complete-type';
 import HandUtil from './hand-util';
 import {Janpai} from './janpai';
 import {JANPAI_ID} from './janpai-id';
-import JanUtil from './jan-util';
+import * as JanUtil from './jan-util';
 import {KNITTED_STRAIGHT} from './knitted-straight';
 import * as MentsuUtil from './mentsu-util';
 import {SUIT} from './suit';

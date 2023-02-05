@@ -17,7 +17,7 @@ import {CompleteInfo} from './complete-info';
 import {CompletePattern} from './complete-pattern';
 import {Janpai} from './janpai';
 import {JANPAI_ID} from './janpai-id';
-import JanUtil from './jan-util';
+import {count, janpaiListWith, remove, uniqueList} from './jan-util';
 import {KNITTED_STRAIGHT} from './knitted-straight';
 import {Mentsu} from './mentsu';
 import YakuUtil from './yaku-util';
@@ -25,7 +25,7 @@ import YakuUtil from './yaku-util';
 export default class HandUtil {
     
     static allJanpaiListWith(hand, janpai) {
-        return JanUtil.janpaiListWith(hand.allJanpaiList, janpai);
+        return janpaiListWith(hand.allJanpaiList, janpai);
     }
     
     static completable(hand, janpai) {
@@ -73,7 +73,7 @@ export default class HandUtil {
     }
     
     static janpaiListWith(hand, janpai) {
-        return JanUtil.janpaiListWith(hand.janpaiList, janpai);
+        return janpaiListWith(hand.janpaiList, janpai);
     }
     
     
@@ -89,13 +89,13 @@ export default class HandUtil {
         const chowList = [];
         let found;
         do {
-            const uniqueList = JanUtil.uniqueList(janpaiList);
-            found = uniqueList.slice(0, -2).some((head, index) => {
-                const middle = uniqueList[index + 1];
-                const tail = uniqueList[index + 2];
+            const uniqueJanpaiList = uniqueList(janpaiList);
+            found = uniqueJanpaiList.slice(0, -2).some((head, index) => {
+                const middle = uniqueJanpaiList[index + 1];
+                const tail = uniqueJanpaiList[index + 2];
                 if (this._chowable(head, middle, tail)) {
                     [ head, middle, tail ].forEach((j) => {
-                        JanUtil.remove(janpaiList, j);
+                        remove(janpaiList, j);
                     });
                     chowList.push(Mentsu.createChowMentsu(head, true));
                     return true;
@@ -122,16 +122,16 @@ export default class HandUtil {
     }
     
     static _createLightPungMentsu(janpaiList, janpai, completeInfo) {
-        return JanUtil.count(janpaiList, janpai) === 3 &&
+        return count(janpaiList, janpai) === 3 &&
                completeInfo.janpai.equals(janpai) && !completeInfo.type.tsumo;
     }
     
     static _execludeHeadMap(janpaiList) {
         const execludeHeadMap = new Map();
-        JanUtil.uniqueList(janpaiList).forEach((j) => {
-            if (JanUtil.count(janpaiList, j) >= 2) {
+        uniqueList(janpaiList).forEach((j) => {
+            if (count(janpaiList, j) >= 2) {
                 const execludeHeadList = [...janpaiList];
-                JanUtil.remove(execludeHeadList, j, 2);
+                remove(execludeHeadList, j, 2);
                 execludeHeadMap.set(j, execludeHeadList);
             }
         });
@@ -148,9 +148,9 @@ export default class HandUtil {
     }
     
     static _pungList(janpaiList) {
-        return JanUtil.uniqueList(janpaiList).filter((j) => {
-            if (JanUtil.count(janpaiList, j) >= 3) {
-                JanUtil.remove(janpaiList, j, 3)
+        return uniqueList(janpaiList).filter((j) => {
+            if (count(janpaiList, j) >= 3) {
+                remove(janpaiList, j, 3)
                 return true;
             }
             return false;
@@ -161,14 +161,14 @@ export default class HandUtil {
         return pungList.map((p) => {
             const light = this._createLightPungMentsu(janpaiList, p, completeInfo);
             // pungListを必ず削除できることは_pungList()で検証済み
-            JanUtil.remove(janpaiList, p, 3);
+            remove(janpaiList, p, 3);
             return Mentsu.createPungMentsu(p, !light);
         });
     }
     
     static _removeKnittedStraight(janpaiList, knittedType) {
         KNITTED_STRAIGHT[knittedType].forEach((j) => {
-            JanUtil.remove(janpaiList, j);
+            remove(janpaiList, j);
         });
     }
     
