@@ -20,7 +20,7 @@ import {JANPAI_ID} from './janpai-id';
 import {count, janpaiListWith, remove, uniqueList} from './jan-util';
 import {KNITTED_STRAIGHT} from './knitted-straight';
 import {Mentsu} from './mentsu';
-import YakuUtil from './yaku-util';
+import * as YakuUtil from './yaku-util';
 
 export default class HandUtil {
     

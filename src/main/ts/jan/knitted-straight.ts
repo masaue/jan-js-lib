@@ -74,3 +74,4 @@ export const KNITTED_STRAIGHT = {
 } as const;
 
 export type KnittedStraight = typeof KNITTED_STRAIGHT[keyof typeof KNITTED_STRAIGHT];
+export type KnittedType = (keyof typeof KNITTED_STRAIGHT)[];

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 import {ZJM_YAKU} from './zjm-yaku';
-import YakuUtil from './yaku-util';
+import * as YakuUtil from './yaku-util';
 
 export default class ZjmUtil {
     

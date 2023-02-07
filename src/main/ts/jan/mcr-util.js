@@ -19,7 +19,7 @@ import {McrComplete} from './mcr-complete';
 import {MCR_YAKU} from './mcr-yaku';
 import {sortMentsuList, toJanpaiList} from './mentsu-util';
 import {ZJM_YAKU} from './zjm-yaku';
-import YakuUtil from './yaku-util';
+import * as YakuUtil from './yaku-util';
 
 export default class McrUtil {
     

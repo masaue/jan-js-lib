@@ -24,7 +24,7 @@ import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
 import {MCR_YAKU} from '../../../main/js/jan/mcr-yaku';
 import {Mentsu} from '../../../main/js/jan/mentsu';
 import {ZJM_YAKU} from '../../../main/js/jan/zjm-yaku';
-import YakuUtil from '../../../main/js/jan/yaku-util';
+import * as YakuUtil from '../../../main/js/jan/yaku-util';
 
 describe('YakuUtilTest', () => {
     
