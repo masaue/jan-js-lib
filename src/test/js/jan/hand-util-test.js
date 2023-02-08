@@ -18,7 +18,7 @@ import assert from 'assert';
 import {CompleteInfo} from '../../../main/js/jan/complete-info';
 import {CompletePattern} from '../../../main/js/jan/complete-pattern';
 import {Hand} from '../../../main/js/jan/hand';
-import HandUtil from '../../../main/js/jan/hand-util';
+import * as HandUtil from '../../../main/js/jan/hand-util';
 import {Janpai} from '../../../main/js/jan/janpai';
 import {JANPAI_ID} from '../../../main/js/jan/janpai-id';
 import {Mentsu} from '../../../main/js/jan/mentsu';
@@ -273,31 +273,6 @@ describe('HandUtilTest', () => {
                     Mentsu.createChowMentsu(new Janpai(JANPAI_ID.MAN_01), true),
                 ], new Janpai(JANPAI_ID.TON)),
             ]);
-        });
-        
-    });
-    
-    describe('_pungList()', () => {
-        
-        it('has three pungs.', () => {
-            const janpaiList = [
-                new Janpai(JANPAI_ID.MAN_01),
-                new Janpai(JANPAI_ID.MAN_05),
-                new Janpai(JANPAI_ID.MAN_05),
-                new Janpai(JANPAI_ID.MAN_09),
-                new Janpai(JANPAI_ID.MAN_09),
-                new Janpai(JANPAI_ID.MAN_09),
-                new Janpai(JANPAI_ID.PIN_01),
-                new Janpai(JANPAI_ID.PIN_05),
-                new Janpai(JANPAI_ID.PIN_05),
-                new Janpai(JANPAI_ID.PIN_09),
-                new Janpai(JANPAI_ID.PIN_09),
-                new Janpai(JANPAI_ID.PIN_09),
-                new Janpai(JANPAI_ID.SOU_01),
-                new Janpai(JANPAI_ID.SOU_01),
-            ];
-            const pungList = [ new Janpai(JANPAI_ID.MAN_09), new Janpai(JANPAI_ID.PIN_09) ];
-            assert.deepEqual(HandUtil._pungList(janpaiList), pungList);
         });
         
     });

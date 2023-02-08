@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 import {CALL_TYPE} from './call-type';
-import HandUtil from './hand-util';
+import {completable} from './hand-util';
 import * as JanUtil from './jan-util';
 import {Janpai, JanpaiObject} from './janpai';
 import {Mentsu, MentsuObject} from './mentsu';
@@ -130,7 +130,7 @@ export class Hand {
 
   get completableList() {
     return JanUtil.getAllJanpai().filter((j) => {
-      return this.allCount(j) < 4 && HandUtil.completable(this, j);
+      return this.allCount(j) < 4 && completable(this, j);
     });
   }
 

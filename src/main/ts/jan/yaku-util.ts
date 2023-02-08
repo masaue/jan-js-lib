@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 import {COMPLETE_TYPE} from './complete-type';
-import HandUtil from './hand-util';
+import {allJanpaiListWith} from './hand-util';
 import {Janpai} from './janpai';
 import {JANPAI_ID} from './janpai-id';
 import * as JanUtil from './jan-util';
-import {KNITTED_STRAIGHT, KnittedType} from './knitted-straight';
+import {KNITTED_STRAIGHT, KnittedTypes} from './knitted-straight';
 import * as MentsuUtil from './mentsu-util';
 import {SUIT} from './suit';
 import {ZJM_YAKU} from './zjm-yaku';
@@ -154,7 +154,7 @@ export function incidentalBonusesYakuList(completeInfo: CompleteInfo) {
 }
 
 export function knittedStraight(janpaiList: Janpai[]) {
-  const knittedTypes = Object.keys(KNITTED_STRAIGHT) as KnittedType;
+  const knittedTypes = Object.keys(KNITTED_STRAIGHT) as KnittedTypes;
   return knittedTypes.find((k) => {
     return KNITTED_STRAIGHT[k].every((j) => {
       return JanUtil.hasJanpai(janpaiList, j);
@@ -324,7 +324,7 @@ export function thirteenOrphans(janpaiList: Janpai[]) {
 }
 
 export function tileHogCount(hand: Hand, janpai: Janpai) {
-  const janpaiList = HandUtil.allJanpaiListWith(hand, janpai);
+  const janpaiList = allJanpaiListWith(hand, janpai);
   return JanUtil.uniqueList(janpaiList).filter((u) => {
     return JanUtil.count(janpaiList, u) === 4 &&
             !hand.fixedList.some((f) => { return f.head.equals(u) && f.kong });
@@ -356,7 +356,7 @@ export function upperTiles(janpaiList: Janpai[]) {
 }
 
 function _knittedStraight(janpaiList: Janpai[], callback = knittedStraight) {
-  const knittedTypes = Object.keys(KNITTED_STRAIGHT) as KnittedType;
+  const knittedTypes = Object.keys(KNITTED_STRAIGHT) as KnittedTypes;
   return knittedTypes.find((_) => {
     return JanUtil.getAllJanpai().some((j) => {
       if (j.ji || JanUtil.hasJanpai(janpaiList, j)) {
