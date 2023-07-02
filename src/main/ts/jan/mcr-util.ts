@@ -13,17 +13,22 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
+import {CompleteInfo} from './complete-info';
+import {CompletePattern} from './complete-pattern';
+import {Hand} from './hand';
 import * as HandUtil from './hand-util';
 import {hasJanpai} from './jan-util';
+import {Janpai} from './janpai';
 import {McrComplete} from './mcr-complete';
-import {MCR_YAKU} from './mcr-yaku';
+import {MCR_YAKU, McrYaku} from './mcr-yaku';
+import {Mentsu} from './mentsu';
 import {sortMentsuList, toJanpaiList} from './mentsu-util';
-import {ZJM_YAKU} from './zjm-yaku';
 import * as YakuUtil from './yaku-util';
+import {ZJM_YAKU} from './zjm-yaku';
 
 export default class McrUtil {
     
-    static complete(hand, completeInfo) {
+    static complete(hand: Hand, completeInfo: CompleteInfo) {
         const yakuList = [];
         const janpaiList = HandUtil.janpaiListWith(hand, completeInfo.janpai);
         if (YakuUtil.honorsAndKnittedTiles(janpaiList)) {
@@ -53,12 +58,12 @@ export default class McrUtil {
     
     
     
-    static _allChows(completePattern) {
+    static _allChows(completePattern: CompletePattern) {
         const length = completePattern.chowList.length + completePattern.knittedChowList.length;
         return length === 4 && !completePattern.head.ji;
     }
     
-    static _allInvolvedYaku(completePattern) {
+    static _allInvolvedYaku(completePattern: CompletePattern) {
         switch (YakuUtil.terminalsYaku(completePattern)) {
         case ZJM_YAKU.PURE_LESSER_TERMINALS:
         case ZJM_YAKU.MIXED_LESSER_TERMINALS:
@@ -68,13 +73,13 @@ export default class McrUtil {
         return YakuUtil.allFives(completePattern) ? MCR_YAKU.ALL_FIVES : undefined;
     }
     
-    static _allEvenPungs(completePattern) {
+    static _allEvenPungs(completePattern: CompletePattern) {
         return completePattern.head.even &&
                toJanpaiList(completePattern.mentsuList).every((j) => { return j.even });
     }
     
-    static _beingWholeYakuList(hand, completeInfo) {
-        const yakuList = YakuUtil.incidentalBonusesYakuList(completeInfo).map((y) => {
+    static _beingWholeYakuList(hand: Hand, completeInfo: CompleteInfo) {
+        const yakuList: McrYaku[] = YakuUtil.incidentalBonusesYakuList(completeInfo).map((y) => {
             switch(y) {
             case ZJM_YAKU.FINAL_DRAW:
                 return MCR_YAKU.LAST_TILE_DRAW;
@@ -84,6 +89,9 @@ export default class McrUtil {
                 return MCR_YAKU.OUT_WITH_REPLACEMENT_TILE;
             case ZJM_YAKU.ROBBING_A_KONG:
                 return MCR_YAKU.ROBBING_THE_KONG;
+            default:
+                // 到達不能コードだが、戻り値の型にundefinedが含まれないよう記載
+                throw new Error('Unexpected value');
             }
         });
         if (YakuUtil.meldedHand(hand, completeInfo)) {
@@ -105,19 +113,19 @@ export default class McrUtil {
         return yakuList;
     }
     
-    static _brokenYakuList(janpaiList) {
+    static _brokenYakuList(janpaiList: Janpai[]) {
         if (YakuUtil.greaterHonorsAndKnittedTiles(janpaiList)) {
             return [ MCR_YAKU.GREATER_HONORS_AND_KNITTED_TILES ];
         }
-        const yakuList = [ MCR_YAKU.LESSER_HONORS_AND_KNITTED_TILES ];
+        const yakuList: McrYaku[] = [ MCR_YAKU.LESSER_HONORS_AND_KNITTED_TILES ];
         if (YakuUtil.knittedStraight(janpaiList)) {
             yakuList.push(MCR_YAKU.KNITTED_STRAIGHT);
         }
         return yakuList;
     }
     
-    static _concealedPungsAndKongsYakuList(completePattern) {
-        const yakuList = [];
+    static _concealedPungsAndKongsYakuList(completePattern: CompletePattern) {
+        const yakuList: McrYaku[] = [];
         this._push(yakuList, this._concealedPungsYaku(completePattern));
         yakuList.push(...this._kongsYakuList(completePattern));
         if (yakuList.includes(MCR_YAKU.TWO_CONCEALED_KONGS)) {
@@ -126,7 +134,7 @@ export default class McrUtil {
         return yakuList;
     }
     
-    static _concealedPungsYaku(completePattern) {
+    static _concealedPungsYaku(completePattern: CompletePattern) {
         switch (completePattern.concealedPungCount) {
         case 4:
             return MCR_YAKU.FOUR_CONCEALED_PUNGS;
@@ -138,7 +146,7 @@ export default class McrUtil {
         return undefined;
     }
     
-    static _dragonsYaku(completePattern) {
+    static _dragonsYaku(completePattern: CompletePattern) {
         switch (completePattern.dragonCount) {
         case 3:
             return MCR_YAKU.BIG_THREE_DRAGONS;
@@ -155,7 +163,7 @@ export default class McrUtil {
         return undefined;
     }
     
-    static _fullChowsYakuList(hand, janpai) {
+    static _fullChowsYakuList(hand: Hand, janpai: Janpai) {
         if (YakuUtil.nineGates(hand.janpaiList)) {
             return [ MCR_YAKU.NINE_GATES ];
         }
@@ -182,13 +190,13 @@ export default class McrUtil {
         return yakuList;
     }
     
-    static _higherYakuList(yakuList, newYakuList) {
+    static _higherYakuList(yakuList: McrYaku[], newYakuList: McrYaku[]) {
         const complete = new McrComplete(yakuList);
         const newComplete = new McrComplete(newYakuList);
         return complete.point > newComplete.point ? yakuList : newYakuList;
     }
     
-    static _honorTilesYakuList(completePattern, completeInfo) {
+    static _honorTilesYakuList(completePattern: CompletePattern, completeInfo: CompleteInfo) {
         const yakuList = [];
         // 字一色はyakuList()で判定
         yakuList.push(...this._windsYakuList(completePattern, completeInfo));
@@ -196,7 +204,7 @@ export default class McrUtil {
         return yakuList;
     }
     
-    static _kongsYakuList(completePattern) {
+    static _kongsYakuList(completePattern: CompletePattern) {
         switch (completePattern.kongCount) {
         case 4:
             if (completePattern.darkKongCount === 1) {
@@ -225,7 +233,7 @@ export default class McrUtil {
         return [];
     }
     
-    static _limitedNumberYakuList(janpaiList) {
+    static _limitedNumberYakuList(janpaiList: Janpai[]) {
         const yakuList = [];
         if (YakuUtil.upperTiles(janpaiList)) {
             yakuList.push(MCR_YAKU.UPPER_TILES);
@@ -248,9 +256,9 @@ export default class McrUtil {
         return yakuList;
     }
     
-    static _mentsuYakuList(hand, completeInfo) {
+    static _mentsuYakuList(hand: Hand, completeInfo: CompleteInfo) {
         const janpaiList = HandUtil.janpaiListWith(hand, completeInfo.janpai);
-        let yakuList = YakuUtil.sevenPairs(janpaiList) ? [ this._sevenPairsYaku(janpaiList) ] :
+        let yakuList: McrYaku[] = YakuUtil.sevenPairs(janpaiList) ? [ this._sevenPairsYaku(janpaiList) ] :
                                                          [];
         HandUtil.completePatternList(hand, completeInfo).forEach((c) => {
             const newYakuList = [];
@@ -268,7 +276,7 @@ export default class McrUtil {
         return yakuList;
     }
     
-    static _numberTilesYakuList(completePattern) {
+    static _numberTilesYakuList(completePattern: CompletePattern) {
         const yakuList = [];
         if (this._allChows(completePattern)) {
             yakuList.push(MCR_YAKU.ALL_CHOWS);
@@ -294,14 +302,14 @@ export default class McrUtil {
         return yakuList;
     }
     
-    static _pungsOfTerminalsOrHonors(completePattern) {
+    static _pungsOfTerminalsOrHonors(completePattern: CompletePattern) {
         return completePattern.pungList.filter((p) => {
             return p.hasYao;
         }).map((_) => { return MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS });
     }
     
-    static _pungsYakuList(completePattern) {
-        const yakuList = [];
+    static _pungsYakuList(completePattern: CompletePattern) {
+        const yakuList: McrYaku[] = [];
         const pungList = completePattern.pungList;
         switch (pungList.length) {
         case 2:
@@ -325,7 +333,7 @@ export default class McrUtil {
         return yakuList;
     }
     
-    static _pureTerminalChows(fourChows, head) {
+    static _pureTerminalChows(fourChows: Mentsu[], head: Janpai) {
         const yakuList = this._twoMentsuYakuList(fourChows, 4);
         const expectedYakuList = [ MCR_YAKU.PURE_DOUBLE_CHOW, MCR_YAKU.TWO_TERMINAL_CHOWS,
                                    MCR_YAKU.TWO_TERMINAL_CHOWS, MCR_YAKU.PURE_DOUBLE_CHOW ];
@@ -333,13 +341,13 @@ export default class McrUtil {
                head.five && fourChows[0].suit === head.suit;
     }
     
-    static _push(yakuList, yaku) {
+    static _push(yakuList: McrYaku[], yaku: McrYaku | undefined) {
         if (yaku) {
             yakuList.push(yaku);
         }
     }
     
-    static _removeExecludeYaku(yakuList, completeInfo) {
+    static _removeExecludeYaku(yakuList: McrYaku[], completeInfo: CompleteInfo) {
         let execludedYakuList = [...yakuList];
         yakuList.forEach((yaku) => {
             switch (yaku) {
@@ -429,10 +437,10 @@ export default class McrUtil {
                 break;
             }
         });
-        return this._removeExecludeYakuWithCombined(execludedYakuList, completeInfo);
+        return this._removeExecludeYakuWithCombined(execludedYakuList);
     }
     
-    static _removeExecludeYakuWithCombined(yakuList) {
+    static _removeExecludeYakuWithCombined(yakuList: McrYaku[]) {
         const execludedYakuList = [...yakuList];
         if (yakuList.includes(MCR_YAKU.ALL_GREEN) && yakuList.includes(MCR_YAKU.SEVEN_PAIRS)) {
             // TODO 削除対象は全てなのか、必ず重複する1つだけなのか調査
@@ -441,7 +449,7 @@ export default class McrUtil {
         return execludedYakuList;
     }
     
-    static _removePureDoubleChow(chowList) {
+    static _removePureDoubleChow(chowList: Mentsu[]) {
         return chowList.slice(0, -1).some((m1, i) => {
             return chowList.slice(i + 1).some((m2) => {
                 if (YakuUtil.pureDoubleChow([m1, m2])) {
@@ -453,7 +461,7 @@ export default class McrUtil {
         });
     }
     
-    static _removeWaitYaku(yakuList, knittedChowList, janpai) {
+    static _removeWaitYaku(yakuList: McrYaku[], knittedChowList: Mentsu[], janpai: Janpai) {
         if (yakuList.includes(MCR_YAKU.ALL_CHOWS) && yakuList.includes(MCR_YAKU.KNITTED_STRAIGHT) &&
             hasJanpai(toJanpaiList(knittedChowList), janpai)) {
             this._removeYaku(yakuList, MCR_YAKU.EDGE_WAIT);
@@ -462,21 +470,21 @@ export default class McrUtil {
         }
     }
     
-    static _removeYaku(yakuList, yaku) {
+    static _removeYaku(yakuList: McrYaku[], yaku: McrYaku) {
         const index = yakuList.indexOf(yaku);
         if (index >= 0) {
             yakuList.splice(index, 1);
         }
     }
     
-    static _sevenPairsYaku(janpaiList) {
+    static _sevenPairsYaku(janpaiList: Janpai[]) {
         if (YakuUtil.sevenShiftedPairs(janpaiList)) {
             return MCR_YAKU.SEVEN_SHIFTED_PAIRS;
         }
         return MCR_YAKU.SEVEN_PAIRS;
     }
     
-    static _specialYakuList(yakuList, hand, janpai) {
+    static _specialYakuList(yakuList: McrYaku[], hand: Hand, janpai: Janpai) {
         // 十三幺はyakuList()で判定
         if (YakuUtil.reversibleTiles(HandUtil.allJanpaiListWith(hand, janpai))) {
             yakuList.push(MCR_YAKU.REVERSIBLE_TILES);
@@ -489,7 +497,7 @@ export default class McrUtil {
         // 花牌は未実装
     }
     
-    static _terminalsOrHonorsYaku(janpaiList) {
+    static _terminalsOrHonorsYaku(janpaiList: Janpai[]) {
         if (YakuUtil.allTerminals(janpaiList)) {
             return MCR_YAKU.ALL_TERMINALS;
         }
@@ -497,7 +505,7 @@ export default class McrUtil {
                                                             undefined;
     }
     
-    static _threeChowsYaku(threeChows) {
+    static _threeChowsYaku(threeChows: Mentsu[]) {
         if (YakuUtil.pureTripleChow(threeChows)) {
             return MCR_YAKU.PURE_TRIPLE_CHOW;
         }
@@ -519,8 +527,8 @@ export default class McrUtil {
         return undefined;
     }
     
-    static _threeMentsuYakuListWithFourMentsu(fourMentsu, chow = true) {
-        let yakuList = [];
+    static _threeMentsuYakuListWithFourMentsu(fourMentsu: Mentsu[], chow = true) {
+        let yakuList: McrYaku[] = [];
         const threeMentsuCallBack = chow ? this._threeChowsYaku : this._threePungsYaku;
         fourMentsu.some((m, i) => {
             const execludedList = [...fourMentsu];
@@ -546,7 +554,7 @@ export default class McrUtil {
         return yakuList;
     }
     
-    static _threePungsYaku(threePungs) {
+    static _threePungsYaku(threePungs: Mentsu[]) {
         if (YakuUtil.pureShiftedPungs(threePungs)) {
             return MCR_YAKU.PURE_SHIFTED_PUNGS;
         }
@@ -559,7 +567,7 @@ export default class McrUtil {
         return undefined;
     }
     
-    static _threeSuitedTerminalChows(fourChows, head) {
+    static _threeSuitedTerminalChows(fourChows: Mentsu[], head: Janpai) {
         const yakuList = this._twoMentsuYakuList(fourChows, 4);
         const expectedYakuList = [ MCR_YAKU.TWO_TERMINAL_CHOWS, MCR_YAKU.MIXED_DOUBLE_CHOW,
                                    MCR_YAKU.MIXED_DOUBLE_CHOW, MCR_YAKU.TWO_TERMINAL_CHOWS ];
@@ -567,7 +575,7 @@ export default class McrUtil {
         head.five && fourChows[0].suit !== head.suit && fourChows[2].suit !== head.suit;
     }
     
-    static _twoChowsYaku(twoChows) {
+    static _twoChowsYaku(twoChows: Mentsu[]) {
         if (YakuUtil.pureDoubleChow(twoChows)) {
             return MCR_YAKU.PURE_DOUBLE_CHOW;
         }
@@ -583,8 +591,8 @@ export default class McrUtil {
         return undefined;
     }
     
-    static _twoMentsuYakuList(mentsuList, max, chow = true) {
-        const yakuList = [];
+    static _twoMentsuYakuList(mentsuList: Mentsu[], max: number, chow = true) {
+        const yakuList: McrYaku[] = [];
         const callBack = chow ? this._twoChowsYaku : this._twoPungsYaku;
         const execludedList = [...mentsuList];
         if (chow && this._removePureDoubleChow(execludedList)) {
@@ -602,14 +610,14 @@ export default class McrUtil {
         return yakuList;
     }
     
-    static _twoPungsYaku(twoPungs) {
+    static _twoPungsYaku(twoPungs: Mentsu[]) {
         if (YakuUtil.doublePung(twoPungs)) {
             return MCR_YAKU.DOUBLE_PUNG;
         }
         return undefined;
     }
     
-    static _waitYaku(completePattern, janpai, completableList) {
+    static _waitYaku(completePattern: CompletePattern, janpai: Janpai, completableList: Janpai[]) {
         if (completableList.length !== 1) {
             return undefined;
         }
@@ -623,7 +631,7 @@ export default class McrUtil {
                                                               undefined;
     }
     
-    static _windsYakuList(completePattern, completeInfo) {
+    static _windsYakuList(completePattern: CompletePattern, completeInfo: CompleteInfo) {
         const yakuList = [];
         switch (completePattern.windCount) {
         case 4:
@@ -644,7 +652,7 @@ export default class McrUtil {
         return yakuList;
     }
     
-    static _yakuListWithFourChows(fourChows, head) {
+    static _yakuListWithFourChows(fourChows: Mentsu[], head: Janpai) {
         if (this._pureTerminalChows(fourChows, head)) {
             return [ MCR_YAKU.PURE_TERMINAL_CHOWS ];
         }
@@ -664,7 +672,7 @@ export default class McrUtil {
         return this._twoMentsuYakuList(fourChows, 3);
     }
     
-    static _yakuListWithFourPungs(fourPungs) {
+    static _yakuListWithFourPungs(fourPungs: Mentsu[]) {
         if (YakuUtil.fourPureShiftedPungs(fourPungs)) {
             return [ MCR_YAKU.FOUR_PURE_SHIFTED_PUNGS ];
         }
@@ -675,7 +683,7 @@ export default class McrUtil {
         return this._twoMentsuYakuList(fourPungs, 2, false);
     }
     
-    static _yakuListWithThreeChows(threeChows) {
+    static _yakuListWithThreeChows(threeChows: Mentsu[]) {
         const yaku = this._threeChowsYaku(threeChows);
         if (yaku) {
             return [ yaku ];
@@ -683,7 +691,7 @@ export default class McrUtil {
         return this._twoMentsuYakuList(threeChows, 2);
     }
     
-    static _yakuListWithThreePungs(threePungs) {
+    static _yakuListWithThreePungs(threePungs: Mentsu[]) {
         const yaku = this._threePungsYaku(threePungs);
         if (yaku) {
             return [ yaku ];
