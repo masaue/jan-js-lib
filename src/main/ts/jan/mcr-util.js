@@ -297,7 +297,7 @@ export default class McrUtil {
     static _pungsOfTerminalsOrHonors(completePattern) {
         return completePattern.pungList.filter((p) => {
             return p.hasYao;
-        }).fill(MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
+        }).map((_) => { return MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS });
     }
     
     static _pungsYakuList(completePattern) {
@@ -482,7 +482,7 @@ export default class McrUtil {
             yakuList.push(MCR_YAKU.REVERSIBLE_TILES);
         }
         const count = YakuUtil.tileHogCount(hand, janpai);
-        yakuList.push(...[...Array(count).keys()].fill(MCR_YAKU.TILE_HOG));
+        yakuList.push(...[...Array(count)].map((_) => { return MCR_YAKU.TILE_HOG }));
         if (YakuUtil.chickenHand(yakuList)) {
             yakuList.push(MCR_YAKU.CHICKEN_HAND);
         }
