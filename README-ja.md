@@ -67,10 +67,8 @@ import {
 }
 ```
 
-## 今後の予定
-- 設計資料をドキュメントへ追加
-
 ## ドキュメント
+- [国際公式ルールの役分類](./documents/McrYakuPattern-ja.md)
 - [公開手順](./documents/HowToPublish.md)
 
 ## ライセンス
