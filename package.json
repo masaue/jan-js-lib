@@ -7,7 +7,7 @@
     "build": "npm run tsc; webpack",
     "clean": "rimraf dist/ src/main/js/",
     "prepublishOnly": "npm run clean; npm run build -- --env=production",
-    "test": "npm run tsc; nyc mocha src/test/js -R dot --require @babel/register",
+    "test": "npm run tsc -- -p ./src/; nyc mocha src/test/js -R dot --require @babel/register",
     "tsc": "tsc"
   },
   "repository": {
