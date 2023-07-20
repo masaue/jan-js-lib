@@ -4,9 +4,8 @@
   "description": "mahjong score library on JavaScript.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run tsc",
     "clean": "rimraf dist/ src/main/js/",
-    "prepublishOnly": "npm run clean; npm run build -- --env=production",
+    "prepublishOnly": "npm run clean; npm run tsc",
     "test": "npm run tsc -- -p ./src/; nyc mocha src/test/js -R dot --require @babel/register",
     "tsc": "tsc"
   },
@@ -33,12 +32,11 @@
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "rimraf": "^4.1.2",
-    "typescript": "^4.9.4",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "typescript": "^4.9.4"
   },
   "files": [
-    "dist/"
+    "dist/",
+    "src/main/ts/"
   ],
   "keywords": [
     "jan-js-lib",
