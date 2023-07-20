@@ -10,33 +10,33 @@ Rules supported by this library.
 ```
 import {
   CompleteInfo,
-  CompleteType,
+  COMPLETE_TYPE,
   Hand,
   Janpai,
-  JanpaiID,
+  JANPAI_ID,
   McrUtil,
   Mentsu,
-  Wind,
+  WIND,
 } from '@masaue/jan-js-lib';
 
 (() => {
   // concealed hand
   const janpaiList = [
-    new Janpai(JanpaiID.MAN_01),
+    new Janpai(JANPAI_ID.MAN_01),
   ];
   // hand
   const hand = new Hand(janpaiList);
   // chow
-  hand.fix(Mentsu.createChowMentsu(new Janpai(JanpaiID.PIN_01)));
+  hand.fix(Mentsu.createChowMentsu(new Janpai(JANPAI_ID.PIN_01)));
   // pung
-  hand.fix(Mentsu.createPungMentsu(new Janpai(JanpaiID.SOU_09)));
+  hand.fix(Mentsu.createPungMentsu(new Janpai(JANPAI_ID.SOU_09)));
   // melded kong
-  hand.fix(Mentsu.createKongMentsu(new Janpai(JanpaiID.TON)));
+  hand.fix(Mentsu.createKongMentsu(new Janpai(JANPAI_ID.TON)));
   // concealed kong
-  hand.fix(Mentsu.createKongMentsu(new Janpai(JanpaiID.BAI), true));
+  hand.fix(Mentsu.createKongMentsu(new Janpai(JANPAI_ID.BAI), true));
   // complete tile, is last, prevalent, seat, complete type
-  const completeInfo = new CompleteInfo(new Janpai(JanpaiID.MAN_01),
-    false, Wind.TON, Wind.NAN, CompleteType.FINAL_DRAW_AND_WIN_ON_KONG);
+  const completeInfo = new CompleteInfo(new Janpai(JANPAI_ID.MAN_01),
+    false, WIND.TON, WIND.NAN, COMPLETE_TYPE.FINAL_DRAW_AND_WIN_ON_KONG);
 
   const complete = McrUtil.complete(hand, completeInfo);
   const yakuList = complete.yakuList.map((yaku) => {
@@ -69,7 +69,6 @@ import {
 ```
 
 ## What's next?
-- adding *.d.ts
 - adding documents
 
 ## Documents
