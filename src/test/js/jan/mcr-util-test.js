@@ -1478,7 +1478,7 @@ describe('McrUtilTest', () => {
         
     });
     
-    describe('_limitedNumbersYakuList()', () => {
+    describe('_limitedNumberYakuList()', () => {
         
         it('is upper tiles.', () => {
             const janpaiList = [

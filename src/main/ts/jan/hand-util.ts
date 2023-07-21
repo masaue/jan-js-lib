@@ -29,11 +29,11 @@ export function allJanpaiListWith(hand: Hand, janpai: Janpai) {
 
 export function completable(hand: Hand, janpai: Janpai) {
     const janpaiList = janpaiListWith(hand, janpai);
-    const execludeHeadMap = _execludeHeadMap(janpaiList);
-    if (execludeHeadMap.size === 0) {
+    const excludeHeadMap = _excludeHeadMap(janpaiList);
+    if (excludeHeadMap.size === 0) {
         return YakuUtil.honorsAndKnittedTiles(janpaiList);
     }
-    const completable = [...execludeHeadMap].some(([k, v]) => {
+    const completable = [...excludeHeadMap].some(([k, v]) => {
         if (v.length === 0) {
             // 裸単騎状態で和了
             return true;
@@ -57,8 +57,8 @@ export function completable(hand: Hand, janpai: Janpai) {
 export function completePatternList(hand: Hand, completeInfo: CompleteInfo) {
     const completePatternList: CompletePattern[] = [];
     const janpaiList = janpaiListWith(hand, completeInfo.janpai);
-    const execludeHeadMap = _execludeHeadMap(janpaiList);
-    execludeHeadMap.forEach((v, k) => {
+    const excludeHeadMap = _excludeHeadMap(janpaiList);
+    excludeHeadMap.forEach((v, k) => {
         const pungList = _pungList([...v]);
         [...Array(2 ** pungList.length).keys()].forEach((number) => {
             const completePattern = _completePattern(v, k, pungList, number,
@@ -124,16 +124,16 @@ function _createLightPungMentsu(janpaiList: Janpai[], janpai: Janpai, completeIn
             completeInfo.janpai.equals(janpai) && !completeInfo.type.tsumo;
 }
 
-function _execludeHeadMap(janpaiList: Janpai[]) {
-    const execludeHeadMap = new Map();
+function _excludeHeadMap(janpaiList: Janpai[]) {
+    const excludeHeadMap = new Map();
     uniqueList(janpaiList).forEach((j) => {
         if (count(janpaiList, j) >= 2) {
-            const execludeHeadList = [...janpaiList];
-            remove(execludeHeadList, j, 2);
-            execludeHeadMap.set(j, execludeHeadList);
+            const excludeHeadList = [...janpaiList];
+            remove(excludeHeadList, j, 2);
+            excludeHeadMap.set(j, excludeHeadList);
         }
     });
-    return execludeHeadMap;
+    return excludeHeadMap;
 }
 
 function _knittedChowList(janpaiList: Janpai[], knittedType: KnittedType) {

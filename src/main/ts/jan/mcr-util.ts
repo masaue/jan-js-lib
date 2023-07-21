@@ -34,12 +34,12 @@ export default class McrUtil {
         if (YakuUtil.honorsAndKnittedTiles(janpaiList)) {
             yakuList.push(...this._brokenYakuList(janpaiList));
             yakuList.push(...this._beingWholeYakuList(hand, completeInfo));
-            return new McrComplete(this._removeExecludeYaku(yakuList, completeInfo));
+            return new McrComplete(this._removeExcludeYaku(yakuList, completeInfo));
         }
         if (YakuUtil.thirteenOrphans(janpaiList)) {
             yakuList.push(MCR_YAKU.THIRTEEN_ORPHANS);
             yakuList.push(...this._beingWholeYakuList(hand, completeInfo));
-            return new McrComplete(this._removeExecludeYaku(yakuList, completeInfo));
+            return new McrComplete(this._removeExcludeYaku(yakuList, completeInfo));
         }
         yakuList.push(...this._mentsuYakuList(hand, completeInfo));
         const allJanpaiList = HandUtil.allJanpaiListWith(hand, completeInfo.janpai);
@@ -53,7 +53,7 @@ export default class McrUtil {
         yakuList.push(...this._limitedNumberYakuList(allJanpaiList));
         yakuList.push(...this._beingWholeYakuList(hand, completeInfo));
         this._specialYakuList(yakuList, hand, completeInfo.janpai);
-        return new McrComplete(this._removeExecludeYaku(yakuList, completeInfo));
+        return new McrComplete(this._removeExcludeYaku(yakuList, completeInfo));
     }
     
     
@@ -69,7 +69,7 @@ export default class McrUtil {
         case ZJM_YAKU.MIXED_LESSER_TERMINALS:
             return MCR_YAKU.OUTSIDE_HAND;
         }
-        // 全大、全中、全小、大于五、小于五、断幺は_limitedNumbersYakuList()で判定
+        // 全大、全中、全小、大于五、小于五、断幺は_limitedNumberYakuList()で判定
         return YakuUtil.allFives(completePattern) ? MCR_YAKU.ALL_FIVES : undefined;
     }
     
@@ -269,7 +269,7 @@ export default class McrUtil {
             this._push(newYakuList, this._allInvolvedYaku(c));
             this._push(newYakuList, this._waitYaku(c, completeInfo.janpai,
                                                        hand.completableList));
-            // removeExecludeYaku()ではcompletePattenがわからないため、ここで判定
+            // removeExcludeYaku()ではcompletePattenがわからないため、ここで判定
             this._removeWaitYaku(newYakuList, c.knittedChowList, completeInfo.janpai);
             yakuList = this._higherYakuList(yakuList, newYakuList);
         });
@@ -347,16 +347,16 @@ export default class McrUtil {
         }
     }
     
-    static _removeExecludeYaku(yakuList: McrYaku[], completeInfo: CompleteInfo) {
-        let execludedYakuList = [...yakuList];
+    static _removeExcludeYaku(yakuList: McrYaku[], completeInfo: CompleteInfo) {
+        let excludedYakuList = [...yakuList];
         yakuList.forEach((yaku) => {
             switch (yaku) {
             case MCR_YAKU.ALL_TERMINALS:
-                this._removeYaku(execludedYakuList, MCR_YAKU.NO_HONORS);
+                this._removeYaku(excludedYakuList, MCR_YAKU.NO_HONORS);
             case MCR_YAKU.BIG_FOUR_WINDS:
             case MCR_YAKU.ALL_HONORS:
             case MCR_YAKU.ALL_TERMINALS_AND_HONORS:
-                execludedYakuList = execludedYakuList.filter((y) => {
+                excludedYakuList = excludedYakuList.filter((y) => {
                     return y !== MCR_YAKU.ALL_PUNGS &&
                            y !== MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS;
                 });
@@ -364,49 +364,49 @@ export default class McrUtil {
             case MCR_YAKU.BIG_THREE_DRAGONS:
             case MCR_YAKU.LITTLE_FOUR_WINDS:
             case MCR_YAKU.BIG_THREE_WINDS:
-                this._removeYaku(execludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
+                this._removeYaku(excludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
             case MCR_YAKU.LITTLE_THREE_DRAGONS:
             case MCR_YAKU.TWO_DRAGON_PUNGS:
-                this._removeYaku(execludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
+                this._removeYaku(excludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
             case MCR_YAKU.DRAGON_PUNG:
-                this._removeYaku(execludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
+                this._removeYaku(excludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
                 break;
             case MCR_YAKU.NINE_GATES:
-                this._removeYaku(execludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
+                this._removeYaku(excludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
             case MCR_YAKU.THIRTEEN_ORPHANS:
             case MCR_YAKU.SEVEN_PAIRS:
             case MCR_YAKU.GREATER_HONORS_AND_KNITTED_TILES:
             case MCR_YAKU.LESSER_HONORS_AND_KNITTED_TILES:
-                this._removeYaku(execludedYakuList, MCR_YAKU.CONCEALED_HAND);
+                this._removeYaku(excludedYakuList, MCR_YAKU.CONCEALED_HAND);
                 break;
             case MCR_YAKU.FOUR_KONGS:
-                this._removeYaku(execludedYakuList, MCR_YAKU.ALL_PUNGS);
+                this._removeYaku(excludedYakuList, MCR_YAKU.ALL_PUNGS);
             case MCR_YAKU.MELDED_HAND:
-                this._removeYaku(execludedYakuList, MCR_YAKU.SINGLE_WAIT);
+                this._removeYaku(excludedYakuList, MCR_YAKU.SINGLE_WAIT);
                 break;
             case MCR_YAKU.SEVEN_SHIFTED_PAIRS:
-                this._removeYaku(execludedYakuList, MCR_YAKU.FULL_FLUSH);
-                this._removeYaku(execludedYakuList, MCR_YAKU.CONCEALED_HAND);
+                this._removeYaku(excludedYakuList, MCR_YAKU.FULL_FLUSH);
+                this._removeYaku(excludedYakuList, MCR_YAKU.CONCEALED_HAND);
                 break;
             case MCR_YAKU.FOUR_CONCEALED_PUNGS:
-                this._removeYaku(execludedYakuList, MCR_YAKU.CONCEALED_HAND);
+                this._removeYaku(excludedYakuList, MCR_YAKU.CONCEALED_HAND);
             case MCR_YAKU.FOUR_PURE_SHIFTED_PUNGS:
-                this._removeYaku(execludedYakuList, MCR_YAKU.ALL_PUNGS);
+                this._removeYaku(excludedYakuList, MCR_YAKU.ALL_PUNGS);
                 break;
             case MCR_YAKU.PURE_TERMINAL_CHOWS:
-                this._removeYaku(execludedYakuList, MCR_YAKU.FULL_FLUSH);
+                this._removeYaku(excludedYakuList, MCR_YAKU.FULL_FLUSH);
             case MCR_YAKU.THREE_SUITED_TERMINAL_CHOWS:
-                this._removeYaku(execludedYakuList, MCR_YAKU.ALL_CHOWS);
+                this._removeYaku(excludedYakuList, MCR_YAKU.ALL_CHOWS);
                 break;
             case MCR_YAKU.QUADRUPLE_CHOW:
-                execludedYakuList = execludedYakuList.filter((y) => {
+                excludedYakuList = excludedYakuList.filter((y) => {
                     return y !== MCR_YAKU.TILE_HOG;
                 });
                 break;
             case MCR_YAKU.ALL_EVEN_PUNGS:
             case MCR_YAKU.MIDDLE_TILES:
             case MCR_YAKU.ALL_FIVES:
-                this._removeYaku(execludedYakuList, MCR_YAKU.ALL_SIMPLES);
+                this._removeYaku(excludedYakuList, MCR_YAKU.ALL_SIMPLES);
                 break;
             case MCR_YAKU.FULL_FLUSH:
             case MCR_YAKU.UPPER_TILES:
@@ -415,13 +415,13 @@ export default class McrUtil {
             case MCR_YAKU.LOWER_FOUR:
             case MCR_YAKU.ALL_CHOWS:
             case MCR_YAKU.ALL_SIMPLES:
-                this._removeYaku(execludedYakuList, MCR_YAKU.NO_HONORS);
+                this._removeYaku(excludedYakuList, MCR_YAKU.NO_HONORS);
                 break;
             case MCR_YAKU.REVERSIBLE_TILES:
-                this._removeYaku(execludedYakuList, MCR_YAKU.ONE_VOIDED_SUIT);
+                this._removeYaku(excludedYakuList, MCR_YAKU.ONE_VOIDED_SUIT);
                 break;
             case MCR_YAKU.ROBBING_THE_KONG:
-                this._removeYaku(execludedYakuList, MCR_YAKU.LAST_TILE);
+                this._removeYaku(excludedYakuList, MCR_YAKU.LAST_TILE);
                 break;
             case MCR_YAKU.PREVALENT_WIND:
                 if (completeInfo.prevalent &&
@@ -433,20 +433,20 @@ export default class McrUtil {
                     yakuList.includes(MCR_YAKU.BIG_THREE_WINDS)) {
                     break;
                 }
-                this._removeYaku(execludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
+                this._removeYaku(excludedYakuList, MCR_YAKU.PUNG_OF_TERMINALS_OR_HONORS);
                 break;
             }
         });
-        return this._removeExecludeYakuWithCombined(execludedYakuList);
+        return this._removeExcludeYakuWithCombined(excludedYakuList);
     }
     
-    static _removeExecludeYakuWithCombined(yakuList: McrYaku[]) {
-        const execludedYakuList = [...yakuList];
+    static _removeExcludeYakuWithCombined(yakuList: McrYaku[]) {
+        const excludedYakuList = [...yakuList];
         if (yakuList.includes(MCR_YAKU.ALL_GREEN) && yakuList.includes(MCR_YAKU.SEVEN_PAIRS)) {
             // TODO 削除対象は全てなのか、必ず重複する1つだけなのか調査
-            this._removeYaku(execludedYakuList, MCR_YAKU.TILE_HOG);
+            this._removeYaku(excludedYakuList, MCR_YAKU.TILE_HOG);
         }
-        return execludedYakuList;
+        return excludedYakuList;
     }
     
     static _removePureDoubleChow(chowList: Mentsu[]) {
@@ -531,12 +531,12 @@ export default class McrUtil {
         let yakuList: McrYaku[] = [];
         const threeMentsuCallBack = chow ? this._threeChowsYaku : this._threePungsYaku;
         fourMentsu.some((m, i) => {
-            const execludedList = [...fourMentsu];
-            execludedList.splice(i, 1);
-            const threeMentsuYaku = threeMentsuCallBack(execludedList);
+            const excludedList = [...fourMentsu];
+            excludedList.splice(i, 1);
+            const threeMentsuYaku = threeMentsuCallBack(excludedList);
             if (threeMentsuYaku) {
                 yakuList.push(threeMentsuYaku);
-                execludedList.some((e) => {
+                excludedList.some((e) => {
                     const twoMentsu = [m, e];
                     sortMentsuList(twoMentsu);
                     const twoMentsuCallBack = chow ? this._twoChowsYaku : this._twoPungsYaku;
@@ -594,12 +594,12 @@ export default class McrUtil {
     static _twoMentsuYakuList(mentsuList: Mentsu[], max: number, chow = true) {
         const yakuList: McrYaku[] = [];
         const callBack = chow ? this._twoChowsYaku : this._twoPungsYaku;
-        const execludedList = [...mentsuList];
-        if (chow && this._removePureDoubleChow(execludedList)) {
+        const excludedList = [...mentsuList];
+        if (chow && this._removePureDoubleChow(excludedList)) {
             yakuList.push(MCR_YAKU.PURE_DOUBLE_CHOW);
         }
-        execludedList.slice(0, -1).some((m, i) => {
-            return execludedList.slice(i + 1).some((e) => {
+        excludedList.slice(0, -1).some((m, i) => {
+            return excludedList.slice(i + 1).some((e) => {
                 this._push(yakuList, callBack([m, e]));
                 if (yakuList.length === max) {
                     return true;
