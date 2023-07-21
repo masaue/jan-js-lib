@@ -19,7 +19,7 @@
 | :---------------|:-|:-:|:-| 
 | Seven Pairs || 2 | Seven Shifted Pairs, Seven Pairs |
 | Full Chows || 7 | All Green, Nine Gates, Full Flush, Half Flush, All Types, One Voided Suit, No Honors |
-| All Involved || 3 | All Fives, Outside hand, All Simples |
+| All Involved || 3 | All Fives, Outside hand, All Simples[^2] |
 | ↑ | Limited Number[^1] | 5 | Upper Tiles, Middle Tiles, Lower Tiles, Upper Four, Lower Four |
 | Broken || 2 | Greater Honors and Knitted Tiles, Lesser Honors and Knitted Tiles |
 | Being Whole(hu) || 9 | Last Tile Draw, Last Tile Claim, Out with Replacement Tile, Robbing The Kong, Melded Hand, Fully Concealed Hand, Last Tile, Concealed Hand, Self-Drawn |
@@ -28,3 +28,5 @@
 | total || 36 |
 
 [^1]: for ease of coding, named by the author
+
+[^2]: `All Simples` is based on [Wikipedia](https://ja.wikipedia.org/wiki/中国麻雀#役と点数表), not [mindmahjong.com](http://www.mindmahjong.com/adobe/20141120CEJ.pdf)
