@@ -68,10 +68,8 @@ import {
 }
 ```
 
-## What's next?
-- adding documents
-
 ## Documents
+- [The various kinds of MCR Yaku](./documents/McrYakuPattern.md)
 - [how to publish](./documents/HowToPublish.md)
 
 ## License
