@@ -13,71 +13,68 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-import ZjmYaku from './zjm-yaku';
-import YakuUtil from './yaku-util';
+import {CompletePattern} from './complete-pattern';
+import {Janpai} from './janpai';
+import {Mentsu} from './mentsu';
+import * as YakuUtil from './yaku-util';
+import {ZJM_YAKU, ZjmYaku} from './zjm-yaku';
 
 export default class ZjmUtil {
-    
-    static yakuList(info) {
-    }
-    
-    
-    
-    static _concealedTripletsYaku(completePattern) {
+    static _concealedTripletsYaku(completePattern: CompletePattern) {
         switch (completePattern.concealedPungCount) {
         case 4:
-            return ZjmYaku.FOUR_CONCEALED_TRIPLETS;
+            return ZJM_YAKU.FOUR_CONCEALED_TRIPLETS;
         case 3:
-            return ZjmYaku.THREE_CONCEALED_TRIPLETS;
+            return ZJM_YAKU.THREE_CONCEALED_TRIPLETS;
         case 2:
-            return ZjmYaku.TWO_CONCEALED_TRIPLETS;
+            return ZJM_YAKU.TWO_CONCEALED_TRIPLETS;
         default:
             return undefined;
         }
     }
     
-    static _dragonsYaku(completePattern) {
+    static _dragonsYaku(completePattern: CompletePattern) {
         switch (completePattern.dragonCount) {
         case 3:
-            return ZjmYaku.BIG_THREE_DRAGONS;
+            return ZJM_YAKU.BIG_THREE_DRAGONS;
         case 2:
             if (completePattern.head.dragon) {
-                return ZjmYaku.SMALL_THREE_DRAGONS;
+                return ZJM_YAKU.SMALL_THREE_DRAGONS;
             }
         default:
             return undefined;
         }
     }
     
-    static _honorTilesYakuList(completePattern) {
-        const yakuList = [];
+    static _honorTilesYakuList(completePattern: CompletePattern) {
+        const yakuList: ZjmYaku[] = [];
         this._push(yakuList, this._dragonsYaku(completePattern));
         this._push(yakuList, this._windsYaku(completePattern));
         if (completePattern.jiAll) {
-            yakuList.push(ZjmYaku.ALL_HONORS);
+            yakuList.push(ZJM_YAKU.ALL_HONORS);
         }
         return yakuList;
     }
     
-    static _kongYaku(completePattern) {
+    static _kongYaku(completePattern: CompletePattern) {
         switch (completePattern.kongCount) {
         case 4:
-            return ZjmYaku.FOUR_KONG;
+            return ZJM_YAKU.FOUR_KONG;
         case 3:
-            return ZjmYaku.THREE_KONG;
+            return ZJM_YAKU.THREE_KONG;
         case 2:
-            return ZjmYaku.TWO_KONG;
+            return ZJM_YAKU.TWO_KONG;
         case 1:
-            return ZjmYaku.ONE_KONG;
+            return ZJM_YAKU.ONE_KONG;
         default:
             return undefined;
         }
     }
     
-    static _mentsuYakuList(completePattern) {
-        const yakuList = [];
-        yakuList.push(...YakuUtil._honorTilesYakuList(completePattern));
-        yakuList.push(...YakuUtil._tripletsAndKongYakuList(completePattern));
+    static _mentsuYakuList(completePattern: CompletePattern) {
+        const yakuList: ZjmYaku[] = [];
+        yakuList.push(...ZjmUtil._honorTilesYakuList(completePattern));
+        yakuList.push(...ZjmUtil._tripletsAndKongYakuList(completePattern));
         const chowList = completePattern.chowList;
         const pungList = completePattern.pungList;
         const head = completePattern.head;
@@ -101,14 +98,15 @@ export default class ZjmUtil {
             break;
         case 4:
             this._push(yakuList, this._yakuWithFourChows(chowList));
-            yakuList.push(ZjmYaku.ALL_SEQUENCES);
+            yakuList.push(ZJM_YAKU.ALL_SEQUENCES);
             break;
         }
-        _push(yakuList, YakuUtil.terminalsYaku(completePattern));
+        ZjmUtil._push(yakuList, YakuUtil.terminalsYaku(completePattern));
         return yakuList;
     }
     
-    static _prevNumberMentsuYaku(callBack, mentsuList, head) {
+    static _prevNumberMentsuYaku(callBack: (mentsuList: Mentsu[], ...janpai: Janpai[]) => ZjmYaku | undefined,
+                                 mentsuList: Mentsu[], head: Janpai | undefined) {
         for (let i = 0; i < mentsuList.length; i++) {
             const removed = mentsuList.splice(i, 1);
             let yaku;
@@ -126,61 +124,62 @@ export default class ZjmUtil {
         return undefined;
     }
     
-    static _push(yakuList, yaku) {
+    static _push(yakuList: ZjmYaku[], yaku: ZjmYaku | undefined) {
         if (yaku) {
             yakuList.push(yaku);
         }
     }
     
-    static _smallThreeSimilarTriplets(twoPungs, head) {
+    static _smallThreeSimilarTriplets(twoPungs: Mentsu[], head: Janpai) {
         if (YakuUtil.doublePung(twoPungs) &&
             twoPungs[0].head.number === head.number) {
-            return ZjmYaku.SMALL_THREE_SIMILAR_TRIPLETS;
+            return ZJM_YAKU.SMALL_THREE_SIMILAR_TRIPLETS;
         }
         return undefined;
     }
     
-    static _threeChowsYaku(threeChows) {
+    static _threeChowsYaku(threeChows: Mentsu[]) {
         if (YakuUtil.pureTripleChow(threeChows)) {
-            return ZjmYaku.THREE_INDENTICAL_SEQUENCES;
+            return ZJM_YAKU.THREE_INDENTICAL_SEQUENCES;
         }
         if (YakuUtil.pureStraight(threeChows)) {
-            return ZjmYaku.NINE_TILE_STRAIGHT;
+            return ZJM_YAKU.NINE_TILE_STRAIGHT;
         }
         if (YakuUtil.mixedTripleChow(threeChows)) {
-            return ZjmYaku.THREE_SIMILAR_SEQUENCES;
+            return ZJM_YAKU.THREE_SIMILAR_SEQUENCES;
         }
         return undefined;
     }
     
-    static _threePungsYaku(threePungs) {
+    static _threePungsYaku(threePungs: Mentsu[]) {
         if (YakuUtil.triplePung(threePungs)) {
-            return ZjmYaku.THREE_SIMILAR_TRIPLETS;
+            return ZJM_YAKU.THREE_SIMILAR_TRIPLETS;
         }
         if (YakuUtil.pureShiftedPungs(threePungs)) {
-            return ZjmYaku.THREE_CONCEALED_TRIPLETS;
+            return ZJM_YAKU.THREE_CONCEALED_TRIPLETS;
         }
         return undefined;
     }
     
-    static _tripletsAndKongYakuList(completePattern) {
+    static _tripletsAndKongYakuList(completePattern: CompletePattern) {
         const yakuList = [];
         if (completePattern.pungList.length === 4) {
-            yakuList.push(ZjmYaku.ALL_TRIPLETS);
+            yakuList.push(ZJM_YAKU.ALL_TRIPLETS);
         }
         this._push(yakuList, this._concealedTripletsYaku(completePattern));
         this._push(yakuList, this._kongYaku(completePattern));
         return yakuList;
     }
     
-    static _twoIndenticalSequences(twoChows) {
+    static _twoIndenticalSequences(twoChows: Mentsu[]) {
         if (YakuUtil.pureDoubleChow(twoChows)) {
-            return ZjmYaku.TWO_INDENTICAL_SEQUENCES;
+            return ZJM_YAKU.TWO_INDENTICAL_SEQUENCES;
         }
         return undefined;
     }
     
-    static _twoMentsuYakuWithFourMentsu(callBack, fourMentsu, head) {
+    static _twoMentsuYakuWithFourMentsu(callBack: (mentsuList: Mentsu[], ...head: Janpai[]) => ZjmYaku | undefined,
+                                        fourMentsu: Mentsu[], head: Janpai | undefined) {
         for (let i = 0; i < fourMentsu.length; i++) {
             const firstRemoved = fourMentsu.splice(i, 1);
             for (let j = 0; j < fourMentsu.length; j++) {
@@ -202,30 +201,30 @@ export default class ZjmUtil {
         return undefined;
     }
     
-    static _windsYaku(completePattern) {
+    static _windsYaku(completePattern: CompletePattern) {
         switch (completePattern.windCount) {
         case 4:
-            return ZjmYaku.BIG_FOUR_WINDS;
+            return ZJM_YAKU.BIG_FOUR_WINDS;
         case 3:
             if (completePattern.head.wind) {
-                return ZjmYaku.SMALL_FOUR_WINDS;
+                return ZJM_YAKU.SMALL_FOUR_WINDS;
             }
-            return ZjmYaku.BIG_THREE_WINDS;
+            return ZJM_YAKU.BIG_THREE_WINDS;
         case 2:
             if (completePattern.head.wind) {
-                return ZjmYaku.SMALL_THREE_WINDS;
+                return ZJM_YAKU.SMALL_THREE_WINDS;
             }
         default:
             return undefined;
         }
     }
     
-    static _yakuWithFourChows(fourChows) {
+    static _yakuWithFourChows(fourChows: Mentsu[]) {
         if (YakuUtil.quadrupleChow(fourChows)) {
-            return ZjmYaku.FOUR_INDENTICAL_SEQUENCES;
+            return ZJM_YAKU.FOUR_INDENTICAL_SEQUENCES;
         }
         if (YakuUtil.twoIdenticalSequencesTwice(fourChows)) {
-            return ZjmYaku.TWO_INDENTICAL_SEQUENCES_TWICE;
+            return ZJM_YAKU.TWO_INDENTICAL_SEQUENCES_TWICE;
         }
         const _threeChowsYaku = this._threeChowsYaku;
         const yaku = this._prevNumberMentsuYaku(_threeChowsYaku, fourChows, undefined);
@@ -236,9 +235,9 @@ export default class ZjmUtil {
         return this._twoMentsuYakuWithFourMentsu(callBack, fourChows, undefined);
     }
     
-    static _yakuWithFourPungs(fourPungs, head) {
+    static _yakuWithFourPungs(fourPungs: Mentsu[], head: Janpai) {
         if (YakuUtil.fourPureShiftedPungs(fourPungs)) {
-            return ZjmYaku.FOUR_CONSECUTIVE_TRIPLETS;
+            return ZJM_YAKU.FOUR_CONSECUTIVE_TRIPLETS;
         }
         const _threePungsYaku = this._threePungsYaku;
         const yaku = this._prevNumberMentsuYaku(_threePungsYaku, fourPungs, head);
@@ -249,7 +248,7 @@ export default class ZjmUtil {
         return this._twoMentsuYakuWithFourMentsu(callBack, fourPungs, head);
     }
     
-    static _yakuWithThreeChows(threeChows) {
+    static _yakuWithThreeChows(threeChows: Mentsu[]) {
         const yaku = this._threeChowsYaku(threeChows);
         if (yaku) {
             return yaku;
@@ -258,7 +257,7 @@ export default class ZjmUtil {
         return this._prevNumberMentsuYaku(callBack, threeChows, undefined);
     }
     
-    static _yakuWithThreePungs(threePungs, head) {
+    static _yakuWithThreePungs(threePungs: Mentsu[], head: Janpai) {
         const yaku = this._threePungsYaku(threePungs);
         if (yaku) {
             return yaku;

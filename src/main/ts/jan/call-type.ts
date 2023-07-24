@@ -13,14 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-export default {
-    
-    MAN: 'MAN',
-    
-    PIN: 'PIN',
-    
-    SOU: 'SOU',
-    
-    JI : 'JI',
-    
-}
+export const CALL_TYPE = {
+  RON      : 'RON',
+  CHI      : 'CHI',
+  PON      : 'PON',
+  KAN_LIGHT: 'KAN_LIGHT',
+  KAN_ADD  : 'KAN_ADD',
+  KAN_DARK : 'KAN_DARK',
+} as const;
+
+export type CallType = typeof CALL_TYPE[keyof typeof CALL_TYPE];

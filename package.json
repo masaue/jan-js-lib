@@ -2,12 +2,12 @@
   "name": "@masaue/jan-js-lib",
   "version": "1.1.2",
   "description": "mahjong score library on JavaScript.",
-  "main": "dist/bundle.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "webpack",
-    "clean": "rimraf dist/",
-    "prepublishOnly": "npm run clean; npm run build -- --env=production",
-    "test": "nyc mocha src/test/js -R dot --require @babel/register"
+    "clean": "rimraf dist/ src/main/js/",
+    "prepublishOnly": "npm run clean; npm run tsc -- -p ./tsconfig-publish.json",
+    "test": "npm run tsc; nyc mocha src/test/js -R dot --require @babel/register",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
@@ -25,18 +25,17 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/register": "^7.18.9",
-    "babel-loader": "^9.1.2",
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/register": "^7.22.5",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
-    "rimraf": "^4.1.2",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.6"
   },
   "files": [
-    "dist/"
+    "dist/",
+    "src/main/ts/"
   ],
   "keywords": [
     "jan-js-lib",
@@ -44,5 +43,6 @@
     "mahjong competition rules",
     "mcr",
     "score"
-  ]
+  ],
+  "types": "./dist/index.d.ts"
 }

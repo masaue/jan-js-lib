@@ -13,14 +13,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-export default {
-    
-    CHOW: '順子',
-    
-    KNITTED_CHOW: '組合龍順子',
-    
-    PUNG: '刻子',
-    
-    KONG: '槓子',
-    
-}
+export const SUIT = {
+  MAN: 'MAN',
+  PIN: 'PIN',
+  SOU: 'SOU',
+  JI : 'JI',
+} as const;
+
+export type Suit = typeof SUIT[keyof typeof SUIT];

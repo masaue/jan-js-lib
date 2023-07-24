@@ -13,14 +13,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-export default {
-    
-    TON: '東',
-    
-    NAN: '南',
-    
-    SHA: '西',
-    
-    PEI: '北',
-    
-}
+export const MENTSU_TYPE = {
+  CHOW: '順子',
+  KNITTED_CHOW: '組合龍順子',
+  PUNG: '刻子',
+  KONG: '槓子',
+} as const;
+
+export type MentsuType = typeof MENTSU_TYPE[keyof typeof MENTSU_TYPE];
